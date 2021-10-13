@@ -96,6 +96,7 @@ namespace lab1
             this.addCircleButton.TabIndex = 2;
             this.addCircleButton.Text = "Add circle";
             this.addCircleButton.UseVisualStyleBackColor = true;
+            this.addCircleButton.Click += new System.EventHandler(this.addCircleButton_Click);
             // 
             // addPolygonButton
             // 
