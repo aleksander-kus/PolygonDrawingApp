@@ -105,6 +105,64 @@ namespace lab1
             Redraw();
         }
 
-        
+        /// <summary>
+        /// Draw the canvas and its contents
+        /// </summary>
+        /// <param name="g">Graphics used to draw</param>
+        public void Draw(Graphics g)
+        {
+            if (addingPolygonVertices != null)
+                DrawAddingPolygon(g);
+            if (addingCircle != null)
+                DrawCircle(g, addingCircle);
+            foreach(var polygon in polygons)
+                DrawPolygon(g, polygon);
+            foreach (var circle in circles)
+                DrawCircle(g, circle);
+        }
+
+        private void DrawVertice(Graphics g, Point location, Color? color = null)
+        {
+            Brush b = new SolidBrush(color ?? Color.Green);
+            g.FillEllipse(b, new Rectangle { X = location.X - 3, Y = location.Y - 3, Height = 6, Width = 6 });
+        }
+
+        private void DrawAddingPolygon(Graphics g)
+        {
+            Pen p = new Pen(Color.Black, 1);
+            DrawVertice(g, addingPolygonVertices[0]);
+            for (int i = 1; i < addingPolygonVertices.Count; ++i)
+            {
+                g.DrawLine(p, addingPolygonVertices[i - 1], addingPolygonVertices[i]);
+                DrawVertice(g, addingPolygonVertices[i]);
+            }
+        }
+
+        private void DrawPolygon(Graphics g, Shapes.Polygon polygon)
+        {
+            Pen p = new Pen(Color.Black, 1);
+            List<Point> vertices = polygon.VertexList;
+            for (int i = 0; i < vertices.Count; ++i)
+            {
+                g.DrawLine(p, vertices[i], vertices[(i + 1) % vertices.Count]);
+                DrawVertice(g, vertices[i]);
+            }
+            DrawVertice(g, vertices[0]);
+            DrawVertice(g, polygon.MiddlePoint, Color.Red);
+        }
+
+        private void DrawCircle(Graphics g, Shapes.Circle circle)
+        {
+            Pen p = new Pen(Color.Black, 1);
+            Rectangle r = new(circle.Center.X - circle.Radius, circle.Center.Y - circle.Radius, 2 * circle.Radius, 2 * circle.Radius);
+            g.DrawEllipse(p, r);
+            DrawVertice(g, circle.Center, Color.Red);
+        }
+
+        /// <summary>
+        /// Redraw the canvas after a change in contents
+        /// </summary>
+        public void Redraw() => panel.Invalidate();
+
     }
 }
