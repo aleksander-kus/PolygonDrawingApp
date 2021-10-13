@@ -34,6 +34,7 @@ namespace lab1
             addingPolygonVertices.Add(mousePosition);
         }
 
+        public void StartAddingCircle(Point mousePosition) => addingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
         /// <summary>
         /// Calculates distance between two points without the final root to avoid overhead
         /// </summary>
@@ -72,12 +73,38 @@ namespace lab1
             return false;
         }
 
-        
+        public bool AddCircle(Point mousePosition)
+        {
+            if (circle_anchored)
+            {
+                addingCircle.Radius = (int)Math.Sqrt(SquaredDistance(addingCircle.Center, mousePosition));
+                circles.Add(addingCircle);
+                addingCircle = null;
+                circle_anchored = false;
+                Redraw();
+                return true;
+            }
+            addingCircle.Center = mousePosition;
+            circle_anchored = true;
+            Redraw();
+            return false;
+        }
+
         public void MouseMoveWhileAddingPolygon(Point mousePosition)
         {
             addingPolygonVertices[^1] = mousePosition;
             Redraw();
         }
 
+        public void MouseMoveWhileAddingCircle(Point mousePosition)
+        {
+            if (circle_anchored)
+                addingCircle.Radius = (int)Math.Sqrt(SquaredDistance(addingCircle.Center, mousePosition));
+            else
+                addingCircle.Center = mousePosition;
+            Redraw();
+        }
+
+        
     }
 }
