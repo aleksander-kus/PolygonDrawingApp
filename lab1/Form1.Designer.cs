@@ -62,6 +62,9 @@ namespace lab1
             this.canvasPanel.Name = "canvasPanel";
             this.canvasPanel.Size = new System.Drawing.Size(640, 450);
             this.canvasPanel.TabIndex = 0;
+            this.canvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.canvasPanel_Paint);
+            this.canvasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvasPanel_MouseDown);
+            this.canvasPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvasPanel_MouseMove);
             // 
             // menuTable
             // 
@@ -104,6 +107,7 @@ namespace lab1
             this.addPolygonButton.TabIndex = 0;
             this.addPolygonButton.Text = "Add polygon";
             this.addPolygonButton.UseVisualStyleBackColor = true;
+            this.addPolygonButton.Click += new System.EventHandler(this.addPolygonButton_Click);
             // 
             // Form1
             // 
@@ -113,7 +117,6 @@ namespace lab1
             this.Controls.Add(this.tablePanel);
             this.Name = "Form1";
             this.Text = "Shape editor";
-            this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tablePanel.ResumeLayout(false);
