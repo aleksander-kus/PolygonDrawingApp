@@ -24,5 +24,21 @@ namespace lab1
             this.panel = panel;
         }
 
+        /// <summary>
+        /// Calculates distance between two points without the final root to avoid overhead
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns>The squared distance between two points</returns>
+        public int SquaredDistance(Point p1, Point p2) => (p2.X - p1.X) * (p2.X - p1.X) + (p2.Y - p1.Y) * (p2.Y - p1.Y);
+
+        /// <summary>
+        /// Returns if a point was clicked with 10 pixel toleration
+        /// </summary>
+        /// <param name="point">Questioned point</param>
+        /// <param name="click_location">Mouse click location</param>
+        /// <returns>If the point was clicked</returns>
+        public bool IsPointClicked(Point point, Point click_location) => SquaredDistance(point, click_location) <= 100;
+
     }
 }
