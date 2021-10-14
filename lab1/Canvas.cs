@@ -35,6 +35,7 @@ namespace lab1
         }
 
         public void StartAddingCircle(Point mousePosition) => addingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
+
         /// <summary>
         /// Calculates distance between two points without the final root to avoid overhead
         /// </summary>
@@ -175,6 +176,20 @@ namespace lab1
         public void MoveCircle(int circleID, Point mousePosition)
         {
             circles[circleID].Center = mousePosition;
+            Redraw();
+        }
+
+        public int IsCircleEdgeClicked(Point mousePosition)
+        {
+            for (int i = 0; i < circles.Count; ++i)
+                if (Math.Abs(Math.Sqrt(SquaredDistance(circles[i].Center, mousePosition)) - circles[i].Radius) < 10)
+                    return i;
+            return -1;
+        }
+
+        public void ResizeCircle(int circleID, Point mousePosition)
+        {
+            circles[circleID].Radius = (int)Math.Sqrt(SquaredDistance(circles[circleID].Center, mousePosition));
             Redraw();
         }
     }
