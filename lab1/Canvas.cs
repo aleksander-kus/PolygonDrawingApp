@@ -217,5 +217,17 @@ namespace lab1
             }
             Redraw();
         }
+
+        public void DeletePolygon(int polygonID)
+        {
+            polygons.RemoveAt(polygonID);
+            Redraw();
+        }
+
+        public void DeleteCircle(int circleID)
+        {
+            circles.RemoveAt(circleID);
+            Redraw();
+        }
     }
 }
