@@ -5,9 +5,11 @@
         Default = 0,
         AddingPolygon = 1,
         AddingCircle = 2,
-        MovingVertex = 3,
-        MovingPolygonCenter = 4,
+        MovingPolygonCenter = 3,
+        MovingVertex = 4,
         MovingCircleCenter = 5,
-        ResizingCircle
+        ResizingCircle = 6,
+        DeletingPolygon = 7,
+        DeletingCircle = 8
     }
 }
