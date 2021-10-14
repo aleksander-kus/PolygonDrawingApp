@@ -243,6 +243,12 @@ namespace lab1
             Redraw();
         }
 
+        public void DeleteVertex(int polygonID, int vertexID)
+        {
+            if (polygons[polygonID].VertexList.Count > 3)
+                polygons.RemoveAt(vertexID);
+        }
+
         public void SplitEdge(int polygonID, int lowerVertexID)
         {
             Point center = GraphicsHelpers.SegmentCenter(polygons[polygonID].VertexList[lowerVertexID], polygons[polygonID].VertexList[(lowerVertexID + 1) % polygons[polygonID].VertexList.Count]);
