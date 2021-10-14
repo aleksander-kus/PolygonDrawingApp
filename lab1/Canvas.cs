@@ -136,6 +136,8 @@ namespace lab1
             for (int i = 0; i < vertices.Count; ++i)
             {
                 g.DrawLine(p, vertices[i], vertices[(i + 1) % vertices.Count]);
+                Point center = GraphicsHelpers.SegmentCenter(vertices[i], vertices[(i + 1) % vertices.Count]);
+                DrawVertice(g, center, Color.Yellow);
                 DrawVertice(g, vertices[i]);
             }
             DrawVertice(g, vertices[0]);
