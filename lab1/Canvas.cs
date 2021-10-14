@@ -48,9 +48,9 @@ namespace lab1
         /// Returns if a point was clicked with 10 pixel toleration
         /// </summary>
         /// <param name="point">Questioned point</param>
-        /// <param name="click_location">Mouse click location</param>
+        /// <param name="mousePosition">Mouse click location</param>
         /// <returns>If the point was clicked</returns>
-        public bool IsPointClicked(Point point, Point click_location) => SquaredDistance(point, click_location) <= 100;
+        public bool IsPointClicked(Point point, Point mousePosition) => SquaredDistance(point, mousePosition) <= 100;
 
         /// <summary>
         /// Add a new point to the polygon
