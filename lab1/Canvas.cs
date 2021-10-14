@@ -52,6 +52,7 @@ namespace lab1
             {
                 addingPolygonVertices.RemoveAt(addingPolygonVertices.Count - 1);
                 polygons.Add(new Shapes.Polygon(addingPolygonVertices));
+                addingPolygonVertices = null;
                 Redraw();
                 return true;
             }
@@ -181,6 +182,18 @@ namespace lab1
             Redraw();
         }
 
+        public (int polygonID, int vertexID) IsPolygonVertexClicked(Point mousePosition)
+        {
+            for(int i = 0; i < polygons.Count; ++i)
+                for (int j = 0; j < polygons[i].VertexList.Count; ++j)
+                    if (GraphicsHelpers.IsPointClicked(polygons[i].VertexList[j], mousePosition))
+                        return (i, j);
+            return (-1, -1);
+        }
+
+        public void MovePolygonVertex(int polygonID, int vertexID, Point mousePosition)
+        {
+            polygons[polygonID].VertexList[vertexID] = mousePosition;
             Redraw();
         }
     }
