@@ -88,9 +88,30 @@ namespace lab1
             }
         }
 
-        private void canvasPanel_Paint(object sender, PaintEventArgs e)
+        private void canvasPanel_Paint(object sender, PaintEventArgs e) => canvas.Draw(e.Graphics);
+
+        private void canvasPanel_MouseUp(object sender, MouseEventArgs e)
         {
-            canvas.Draw(e.Graphics);
+            switch (mode)
+            {
+                case ApplicationMode.Default:
+                    break;
+                case ApplicationMode.AddingPolygon:
+                    break;
+                case ApplicationMode.AddingCircle:
+                    break;
+                case ApplicationMode.MovingVertex:
+                    break;
+                case ApplicationMode.MovingPolygonCenter:
+                case ApplicationMode.MovingCircleCenter:
+                case ApplicationMode.ResizingCircle:
+                    changingShapeID = -1;
+                    mode = ApplicationMode.Default;
+                    break;
+                default:
+                    break;
+            }
+
         }
     }
 }
