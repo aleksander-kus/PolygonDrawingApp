@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace lab1
 {
@@ -51,6 +52,7 @@ namespace lab1
             {
                 addingPolygonVertices.RemoveAt(addingPolygonVertices.Count - 1);
                 polygons.Add(new Shapes.Polygon(addingPolygonVertices));
+                addingPolygonVertices = null;
                 Redraw();
                 return true;
             }
@@ -129,14 +131,14 @@ namespace lab1
         private void DrawPolygon(Graphics g, Shapes.Polygon polygon)
         {
             Pen p = new Pen(Color.Black, 1);
-            List<Point> vertices = polygon.VertexList;
+            List<Point> vertices = polygon.VertexList.ToList();
             for (int i = 0; i < vertices.Count; ++i)
             {
                 g.DrawLine(p, vertices[i], vertices[(i + 1) % vertices.Count]);
                 DrawVertice(g, vertices[i]);
             }
             DrawVertice(g, vertices[0]);
-            DrawVertice(g, polygon.MiddlePoint, Color.Red);
+            DrawVertice(g, polygon.Center, Color.Red);
         }
 
         private void DrawCircle(Graphics g, Shapes.Circle circle)
@@ -180,6 +182,39 @@ namespace lab1
             Redraw();
         }
 
+        public (int polygonID, int vertexID) IsPolygonVertexClicked(Point mousePosition)
+        {
+            for(int i = 0; i < polygons.Count; ++i)
+                for (int j = 0; j < polygons[i].VertexList.Count; ++j)
+                    if (GraphicsHelpers.IsPointClicked(polygons[i].VertexList[j], mousePosition))
+                        return (i, j);
+            return (-1, -1);
+        }
+
+        public void MovePolygonVertex(int polygonID, int vertexID, Point mousePosition)
+        {
+            polygons[polygonID].VertexList[vertexID] = mousePosition;
+            Redraw();
+        }
+
+        public int IsPolygonCenterClicked(Point mousePosition)
+        {
+            for (int i = 0; i < polygons.Count; ++i)
+                if (GraphicsHelpers.IsPointClicked(polygons[i].Center, mousePosition))
+                    return i;
+            return -1;
+        }
+
+        public void MovePolygon(int polygonID, Point mousePosition)
+        {
+            Point middle = polygons[polygonID].Center;
+            int delta_x = mousePosition.X - middle.X;
+            int delta_y = mousePosition.Y - middle.Y;
+            for (int i = 0; i < polygons[polygonID].VertexList.Count; ++i)
+            {
+                Point p = polygons[polygonID].VertexList[i];
+                polygons[polygonID].VertexList[i] = new Point(p.X + delta_x, p.Y + delta_y);
+            }
             Redraw();
         }
     }
