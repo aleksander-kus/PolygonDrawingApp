@@ -34,6 +34,8 @@ namespace lab1
             this.menuTable = new System.Windows.Forms.TableLayoutPanel();
             this.addCircleButton = new System.Windows.Forms.Button();
             this.addPolygonButton = new System.Windows.Forms.Button();
+            this.deletePolygonButton = new System.Windows.Forms.Button();
+            this.deleteCircleButton = new System.Windows.Forms.Button();
             this.tablePanel.SuspendLayout();
             this.menuTable.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +73,8 @@ namespace lab1
             // 
             this.menuTable.ColumnCount = 1;
             this.menuTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.menuTable.Controls.Add(this.deleteCircleButton, 0, 4);
+            this.menuTable.Controls.Add(this.deletePolygonButton, 0, 3);
             this.menuTable.Controls.Add(this.addCircleButton, 0, 2);
             this.menuTable.Controls.Add(this.addPolygonButton, 0, 0);
             this.menuTable.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -111,6 +115,30 @@ namespace lab1
             this.addPolygonButton.UseVisualStyleBackColor = true;
             this.addPolygonButton.Click += new System.EventHandler(this.addPolygonButton_Click);
             // 
+            // deletePolygonButton
+            // 
+            this.deletePolygonButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.deletePolygonButton.Location = new System.Drawing.Point(3, 82);
+            this.deletePolygonButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.deletePolygonButton.Name = "deletePolygonButton";
+            this.deletePolygonButton.Size = new System.Drawing.Size(148, 23);
+            this.deletePolygonButton.TabIndex = 4;
+            this.deletePolygonButton.Text = "Delete polygon";
+            this.deletePolygonButton.UseVisualStyleBackColor = true;
+            this.deletePolygonButton.Click += new System.EventHandler(this.deletePolygonButton_Click);
+            // 
+            // deleteCircleButton
+            // 
+            this.deleteCircleButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.deleteCircleButton.Location = new System.Drawing.Point(3, 118);
+            this.deleteCircleButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.deleteCircleButton.Name = "deleteCircleButton";
+            this.deleteCircleButton.Size = new System.Drawing.Size(148, 23);
+            this.deleteCircleButton.TabIndex = 6;
+            this.deleteCircleButton.Text = "Delete circle";
+            this.deleteCircleButton.UseVisualStyleBackColor = true;
+            this.deleteCircleButton.Click += new System.EventHandler(this.deleteCircleButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -134,6 +162,8 @@ namespace lab1
         private System.Windows.Forms.TableLayoutPanel menuTable;
         private System.Windows.Forms.Button addPolygonButton;
         private System.Windows.Forms.Button addCircleButton;
+        private System.Windows.Forms.Button deleteCircleButton;
+        private System.Windows.Forms.Button deletePolygonButton;
     }
 }
 
