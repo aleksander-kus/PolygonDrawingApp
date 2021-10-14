@@ -12,6 +12,7 @@
         ResizingCircle,
         DeletingPolygon,
         DeletingCircle,
+        DeletingVertex,
         SplittinEdge
     }
 }
