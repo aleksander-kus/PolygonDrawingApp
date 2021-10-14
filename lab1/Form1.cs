@@ -52,12 +52,12 @@ namespace lab1
                         mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.Default:
-                    if((shapeID = canvas.IsCircleCenterClicked(e.Location)) >= 0)
+                    if((shapeID = canvas.IsCircleCenterClicked(e.Location)) != -1)
                     {
                         changingShapeID = shapeID;
                         mode = ApplicationMode.MovingCircleCenter;
                     }
-                    else if ((shapeID = canvas.IsCircleEdgeClicked(e.Location)) >= 0)
+                    else if ((shapeID = canvas.IsCircleEdgeClicked(e.Location)) != -1)
                     {
                         changingShapeID = shapeID;
                         mode = ApplicationMode.ResizingCircle;
