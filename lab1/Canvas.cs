@@ -138,7 +138,7 @@ namespace lab1
                 DrawVertice(g, vertices[i]);
             }
             DrawVertice(g, vertices[0]);
-            DrawVertice(g, polygon.MiddlePoint, Color.Red);
+            DrawVertice(g, polygon.Center, Color.Red);
         }
 
         private void DrawCircle(Graphics g, Shapes.Circle circle)
