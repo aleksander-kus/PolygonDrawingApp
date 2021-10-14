@@ -57,6 +57,11 @@ namespace lab1
                         canvas.DeleteCircle(shapeID);
                     mode = ApplicationMode.Default;
                     break;
+                case ApplicationMode.SplittinEdge:
+                    if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(e.Location)) != (-1, -1))
+                        canvas.SplitEdge(shapeID, vertexID);
+                    mode = ApplicationMode.Default;
+                    break;
                 case ApplicationMode.AddingPolygon:
                     if(canvas.AddPointToPolygon(e.Location))
                         mode = ApplicationMode.Default;
