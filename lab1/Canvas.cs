@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace lab1
 {
@@ -129,7 +130,7 @@ namespace lab1
         private void DrawPolygon(Graphics g, Shapes.Polygon polygon)
         {
             Pen p = new Pen(Color.Black, 1);
-            List<Point> vertices = polygon.VertexList;
+            List<Point> vertices = polygon.VertexList.ToList();
             for (int i = 0; i < vertices.Count; ++i)
             {
                 g.DrawLine(p, vertices[i], vertices[(i + 1) % vertices.Count]);
