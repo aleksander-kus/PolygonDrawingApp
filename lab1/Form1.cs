@@ -9,7 +9,7 @@ namespace lab1
     {
         private ApplicationMode mode = ApplicationMode.Default;
         private Canvas canvas;
-
+        private int changingShapeID = -1;
         public Form1()
         {
             InitializeComponent();
@@ -38,6 +38,7 @@ namespace lab1
 
         private void canvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
+            int shapeID;
             switch (mode)
             {
                 case ApplicationMode.AddingPolygon:
@@ -49,6 +50,17 @@ namespace lab1
                         mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.Default:
+                    if((shapeID = canvas.IsCircleCenterClicked(e.Location)) >= 0)
+                    {
+                        changingShapeID = shapeID;
+                        mode = ApplicationMode.MovingCircleCenter;
+                    }
+                    else if ((shapeID = canvas.IsCircleEdgeClicked(e.Location)) >= 0)
+                    {
+                        changingShapeID = shapeID;
+                        mode = ApplicationMode.ResizingCircle;
+                    }
+                    break;
                 default:
                     break;
             }
