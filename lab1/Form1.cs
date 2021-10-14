@@ -9,7 +9,7 @@ namespace lab1
     {
         private ApplicationMode mode = ApplicationMode.Default;
         private Canvas canvas;
-
+        private int changingShapeID = -1;
         public Form1()
         {
             InitializeComponent();
@@ -38,6 +38,7 @@ namespace lab1
 
         private void canvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
+            int shapeID;
             switch (mode)
             {
                 case ApplicationMode.AddingPolygon:
@@ -49,6 +50,17 @@ namespace lab1
                         mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.Default:
+                    if((shapeID = canvas.IsCircleCenterClicked(e.Location)) >= 0)
+                    {
+                        changingShapeID = shapeID;
+                        mode = ApplicationMode.MovingCircleCenter;
+                    }
+                    else if ((shapeID = canvas.IsCircleEdgeClicked(e.Location)) >= 0)
+                    {
+                        changingShapeID = shapeID;
+                        mode = ApplicationMode.ResizingCircle;
+                    }
+                    break;
                 default:
                     break;
             }
@@ -64,15 +76,42 @@ namespace lab1
                 case ApplicationMode.AddingCircle:
                     canvas.MouseMoveWhileAddingCircle(e.Location);
                     break;
+                case ApplicationMode.MovingCircleCenter:
+                    canvas.MoveCircle(changingShapeID, e.Location);
+                    break;
+                case ApplicationMode.ResizingCircle:
+                    canvas.ResizeCircle(changingShapeID, e.Location);
+                    break;
                 case ApplicationMode.Default:
                 default:
                     break;
             }
         }
 
-        private void canvasPanel_Paint(object sender, PaintEventArgs e)
+        private void canvasPanel_Paint(object sender, PaintEventArgs e) => canvas.Draw(e.Graphics);
+
+        private void canvasPanel_MouseUp(object sender, MouseEventArgs e)
         {
-            canvas.Draw(e.Graphics);
+            switch (mode)
+            {
+                case ApplicationMode.Default:
+                    break;
+                case ApplicationMode.AddingPolygon:
+                    break;
+                case ApplicationMode.AddingCircle:
+                    break;
+                case ApplicationMode.MovingVertex:
+                    break;
+                case ApplicationMode.MovingPolygonCenter:
+                case ApplicationMode.MovingCircleCenter:
+                case ApplicationMode.ResizingCircle:
+                    changingShapeID = -1;
+                    mode = ApplicationMode.Default;
+                    break;
+                default:
+                    break;
+            }
+
         }
     }
 }

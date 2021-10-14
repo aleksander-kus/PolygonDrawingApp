@@ -35,6 +35,7 @@ namespace lab1
         }
 
         public void StartAddingCircle(Point mousePosition) => addingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
+
         /// <summary>
         /// Calculates distance between two points without the final root to avoid overhead
         /// </summary>
@@ -47,9 +48,9 @@ namespace lab1
         /// Returns if a point was clicked with 10 pixel toleration
         /// </summary>
         /// <param name="point">Questioned point</param>
-        /// <param name="click_location">Mouse click location</param>
+        /// <param name="mousePosition">Mouse click location</param>
         /// <returns>If the point was clicked</returns>
-        public bool IsPointClicked(Point point, Point click_location) => SquaredDistance(point, click_location) <= 100;
+        public bool IsPointClicked(Point point, Point mousePosition) => SquaredDistance(point, mousePosition) <= 100;
 
         /// <summary>
         /// Add a new point to the polygon
@@ -164,5 +165,32 @@ namespace lab1
         /// </summary>
         public void Redraw() => panel.Invalidate();
 
+        public int IsCircleCenterClicked(Point mousePosition)
+        {
+            for (int i = 0; i < circles.Count; ++i)
+                if (IsPointClicked(circles[i].Center, mousePosition))
+                    return i;
+            return -1;
+        }
+
+        public void MoveCircle(int circleID, Point mousePosition)
+        {
+            circles[circleID].Center = mousePosition;
+            Redraw();
+        }
+
+        public int IsCircleEdgeClicked(Point mousePosition)
+        {
+            for (int i = 0; i < circles.Count; ++i)
+                if (Math.Abs(Math.Sqrt(SquaredDistance(circles[i].Center, mousePosition)) - circles[i].Radius) < 10)
+                    return i;
+            return -1;
+        }
+
+        public void ResizeCircle(int circleID, Point mousePosition)
+        {
+            circles[circleID].Radius = (int)Math.Sqrt(SquaredDistance(circles[circleID].Center, mousePosition));
+            Redraw();
+        }
     }
 }
