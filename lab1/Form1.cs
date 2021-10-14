@@ -76,6 +76,12 @@ namespace lab1
                 case ApplicationMode.AddingCircle:
                     canvas.MouseMoveWhileAddingCircle(e.Location);
                     break;
+                case ApplicationMode.MovingCircleCenter:
+                    canvas.MoveCircle(changingShapeID, e.Location);
+                    break;
+                case ApplicationMode.ResizingCircle:
+                    canvas.ResizeCircle(changingShapeID, e.Location);
+                    break;
                 case ApplicationMode.Default:
                 default:
                     break;
