@@ -40,6 +40,8 @@ namespace lab1
 
         private void deleteCircleButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingCircle;
 
+        private void splitEdgeButton_Click(object sender, EventArgs e) => mode = ApplicationMode.SplittinEdge;
+
         private void canvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
             int shapeID, vertexID;
