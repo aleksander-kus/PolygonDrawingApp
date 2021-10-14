@@ -7,12 +7,12 @@ namespace lab1
 {
     public class Canvas
     {
-        private BufferedPanel panel;
+        private readonly BufferedPanel panel;
         private const int ClickAccuracy = 10;
 
         // storing elements on the canvas
-        private List<Shapes.Polygon> polygons = new();
-        private List<Shapes.Circle> circles = new();
+        private readonly List<Shapes.Polygon> polygons = new();
+        private readonly List<Shapes.Circle> circles = new();
 
         // used when adding a new polygon
         private List<Point> addingPolygonVertices;
@@ -36,10 +36,6 @@ namespace lab1
             addingPolygonVertices.Add(mousePosition);
         }
 
-        public void StartAddingCircle(Point mousePosition) => addingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
-
-
-
         /// <summary>
         /// Add a new point to the polygon
         /// </summary>
@@ -62,6 +58,8 @@ namespace lab1
             Redraw();
             return false;
         }
+
+        public void StartAddingCircle(Point mousePosition) => addingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
 
         public bool AddCircle(Point mousePosition)
         {
@@ -207,9 +205,9 @@ namespace lab1
 
         public void MovePolygon(int polygonID, Point mousePosition)
         {
-            Point middle = polygons[polygonID].Center;
-            int delta_x = mousePosition.X - middle.X;
-            int delta_y = mousePosition.Y - middle.Y;
+            Point center = polygons[polygonID].Center;
+            int delta_x = mousePosition.X - center.X;
+            int delta_y = mousePosition.Y - center.Y;
             for (int i = 0; i < polygons[polygonID].VertexList.Count; ++i)
             {
                 Point p = polygons[polygonID].VertexList[i];
