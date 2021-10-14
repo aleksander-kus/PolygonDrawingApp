@@ -42,6 +42,8 @@ namespace lab1
 
         private void splitEdgeButton_Click(object sender, EventArgs e) => mode = ApplicationMode.SplittinEdge;
 
+        private void deleteVertexButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingVertex;
+
         private void canvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
             int shapeID, vertexID;
@@ -55,6 +57,11 @@ namespace lab1
                 case ApplicationMode.DeletingCircle:
                     if ((shapeID = canvas.IsCircleCenterClicked(e.Location)) != -1)
                         canvas.DeleteCircle(shapeID);
+                    mode = ApplicationMode.Default;
+                    break;
+                case ApplicationMode.DeletingVertex:
+                    if (((shapeID, vertexID) = canvas.IsPolygonVertexClicked(e.Location)) != (-1, -1))
+                        canvas.DeleteVertex(shapeID, vertexID);
                     mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.SplittinEdge:
