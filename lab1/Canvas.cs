@@ -196,5 +196,26 @@ namespace lab1
             polygons[polygonID].VertexList[vertexID] = mousePosition;
             Redraw();
         }
+
+        public int IsPolygonCenterClicked(Point mousePosition)
+        {
+            for (int i = 0; i < polygons.Count; ++i)
+                if (GraphicsHelpers.IsPointClicked(polygons[i].Center, mousePosition))
+                    return i;
+            return -1;
+        }
+
+        public void MovePolygon(int polygonID, Point mousePosition)
+        {
+            Point middle = polygons[polygonID].Center;
+            int delta_x = mousePosition.X - middle.X;
+            int delta_y = mousePosition.Y - middle.Y;
+            for (int i = 0; i < polygons[polygonID].VertexList.Count; ++i)
+            {
+                Point p = polygons[polygonID].VertexList[i];
+                polygons[polygonID].VertexList[i] = new Point(p.X + delta_x, p.Y + delta_y);
+            }
+            Redraw();
+        }
     }
 }
