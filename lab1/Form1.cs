@@ -10,6 +10,8 @@ namespace lab1
         private ApplicationMode mode = ApplicationMode.Default;
         private Canvas canvas;
         private int changingShapeID = -1;
+        private int changingVertexID = -1;
+
         public Form1()
         {
             InitializeComponent();
@@ -38,7 +40,7 @@ namespace lab1
 
         private void canvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            int shapeID;
+            int shapeID, vertexID;
             switch (mode)
             {
                 case ApplicationMode.AddingPolygon:
@@ -60,7 +62,13 @@ namespace lab1
                         changingShapeID = shapeID;
                         mode = ApplicationMode.ResizingCircle;
                     }
-                    break;
+                    else if (((shapeID, vertexID) = canvas.IsPolygonVertexClicked(e.Location)) != (-1, -1))
+                    {
+                        changingShapeID = shapeID;
+                        changingVertexID = vertexID;
+                        mode = ApplicationMode.MovingVertex;
+                    }
+                        break;
                 default:
                     break;
             }
@@ -82,6 +90,9 @@ namespace lab1
                 case ApplicationMode.ResizingCircle:
                     canvas.ResizeCircle(changingShapeID, e.Location);
                     break;
+                case ApplicationMode.MovingVertex:
+                    canvas.MovePolygonVertex(changingShapeID, changingVertexID, e.Location);
+                    break;
                 case ApplicationMode.Default:
                 default:
                     break;
@@ -94,20 +105,17 @@ namespace lab1
         {
             switch (mode)
             {
-                case ApplicationMode.Default:
-                    break;
-                case ApplicationMode.AddingPolygon:
-                    break;
-                case ApplicationMode.AddingCircle:
-                    break;
-                case ApplicationMode.MovingVertex:
-                    break;
                 case ApplicationMode.MovingPolygonCenter:
+                case ApplicationMode.MovingVertex:
                 case ApplicationMode.MovingCircleCenter:
                 case ApplicationMode.ResizingCircle:
                     changingShapeID = -1;
+                    changingVertexID = -1;
                     mode = ApplicationMode.Default;
                     break;
+                case ApplicationMode.Default:
+                case ApplicationMode.AddingPolygon:
+                case ApplicationMode.AddingCircle:
                 default:
                     break;
             }
