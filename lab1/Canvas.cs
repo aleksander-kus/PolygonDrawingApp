@@ -164,5 +164,18 @@ namespace lab1
         /// </summary>
         public void Redraw() => panel.Invalidate();
 
+        public int IsCircleCenterClicked(Point mousePosition)
+        {
+            for (int i = 0; i < circles.Count; ++i)
+                if (IsPointClicked(circles[i].Center, mousePosition))
+                    return i;
+            return -1;
+        }
+
+        public void MoveCircle(int circleID, Point mousePosition)
+        {
+            circles[circleID].Center = mousePosition;
+            Redraw();
+        }
     }
 }
