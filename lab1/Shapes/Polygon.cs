@@ -14,7 +14,7 @@ namespace lab1.Shapes
         {
             VertexList = new(vertices);
             VertexList.CollectionChanged += VertexList_CollectionChanged;
-            VertexList_CollectionChanged(null, null);  // artifically call the method to draw the middle point on creation
+            VertexList_CollectionChanged(null, null);  // artificially call the method to draw the center point on creation
         }
 
         /// <summary>
