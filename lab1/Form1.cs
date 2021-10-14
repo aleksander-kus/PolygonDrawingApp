@@ -85,8 +85,13 @@ namespace lab1
                         changingShapeID = shapeID;
                         mode = ApplicationMode.MovingPolygonCenter;
                     }
-                    break;
-
+                    else if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(e.Location)) != (-1, -1))
+                    {
+                        changingShapeID = shapeID;
+                        changingVertexID = vertexID;
+                        mode = ApplicationMode.MovingEdge;
+                    }
+                        break;
                 default:
                     break;
             }
@@ -114,6 +119,9 @@ namespace lab1
                 case ApplicationMode.MovingPolygonCenter:
                     canvas.MovePolygon(changingShapeID, e.Location);
                     break;
+                case ApplicationMode.MovingEdge:
+                    canvas.MoveEdge(changingShapeID, changingVertexID, e.Location);
+                    break;
                 case ApplicationMode.Default:
                 default:
                     break;
@@ -126,6 +134,7 @@ namespace lab1
             {
                 case ApplicationMode.MovingPolygonCenter:
                 case ApplicationMode.MovingVertex:
+                case ApplicationMode.MovingEdge:
                 case ApplicationMode.MovingCircleCenter:
                 case ApplicationMode.ResizingCircle:
                     changingShapeID = -1;
