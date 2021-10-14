@@ -7,12 +7,12 @@ namespace lab1
 {
     public class Canvas
     {
-        private BufferedPanel panel;
+        private readonly BufferedPanel panel;
         private const int ClickAccuracy = 10;
 
         // storing elements on the canvas
-        private List<Shapes.Polygon> polygons = new();
-        private List<Shapes.Circle> circles = new();
+        private readonly List<Shapes.Polygon> polygons = new();
+        private readonly List<Shapes.Circle> circles = new();
 
         // used when adding a new polygon
         private List<Point> addingPolygonVertices;
@@ -36,10 +36,6 @@ namespace lab1
             addingPolygonVertices.Add(mousePosition);
         }
 
-        public void StartAddingCircle(Point mousePosition) => addingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
-
-
-
         /// <summary>
         /// Add a new point to the polygon
         /// </summary>
@@ -62,6 +58,8 @@ namespace lab1
             Redraw();
             return false;
         }
+
+        public void StartAddingCircle(Point mousePosition) => addingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
 
         public bool AddCircle(Point mousePosition)
         {
@@ -114,7 +112,10 @@ namespace lab1
         private void DrawVertice(Graphics g, Point location, Color? color = null)
         {
             Brush b = new SolidBrush(color ?? Color.Green);
-            g.FillEllipse(b, new Rectangle { X = location.X - 3, Y = location.Y - 3, Height = 6, Width = 6 });
+            Pen p = new Pen(Color.Black, 1);
+            Rectangle r = new Rectangle { X = location.X - 3, Y = location.Y - 3, Height = 6, Width = 6 };
+            g.FillEllipse(b, r);
+            g.DrawEllipse(p, r);
         }
 
         private void DrawAddingPolygon(Graphics g)
@@ -135,6 +136,8 @@ namespace lab1
             for (int i = 0; i < vertices.Count; ++i)
             {
                 g.DrawLine(p, vertices[i], vertices[(i + 1) % vertices.Count]);
+                Point center = GraphicsHelpers.SegmentCenter(vertices[i], vertices[(i + 1) % vertices.Count]);
+                DrawVertice(g, center, Color.Yellow);
                 DrawVertice(g, vertices[i]);
             }
             DrawVertice(g, vertices[0]);
@@ -207,13 +210,35 @@ namespace lab1
 
         public void MovePolygon(int polygonID, Point mousePosition)
         {
-            Point middle = polygons[polygonID].Center;
-            int delta_x = mousePosition.X - middle.X;
-            int delta_y = mousePosition.Y - middle.Y;
+            Point center = polygons[polygonID].Center;
+            int delta_x = mousePosition.X - center.X;
+            int delta_y = mousePosition.Y - center.Y;
             for (int i = 0; i < polygons[polygonID].VertexList.Count; ++i)
             {
                 Point p = polygons[polygonID].VertexList[i];
                 polygons[polygonID].VertexList[i] = new Point(p.X + delta_x, p.Y + delta_y);
+            }
+            Redraw();
+        }
+
+        public (int polygonID, int lowerVertexID) IsPolygonEdgeClicked(Point mousePosition)
+        {
+            for (int i = 0; i < polygons.Count; ++i)
+                for (int j = 0; j < polygons[i].VertexList.Count; ++j)
+                    if (GraphicsHelpers.IsSegmentClicked(polygons[i].VertexList[j], polygons[i].VertexList[(j + 1) % polygons[i].VertexList.Count], mousePosition))
+                    return (i, j);
+            return (-1, -1);
+        }
+
+        public void MoveEdge(int polygonID, int lowerVertexID, Point mousePosition)
+        {
+            Point center = GraphicsHelpers.SegmentCenter(polygons[polygonID].VertexList[lowerVertexID], polygons[polygonID].VertexList[(lowerVertexID + 1) % polygons[polygonID].VertexList.Count]);
+            int delta_x = mousePosition.X - center.X;
+            int delta_y = mousePosition.Y - center.Y;
+            for (int i = lowerVertexID; i <= lowerVertexID + 1; ++i)
+            {
+                Point p = polygons[polygonID].VertexList[i % polygons[polygonID].VertexList.Count];
+                polygons[polygonID].VertexList[i % polygons[polygonID].VertexList.Count] = new Point(p.X + delta_x, p.Y + delta_y);
             }
             Redraw();
         }

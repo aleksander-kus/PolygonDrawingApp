@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace lab1
@@ -38,6 +36,10 @@ namespace lab1
             canvas.StartAddingCircle(MousePosition);
         }
 
+        private void deletePolygonButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingPolygon;
+
+        private void deleteCircleButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingCircle;
+
         private void canvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
             int shapeID, vertexID;
@@ -62,7 +64,7 @@ namespace lab1
                         mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.Default:
-                    if((shapeID = canvas.IsCircleCenterClicked(e.Location)) != -1)
+                    if ((shapeID = canvas.IsCircleCenterClicked(e.Location)) != -1)
                     {
                         changingShapeID = shapeID;
                         mode = ApplicationMode.MovingCircleCenter;
@@ -83,8 +85,13 @@ namespace lab1
                         changingShapeID = shapeID;
                         mode = ApplicationMode.MovingPolygonCenter;
                     }
-                    break;
-
+                    else if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(e.Location)) != (-1, -1))
+                    {
+                        changingShapeID = shapeID;
+                        changingVertexID = vertexID;
+                        mode = ApplicationMode.MovingEdge;
+                    }
+                        break;
                 default:
                     break;
             }
@@ -112,13 +119,14 @@ namespace lab1
                 case ApplicationMode.MovingPolygonCenter:
                     canvas.MovePolygon(changingShapeID, e.Location);
                     break;
+                case ApplicationMode.MovingEdge:
+                    canvas.MoveEdge(changingShapeID, changingVertexID, e.Location);
+                    break;
                 case ApplicationMode.Default:
                 default:
                     break;
             }
         }
-
-        private void canvasPanel_Paint(object sender, PaintEventArgs e) => canvas.Draw(e.Graphics);
 
         private void canvasPanel_MouseUp(object sender, MouseEventArgs e)
         {
@@ -126,23 +134,18 @@ namespace lab1
             {
                 case ApplicationMode.MovingPolygonCenter:
                 case ApplicationMode.MovingVertex:
+                case ApplicationMode.MovingEdge:
                 case ApplicationMode.MovingCircleCenter:
                 case ApplicationMode.ResizingCircle:
                     changingShapeID = -1;
                     changingVertexID = -1;
                     mode = ApplicationMode.Default;
                     break;
-                case ApplicationMode.Default:
-                case ApplicationMode.AddingPolygon:
-                case ApplicationMode.AddingCircle:
                 default:
                     break;
             }
-
         }
 
-        private void deletePolygonButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingPolygon;
-
-        private void deleteCircleButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingCircle;
+        private void canvasPanel_Paint(object sender, PaintEventArgs e) => canvas.Draw(e.Graphics);
     }
 }
