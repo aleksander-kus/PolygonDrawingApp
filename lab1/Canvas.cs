@@ -7,6 +7,7 @@ namespace lab1
     public class Canvas
     {
         private BufferedPanel panel;
+        private const int ClickAccuracy = 10;
 
         // storing elements on the canvas
         private List<Shapes.Polygon> polygons = new();
@@ -36,21 +37,7 @@ namespace lab1
 
         public void StartAddingCircle(Point mousePosition) => addingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
 
-        /// <summary>
-        /// Calculates distance between two points without the final root to avoid overhead
-        /// </summary>
-        /// <param name="p1"></param>
-        /// <param name="p2"></param>
-        /// <returns>The squared distance between two points</returns>
-        public int SquaredDistance(Point p1, Point p2) => (p2.X - p1.X) * (p2.X - p1.X) + (p2.Y - p1.Y) * (p2.Y - p1.Y);
 
-        /// <summary>
-        /// Returns if a point was clicked with 10 pixel toleration
-        /// </summary>
-        /// <param name="point">Questioned point</param>
-        /// <param name="mousePosition">Mouse click location</param>
-        /// <returns>If the point was clicked</returns>
-        public bool IsPointClicked(Point point, Point mousePosition) => SquaredDistance(point, mousePosition) <= 100;
 
         /// <summary>
         /// Add a new point to the polygon
@@ -60,7 +47,7 @@ namespace lab1
         public bool AddPointToPolygon(Point mousePosition)
         {
             // if the first point was clicked, finish adding the new polygon
-            if (addingPolygonVertices.Count > 3 && IsPointClicked(addingPolygonVertices[0], mousePosition))
+            if (addingPolygonVertices.Count > 3 && GraphicsHelpers.IsPointClicked(addingPolygonVertices[0], mousePosition))
             {
                 addingPolygonVertices.RemoveAt(addingPolygonVertices.Count - 1);
                 polygons.Add(new Shapes.Polygon(addingPolygonVertices));
@@ -78,7 +65,7 @@ namespace lab1
         {
             if (circle_anchored)
             {
-                addingCircle.Radius = (int)Math.Sqrt(SquaredDistance(addingCircle.Center, mousePosition));
+                addingCircle.Radius = GraphicsHelpers.Distance(addingCircle.Center, mousePosition);
                 circles.Add(addingCircle);
                 addingCircle = null;
                 circle_anchored = false;
@@ -100,7 +87,7 @@ namespace lab1
         public void MouseMoveWhileAddingCircle(Point mousePosition)
         {
             if (circle_anchored)
-                addingCircle.Radius = (int)Math.Sqrt(SquaredDistance(addingCircle.Center, mousePosition));
+                addingCircle.Radius = GraphicsHelpers.Distance(addingCircle.Center, mousePosition);
             else
                 addingCircle.Center = mousePosition;
             Redraw();
@@ -168,7 +155,7 @@ namespace lab1
         public int IsCircleCenterClicked(Point mousePosition)
         {
             for (int i = 0; i < circles.Count; ++i)
-                if (IsPointClicked(circles[i].Center, mousePosition))
+                if (GraphicsHelpers.IsPointClicked(circles[i].Center, mousePosition))
                     return i;
             return -1;
         }
@@ -182,14 +169,17 @@ namespace lab1
         public int IsCircleEdgeClicked(Point mousePosition)
         {
             for (int i = 0; i < circles.Count; ++i)
-                if (Math.Abs(Math.Sqrt(SquaredDistance(circles[i].Center, mousePosition)) - circles[i].Radius) < 10)
+                if (Math.Abs(GraphicsHelpers.Distance(circles[i].Center, mousePosition) - circles[i].Radius) < ClickAccuracy)
                     return i;
             return -1;
         }
 
         public void ResizeCircle(int circleID, Point mousePosition)
         {
-            circles[circleID].Radius = (int)Math.Sqrt(SquaredDistance(circles[circleID].Center, mousePosition));
+            circles[circleID].Radius = GraphicsHelpers.Distance(circles[circleID].Center, mousePosition);
+            Redraw();
+        }
+
             Redraw();
         }
     }
