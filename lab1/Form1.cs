@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace lab1
@@ -38,6 +36,10 @@ namespace lab1
             canvas.StartAddingCircle(MousePosition);
         }
 
+        private void deletePolygonButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingPolygon;
+
+        private void deleteCircleButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingCircle;
+
         private void canvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
             int shapeID, vertexID;
@@ -62,7 +64,7 @@ namespace lab1
                         mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.Default:
-                    if((shapeID = canvas.IsCircleCenterClicked(e.Location)) != -1)
+                    if ((shapeID = canvas.IsCircleCenterClicked(e.Location)) != -1)
                     {
                         changingShapeID = shapeID;
                         mode = ApplicationMode.MovingCircleCenter;
@@ -118,8 +120,6 @@ namespace lab1
             }
         }
 
-        private void canvasPanel_Paint(object sender, PaintEventArgs e) => canvas.Draw(e.Graphics);
-
         private void canvasPanel_MouseUp(object sender, MouseEventArgs e)
         {
             switch (mode)
@@ -132,17 +132,11 @@ namespace lab1
                     changingVertexID = -1;
                     mode = ApplicationMode.Default;
                     break;
-                case ApplicationMode.Default:
-                case ApplicationMode.AddingPolygon:
-                case ApplicationMode.AddingCircle:
                 default:
                     break;
             }
-
         }
 
-        private void deletePolygonButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingPolygon;
-
-        private void deleteCircleButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingCircle;
+        private void canvasPanel_Paint(object sender, PaintEventArgs e) => canvas.Draw(e.Graphics);
     }
 }
