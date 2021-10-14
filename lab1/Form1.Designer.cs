@@ -32,11 +32,12 @@ namespace lab1
             this.tablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.canvasPanel = new lab1.BufferedPanel();
             this.menuTable = new System.Windows.Forms.TableLayoutPanel();
+            this.splitEdgeButton = new System.Windows.Forms.Button();
             this.deleteCircleButton = new System.Windows.Forms.Button();
             this.deletePolygonButton = new System.Windows.Forms.Button();
-            this.addPolygonButton = new System.Windows.Forms.Button();
-            this.splitEdgeButton = new System.Windows.Forms.Button();
             this.addCircleButton = new System.Windows.Forms.Button();
+            this.addPolygonButton = new System.Windows.Forms.Button();
+            this.deleteVertexButton = new System.Windows.Forms.Button();
             this.tablePanel.SuspendLayout();
             this.menuTable.SuspendLayout();
             this.SuspendLayout();
@@ -74,6 +75,7 @@ namespace lab1
             // 
             this.menuTable.ColumnCount = 1;
             this.menuTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.menuTable.Controls.Add(this.deleteVertexButton, 0, 5);
             this.menuTable.Controls.Add(this.splitEdgeButton, 0, 5);
             this.menuTable.Controls.Add(this.deleteCircleButton, 0, 4);
             this.menuTable.Controls.Add(this.deletePolygonButton, 0, 3);
@@ -92,6 +94,18 @@ namespace lab1
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.menuTable.Size = new System.Drawing.Size(154, 444);
             this.menuTable.TabIndex = 1;
+            // 
+            // splitEdgeButton
+            // 
+            this.splitEdgeButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitEdgeButton.Location = new System.Drawing.Point(3, 190);
+            this.splitEdgeButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.splitEdgeButton.Name = "splitEdgeButton";
+            this.splitEdgeButton.Size = new System.Drawing.Size(148, 23);
+            this.splitEdgeButton.TabIndex = 7;
+            this.splitEdgeButton.Text = "Split edge";
+            this.splitEdgeButton.UseVisualStyleBackColor = true;
+            this.splitEdgeButton.Click += new System.EventHandler(this.splitEdgeButton_Click);
             // 
             // deleteCircleButton
             // 
@@ -117,6 +131,18 @@ namespace lab1
             this.deletePolygonButton.UseVisualStyleBackColor = true;
             this.deletePolygonButton.Click += new System.EventHandler(this.deletePolygonButton_Click);
             // 
+            // addCircleButton
+            // 
+            this.addCircleButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.addCircleButton.Location = new System.Drawing.Point(3, 46);
+            this.addCircleButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.addCircleButton.Name = "addCircleButton";
+            this.addCircleButton.Size = new System.Drawing.Size(148, 23);
+            this.addCircleButton.TabIndex = 2;
+            this.addCircleButton.Text = "Add circle";
+            this.addCircleButton.UseVisualStyleBackColor = true;
+            this.addCircleButton.Click += new System.EventHandler(this.addCircleButton_Click);
+            // 
             // addPolygonButton
             // 
             this.addPolygonButton.Dock = System.Windows.Forms.DockStyle.Top;
@@ -129,29 +155,17 @@ namespace lab1
             this.addPolygonButton.UseVisualStyleBackColor = true;
             this.addPolygonButton.Click += new System.EventHandler(this.addPolygonButton_Click);
             // 
-            // splitEdgeButton
+            // deleteVertexButton
             // 
-            this.splitEdgeButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitEdgeButton.Location = new System.Drawing.Point(3, 154);
-            this.splitEdgeButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.splitEdgeButton.Name = "splitEdgeButton";
-            this.splitEdgeButton.Size = new System.Drawing.Size(148, 23);
-            this.splitEdgeButton.TabIndex = 7;
-            this.splitEdgeButton.Text = "Split edge";
-            this.splitEdgeButton.UseVisualStyleBackColor = true;
-            this.splitEdgeButton.Click += new System.EventHandler(this.splitEdgeButton_Click);
-            // 
-            // addCircleButton
-            // 
-            this.addCircleButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.addCircleButton.Location = new System.Drawing.Point(3, 46);
-            this.addCircleButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.addCircleButton.Name = "addCircleButton";
-            this.addCircleButton.Size = new System.Drawing.Size(148, 23);
-            this.addCircleButton.TabIndex = 2;
-            this.addCircleButton.Text = "Add circle";
-            this.addCircleButton.UseVisualStyleBackColor = true;
-            this.addCircleButton.Click += new System.EventHandler(this.addCircleButton_Click);
+            this.deleteVertexButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.deleteVertexButton.Location = new System.Drawing.Point(3, 154);
+            this.deleteVertexButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.deleteVertexButton.Name = "deleteVertexButton";
+            this.deleteVertexButton.Size = new System.Drawing.Size(148, 23);
+            this.deleteVertexButton.TabIndex = 8;
+            this.deleteVertexButton.Text = "Delete vertex";
+            this.deleteVertexButton.UseVisualStyleBackColor = true;
+            this.deleteVertexButton.Click += new System.EventHandler(this.deleteVertexButton_Click);
             // 
             // Form1
             // 
@@ -179,6 +193,7 @@ namespace lab1
         private System.Windows.Forms.Button deletePolygonButton;
         private System.Windows.Forms.Button splitEdgeButton;
         private System.Windows.Forms.Button addCircleButton;
+        private System.Windows.Forms.Button deleteVertexButton;
     }
 }
 
