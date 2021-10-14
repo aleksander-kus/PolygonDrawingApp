@@ -11,6 +11,7 @@
         MovingCircleCenter,
         ResizingCircle,
         DeletingPolygon,
-        DeletingCircle
+        DeletingCircle,
+        SplittinEdge
     }
 }
