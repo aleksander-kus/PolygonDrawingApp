@@ -68,7 +68,12 @@ namespace lab1
                         changingVertexID = vertexID;
                         mode = ApplicationMode.MovingVertex;
                     }
-                        break;
+                    else if ((shapeID = canvas.IsPolygonCenterClicked(e.Location)) != -1)
+                    {
+                        changingShapeID = shapeID;
+                        mode = ApplicationMode.MovingPolygonCenter;
+                    }
+                    break;
                 default:
                     break;
             }
@@ -92,6 +97,9 @@ namespace lab1
                     break;
                 case ApplicationMode.MovingVertex:
                     canvas.MovePolygonVertex(changingShapeID, changingVertexID, e.Location);
+                    break;
+                case ApplicationMode.MovingPolygonCenter:
+                    canvas.MovePolygon(changingShapeID, e.Location);
                     break;
                 case ApplicationMode.Default:
                 default:
