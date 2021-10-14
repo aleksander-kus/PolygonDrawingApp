@@ -112,7 +112,10 @@ namespace lab1
         private void DrawVertice(Graphics g, Point location, Color? color = null)
         {
             Brush b = new SolidBrush(color ?? Color.Green);
-            g.FillEllipse(b, new Rectangle { X = location.X - 3, Y = location.Y - 3, Height = 6, Width = 6 });
+            Pen p = new Pen(Color.Black, 1);
+            Rectangle r = new Rectangle { X = location.X - 3, Y = location.Y - 3, Height = 6, Width = 6 };
+            g.FillEllipse(b, r);
+            g.DrawEllipse(p, r);
         }
 
         private void DrawAddingPolygon(Graphics g)
