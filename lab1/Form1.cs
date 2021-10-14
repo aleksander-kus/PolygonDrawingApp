@@ -43,6 +43,16 @@ namespace lab1
             int shapeID, vertexID;
             switch (mode)
             {
+                case ApplicationMode.DeletingPolygon:
+                    if ((shapeID = canvas.IsPolygonCenterClicked(e.Location)) != -1)
+                        canvas.DeletePolygon(shapeID);
+                    mode = ApplicationMode.Default;
+                    break;
+                case ApplicationMode.DeletingCircle:
+                    if ((shapeID = canvas.IsCircleCenterClicked(e.Location)) != -1)
+                        canvas.DeleteCircle(shapeID);
+                    mode = ApplicationMode.Default;
+                    break;
                 case ApplicationMode.AddingPolygon:
                     if(canvas.AddPointToPolygon(e.Location))
                         mode = ApplicationMode.Default;
@@ -74,6 +84,7 @@ namespace lab1
                         mode = ApplicationMode.MovingPolygonCenter;
                     }
                     break;
+
                 default:
                     break;
             }
@@ -129,5 +140,9 @@ namespace lab1
             }
 
         }
+
+        private void deletePolygonButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingPolygon;
+
+        private void deleteCircleButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingCircle;
     }
 }
