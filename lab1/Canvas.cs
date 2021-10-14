@@ -221,6 +221,28 @@ namespace lab1
             Redraw();
         }
 
+        public (int polygonID, int lowerVertexID) IsPolygonEdgeClicked(Point mousePosition)
+        {
+            for (int i = 0; i < polygons.Count; ++i)
+                for (int j = 0; j < polygons[i].VertexList.Count; ++j)
+                    if (GraphicsHelpers.IsSegmentClicked(polygons[i].VertexList[j], polygons[i].VertexList[(j + 1) % polygons[i].VertexList.Count], mousePosition))
+                    return (i, j);
+            return (-1, -1);
+        }
+
+        public void MoveEdge(int polygonID, int lowerVertexID, Point mousePosition)
+        {
+            Point center = GraphicsHelpers.SegmentCenter(polygons[polygonID].VertexList[lowerVertexID], polygons[polygonID].VertexList[(lowerVertexID + 1) % polygons[polygonID].VertexList.Count]);
+            int delta_x = mousePosition.X - center.X;
+            int delta_y = mousePosition.Y - center.Y;
+            for (int i = lowerVertexID; i <= lowerVertexID + 1; ++i)
+            {
+                Point p = polygons[polygonID].VertexList[i % polygons[polygonID].VertexList.Count];
+                polygons[polygonID].VertexList[i % polygons[polygonID].VertexList.Count] = new Point(p.X + delta_x, p.Y + delta_y);
+            }
+            Redraw();
+        }
+
         public void DeletePolygon(int polygonID)
         {
             polygons.RemoveAt(polygonID);
