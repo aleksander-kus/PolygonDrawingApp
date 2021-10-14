@@ -7,6 +7,7 @@ namespace lab1
     public class Canvas
     {
         private BufferedPanel panel;
+        private const int ClickAccuracy = 10;
 
         // storing elements on the canvas
         private List<Shapes.Polygon> polygons = new();
@@ -168,7 +169,7 @@ namespace lab1
         public int IsCircleEdgeClicked(Point mousePosition)
         {
             for (int i = 0; i < circles.Count; ++i)
-                if (Math.Abs(Math.Sqrt(SquaredDistance(circles[i].Center, mousePosition)) - circles[i].Radius) < 10)
+                if (Math.Abs(GraphicsHelpers.Distance(circles[i].Center, mousePosition) - circles[i].Radius) < ClickAccuracy)
                     return i;
             return -1;
         }
