@@ -246,7 +246,8 @@ namespace lab1
         public void DeleteVertex(int polygonID, int vertexID)
         {
             if (polygons[polygonID].VertexList.Count > 3)
-                polygons.RemoveAt(vertexID);
+                polygons[polygonID].VertexList.RemoveAt(vertexID);
+            Redraw();
         }
 
         public void SplitEdge(int polygonID, int lowerVertexID)
