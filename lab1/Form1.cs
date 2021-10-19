@@ -166,6 +166,8 @@ namespace lab1
         private void saveToFileButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog sd = new();
+            sd.Filter = "Xml Files | *.xml";
+            sd.DefaultExt = "xml";
             if (sd.ShowDialog() == DialogResult.OK)
             {
                 var sc = canvas.Export();
@@ -176,7 +178,9 @@ namespace lab1
         private void loadFromFileButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog od = new();
-            if(od.ShowDialog() == DialogResult.OK)
+            od.Filter = "Xml Files | *.xml";
+            od.DefaultExt = "xml";
+            if (od.ShowDialog() == DialogResult.OK)
             {
                 var sc = Helpers.XMLHelper.ReadFromXML<Helpers.SerializedCanvas>(od.FileName);
                 canvas.Import(sc);
