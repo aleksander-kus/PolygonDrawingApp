@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Xml.Serialization;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
@@ -7,10 +8,17 @@ namespace lab1.Shapes
 {
     public class Polygon
     {
+        [XmlArray("VertexList")]
         public ObservableCollection<Point> VertexList { get; private set; }
-        public Point Center { get; private set; }
+        public Point Center { get; set; }
 
-        public Polygon(List<Point> vertices)
+        public Polygon()
+        {
+            VertexList = new();
+            VertexList.CollectionChanged += VertexList_CollectionChanged;
+        }
+
+        public Polygon(List<Point> vertices = null)
         {
             VertexList = new(vertices);
             VertexList.CollectionChanged += VertexList_CollectionChanged;
@@ -24,6 +32,8 @@ namespace lab1.Shapes
         /// <param name="e"></param>
         private void VertexList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            if (VertexList.Count == 0)
+                return;
             // the center point has coordinates equal to the average coords of all points
             Center = new Point(VertexList.Select(p => p.X).Aggregate((p1, p2) => p1 + p2) / VertexList.Count,
                 VertexList.Select(p => p.Y).Aggregate((p1, p2) => p1 + p2) / VertexList.Count);
