@@ -69,21 +69,21 @@ namespace lab1
                 // pętla po kolejnych x
                 while (x != p2.X)
                 {
-                    if (d >= 0)  // go across
+                    if (d < 0)  // remain in the same line
                     {
+                        d += same_line_increment;
+                        x += x_increment;
+                    }
+                    else  // go across
+                    {
+                        d += across_increment;
                         x += x_increment;
                         y += y_increment;
-                        d += across_increment;
-                    }
-                    else  // remain in the same line
-                    {
-                        x += x_increment;
-                        d += same_line_increment;
                     }
                     g.PutPixel(b, x, y);
                 }
             }
-            //  go along Y-axis
+            // go along Y-axis
             else
             {
                 int d = 2 * dx  - dy;
@@ -91,16 +91,16 @@ namespace lab1
                 int same_line_increment = 2 * dx;
                 while (y != p2.Y)
                 {
-                    if (d >= 0)  // go across
+                    if (d < 0)  // remain in the same line
                     {
+                        d += same_line_increment;
+                        y += y_increment;
+                    }
+                    else  // go across
+                    {
+                        d += across_increment;
                         x += x_increment;
                         y += y_increment;
-                        d += across_increment;
-                    }
-                    else  // remain in the same line
-                    {
-                        y += y_increment;
-                        d += same_line_increment;
                     }
                     g.PutPixel(b, x, y);
                 }
