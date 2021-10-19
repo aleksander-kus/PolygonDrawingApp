@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<Canvas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://example.org/ak/canvas">
+  <PolygonList>
+    <Polygon>
+      <VertexList>
+        <Point>
+          <X>331</X>
+          <Y>483</Y>
+        </Point>
+        <Point>
+          <X>1136</X>
+          <Y>544</Y>
+        </Point>
+        <Point>
+          <X>752</X>
+          <Y>83</Y>
+        </Point>
+        <Point>
+          <X>291</X>
+          <Y>117</Y>
+        </Point>
+      </VertexList>
+      <Center>
+        <X>627</X>
+        <Y>306</Y>
+      </Center>
+    </Polygon>
+  </PolygonList>
+  <CircleList>
+    <Circle Radius="151">
+      <Center>
+        <X>1155</X>
+        <Y>170</Y>
+      </Center>
+    </Circle>
+  </CircleList>
+</Canvas>

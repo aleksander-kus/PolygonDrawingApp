@@ -11,8 +11,8 @@ namespace lab1
         private const int ClickAccuracy = 10;
 
         // storing elements on the canvas
-        private readonly List<Shapes.Polygon> polygons = new();
-        private readonly List<Shapes.Circle> circles = new();
+        private List<Shapes.Polygon> polygons = new();
+        private List<Shapes.Circle> circles = new();
 
         // used when adding a new polygon
         private List<Point> addingPolygonVertices;
@@ -266,6 +266,15 @@ namespace lab1
         public void DeleteCircle(int circleID)
         {
             circles.RemoveAt(circleID);
+            Redraw();
+        }
+
+        public Helpers.SerializedCanvas Export() => new() { PolygonList = new List<Shapes.Polygon>(polygons), CircleList = new List<Shapes.Circle>(circles) };
+
+        public void Import(Helpers.SerializedCanvas sc)
+        {
+            polygons = new(sc.PolygonList);
+            circles = new(sc.CircleList);
             Redraw();
         }
     }

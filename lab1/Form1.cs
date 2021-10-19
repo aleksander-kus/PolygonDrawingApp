@@ -18,6 +18,7 @@ namespace lab1
         private void Form1_Load(object sender, EventArgs e)
         {
             canvas = new(canvasPanel);
+            canvas.Import(Helpers.XMLHelper.ReadFromXMLEmbedded<Helpers.SerializedCanvas>("lab1.Helpers.TestScene.xml"));
         }
 
         private void addPolygonButton_Click(object sender, EventArgs e)
@@ -161,5 +162,25 @@ namespace lab1
         }
 
         private void canvasPanel_Paint(object sender, PaintEventArgs e) => canvas.Draw(e.Graphics);
+
+        private void saveToFileButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sd = new();
+            if (sd.ShowDialog() == DialogResult.OK)
+            {
+                var sc = canvas.Export();
+                Helpers.XMLHelper.WriteToXML(sd.FileName, sc);
+            }
+        }
+
+        private void loadFromFileButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog od = new();
+            if(od.ShowDialog() == DialogResult.OK)
+            {
+                var sc = Helpers.XMLHelper.ReadFromXML<Helpers.SerializedCanvas>(od.FileName);
+                canvas.Import(sc);
+            }
+        }
     }
 }

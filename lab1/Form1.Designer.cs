@@ -32,12 +32,14 @@ namespace lab1
             this.tablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.canvasPanel = new lab1.BufferedPanel();
             this.menuTable = new System.Windows.Forms.TableLayoutPanel();
+            this.saveToFileButton = new System.Windows.Forms.Button();
+            this.deleteVertexButton = new System.Windows.Forms.Button();
             this.splitEdgeButton = new System.Windows.Forms.Button();
             this.deleteCircleButton = new System.Windows.Forms.Button();
             this.deletePolygonButton = new System.Windows.Forms.Button();
             this.addCircleButton = new System.Windows.Forms.Button();
             this.addPolygonButton = new System.Windows.Forms.Button();
-            this.deleteVertexButton = new System.Windows.Forms.Button();
+            this.loadFromFileButton = new System.Windows.Forms.Button();
             this.tablePanel.SuspendLayout();
             this.menuTable.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +56,7 @@ namespace lab1
             this.tablePanel.Name = "tablePanel";
             this.tablePanel.RowCount = 1;
             this.tablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 450F));
             this.tablePanel.Size = new System.Drawing.Size(800, 450);
             this.tablePanel.TabIndex = 0;
             // 
@@ -75,6 +78,8 @@ namespace lab1
             // 
             this.menuTable.ColumnCount = 1;
             this.menuTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.menuTable.Controls.Add(this.loadFromFileButton, 0, 7);
+            this.menuTable.Controls.Add(this.saveToFileButton, 0, 6);
             this.menuTable.Controls.Add(this.deleteVertexButton, 0, 5);
             this.menuTable.Controls.Add(this.splitEdgeButton, 0, 5);
             this.menuTable.Controls.Add(this.deleteCircleButton, 0, 4);
@@ -84,7 +89,9 @@ namespace lab1
             this.menuTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuTable.Location = new System.Drawing.Point(643, 3);
             this.menuTable.Name = "menuTable";
-            this.menuTable.RowCount = 6;
+            this.menuTable.RowCount = 8;
+            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -94,6 +101,30 @@ namespace lab1
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.menuTable.Size = new System.Drawing.Size(154, 444);
             this.menuTable.TabIndex = 1;
+            // 
+            // saveToFileButton
+            // 
+            this.saveToFileButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.saveToFileButton.Location = new System.Drawing.Point(3, 226);
+            this.saveToFileButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.saveToFileButton.Name = "saveToFileButton";
+            this.saveToFileButton.Size = new System.Drawing.Size(148, 23);
+            this.saveToFileButton.TabIndex = 9;
+            this.saveToFileButton.Text = "Save to file";
+            this.saveToFileButton.UseVisualStyleBackColor = true;
+            this.saveToFileButton.Click += new System.EventHandler(this.saveToFileButton_Click);
+            // 
+            // deleteVertexButton
+            // 
+            this.deleteVertexButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.deleteVertexButton.Location = new System.Drawing.Point(3, 154);
+            this.deleteVertexButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.deleteVertexButton.Name = "deleteVertexButton";
+            this.deleteVertexButton.Size = new System.Drawing.Size(148, 23);
+            this.deleteVertexButton.TabIndex = 8;
+            this.deleteVertexButton.Text = "Delete vertex";
+            this.deleteVertexButton.UseVisualStyleBackColor = true;
+            this.deleteVertexButton.Click += new System.EventHandler(this.deleteVertexButton_Click);
             // 
             // splitEdgeButton
             // 
@@ -155,17 +186,17 @@ namespace lab1
             this.addPolygonButton.UseVisualStyleBackColor = true;
             this.addPolygonButton.Click += new System.EventHandler(this.addPolygonButton_Click);
             // 
-            // deleteVertexButton
+            // loadFromFileButton
             // 
-            this.deleteVertexButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.deleteVertexButton.Location = new System.Drawing.Point(3, 154);
-            this.deleteVertexButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.deleteVertexButton.Name = "deleteVertexButton";
-            this.deleteVertexButton.Size = new System.Drawing.Size(148, 23);
-            this.deleteVertexButton.TabIndex = 8;
-            this.deleteVertexButton.Text = "Delete vertex";
-            this.deleteVertexButton.UseVisualStyleBackColor = true;
-            this.deleteVertexButton.Click += new System.EventHandler(this.deleteVertexButton_Click);
+            this.loadFromFileButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.loadFromFileButton.Location = new System.Drawing.Point(3, 262);
+            this.loadFromFileButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.loadFromFileButton.Name = "loadFromFileButton";
+            this.loadFromFileButton.Size = new System.Drawing.Size(148, 23);
+            this.loadFromFileButton.TabIndex = 10;
+            this.loadFromFileButton.Text = "Load from file";
+            this.loadFromFileButton.UseVisualStyleBackColor = true;
+            this.loadFromFileButton.Click += new System.EventHandler(this.loadFromFileButton_Click);
             // 
             // Form1
             // 
@@ -194,6 +225,8 @@ namespace lab1
         private System.Windows.Forms.Button splitEdgeButton;
         private System.Windows.Forms.Button addCircleButton;
         private System.Windows.Forms.Button deleteVertexButton;
+        private System.Windows.Forms.Button saveToFileButton;
+        private System.Windows.Forms.Button loadFromFileButton;
     }
 }
 
