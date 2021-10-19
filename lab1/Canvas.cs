@@ -268,5 +268,14 @@ namespace lab1
             circles.RemoveAt(circleID);
             Redraw();
         }
+
+        public Helpers.SerializedCanvas Export() => new() { PolygonList = new List<Shapes.Polygon>(polygons), CircleList = new List<Shapes.Circle>(circles) };
+
+        public void Import(Helpers.SerializedCanvas sc)
+        {
+            polygons = new(sc.PolygonList);
+            circles = new(sc.CircleList);
+            Redraw();
+        }
     }
 }
