@@ -11,8 +11,8 @@ namespace lab1
         private const int ClickAccuracy = 10;
 
         // storing elements on the canvas
-        private readonly List<Shapes.Polygon> polygons = new();
-        private readonly List<Shapes.Circle> circles = new();
+        private List<Shapes.Polygon> polygons = new();
+        private List<Shapes.Circle> circles = new();
 
         // used when adding a new polygon
         private List<Point> addingPolygonVertices;
