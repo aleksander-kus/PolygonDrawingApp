@@ -18,6 +18,7 @@ namespace lab1
         private void Form1_Load(object sender, EventArgs e)
         {
             canvas = new(canvasPanel);
+            canvas.Import(Helpers.XMLHelper.ReadFromXMLEmbedded<Helpers.SerializedCanvas>("lab1.Helpers.TestScene.xml"));
         }
 
         private void addPolygonButton_Click(object sender, EventArgs e)
