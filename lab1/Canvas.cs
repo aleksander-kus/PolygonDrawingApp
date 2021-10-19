@@ -135,7 +135,7 @@ namespace lab1
             List<Point> vertices = polygon.VertexList.ToList();
             for (int i = 0; i < vertices.Count; ++i)
             {
-                g.DrawLine(p, vertices[i], vertices[(i + 1) % vertices.Count]);
+                g.DrawLineBresenham(p, vertices[i], vertices[(i + 1) % vertices.Count]);
                 Point center = GraphicsHelpers.SegmentCenter(vertices[i], vertices[(i + 1) % vertices.Count]);
                 DrawVertice(g, center, Color.Yellow);
                 DrawVertice(g, vertices[i]);
