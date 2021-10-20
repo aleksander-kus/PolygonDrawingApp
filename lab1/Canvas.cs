@@ -61,6 +61,42 @@ namespace lab1
             return false;
         }
 
+        private Shapes.Point GetPointByID(int polygonID, int vertexID) => polygons[polygonID].VertexList[vertexID % polygons[polygonID].VertexList.Count];
+
+        public void StartAddingEqualLengthRelation()
+        {
+            addingRelation = new Relations.EqualLengthRelation();
+            Redraw();
+        }
+
+        public bool AddEdgeToRelation(int polygonID, int lowerVertexID)
+        {
+            if (addingRelation.Edge1 == null)
+            {
+                addingRelation.Edge1 = new Shapes.Edge(GetPointByID(polygonID, lowerVertexID), GetPointByID(polygonID, lowerVertexID + 1));
+                Redraw();
+                return false;
+            }
+            else
+            {
+                addingRelation.Edge2 = new Shapes.Edge(GetPointByID(polygonID, lowerVertexID), GetPointByID(polygonID, lowerVertexID + 1));
+                addingRelation.Impose();
+                Shapes.Point p1 = addingRelation.Edge1.p1, p2 = addingRelation.Edge1.p2, p3 = addingRelation.Edge2.p1, p4 = addingRelation.Edge2.p2;
+                if (p1.R1 == null) p1.R1 = addingRelation;
+                else if (p1.R2 == null) p1.R2 = addingRelation;
+                if (p2.R1 == null) p2.R1 = addingRelation;
+                else if (p2.R2 == null) p2.R2 = addingRelation;
+                if (p3.R1 == null) p3.R1 = addingRelation;
+                else if (p3.R2 == null) p3.R2 = addingRelation;
+                if (p4.R1 == null) p4.R1 = addingRelation;
+                else if (p4.R2 == null) p4.R2 = addingRelation;
+                relations.Add(addingRelation);
+                addingRelation = null;
+                Redraw();
+                return true;
+            }
+        }
+
         public void StartAddingCircle(Shapes.Point mousePosition) => addingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
 
         public void StopAddingShape()
