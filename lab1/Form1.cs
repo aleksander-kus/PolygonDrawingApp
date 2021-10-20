@@ -18,6 +18,7 @@ namespace lab1
         private void Form1_Load(object sender, EventArgs e)
         {
             canvas = new(canvasPanel);
+            // load the test scene form the embedded file
             canvas.Import(Helpers.XMLHelper.ReadFromXMLEmbedded<Helpers.SerializedCanvas>("lab1.Helpers.TestScene.xml"));
         }
 
@@ -37,6 +38,13 @@ namespace lab1
             canvas.StartAddingCircle(MousePosition);
         }
 
+        // change the mode to default on moveobjectbutton click only if we are not adding a cricle or polygon
+        private void moveObjectButton_Click(object sender, EventArgs e)
+        {
+            canvas.StopAddingShape();
+            mode = ApplicationMode.Default;
+        }
+
         private void deletePolygonButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingPolygon;
 
         private void deleteCircleButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingCircle;
@@ -52,30 +60,38 @@ namespace lab1
             {
                 case ApplicationMode.DeletingPolygon:
                     if ((shapeID = canvas.IsPolygonCenterClicked(e.Location)) != -1)
+                    {
                         canvas.DeletePolygon(shapeID);
-                    mode = ApplicationMode.Default;
+                        mode = ApplicationMode.Default;
+                    }
                     break;
                 case ApplicationMode.DeletingCircle:
                     if ((shapeID = canvas.IsCircleCenterClicked(e.Location)) != -1)
+                    {
                         canvas.DeleteCircle(shapeID);
-                    mode = ApplicationMode.Default;
+                        mode = ApplicationMode.Default;
+                    }
                     break;
                 case ApplicationMode.DeletingVertex:
                     if (((shapeID, vertexID) = canvas.IsPolygonVertexClicked(e.Location)) != (-1, -1))
+                    {
                         canvas.DeleteVertex(shapeID, vertexID);
-                    mode = ApplicationMode.Default;
+                        mode = ApplicationMode.Default;
+                    }
                     break;
                 case ApplicationMode.SplittinEdge:
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(e.Location)) != (-1, -1))
+                    {
                         canvas.SplitEdge(shapeID, vertexID);
-                    mode = ApplicationMode.Default;
+                        mode = ApplicationMode.Default;
+                    }
                     break;
                 case ApplicationMode.AddingPolygon:
-                    if(canvas.AddPointToPolygon(e.Location))
+                    if (canvas.AddPointToPolygon(e.Location))
                         mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.AddingCircle:
-                    if(canvas.AddCircle(e.Location))
+                    if (canvas.AddCircle(e.Location))
                         mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.Default:
@@ -106,7 +122,7 @@ namespace lab1
                         changingVertexID = vertexID;
                         mode = ApplicationMode.MovingEdge;
                     }
-                        break;
+                    break;
                 default:
                     break;
             }
@@ -171,7 +187,8 @@ namespace lab1
             if (sd.ShowDialog() == DialogResult.OK)
             {
                 var sc = canvas.Export();
-                Helpers.XMLHelper.WriteToXML(sd.FileName, sc);
+                if (Helpers.XMLHelper.WriteToXML(sd.FileName, sc) != true)
+                    MessageBox.Show("There was an error writing to file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -183,7 +200,10 @@ namespace lab1
             if (od.ShowDialog() == DialogResult.OK)
             {
                 var sc = Helpers.XMLHelper.ReadFromXML<Helpers.SerializedCanvas>(od.FileName);
-                canvas.Import(sc);
+                if (sc == null)
+                    MessageBox.Show("There was an error reading from file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    canvas.Import(sc);
             }
         }
     }
