@@ -168,6 +168,9 @@ namespace lab1
             foreach (var relation in relations)
             {
                 g.DrawLineBresenham(relation.Color, relation.Edge1.p1, relation.Edge1.p2);
+                if (relation.Edge2 != null)
+                    g.DrawLineBresenham(relation.Color, relation.Edge2.p1, relation.Edge2.p2);
+
             }
         }
 
