@@ -102,15 +102,22 @@ namespace lab1
                 case ApplicationMode.AddingFixedLengthRelation:
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                     {
-                        canvas.AddFixedLengthRelation(shapeID, vertexID);
-                        mode = ApplicationMode.Default;
+                        if(canvas.AddFixedLengthRelation(shapeID, vertexID) == -1)
+                            MessageBox.Show("You cannot add more than one relation to an edge", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.AddingEqualLengthRelation:
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                     {
-                        if(canvas.AddEdgeToRelation(shapeID, vertexID))
+                        int returnValue = canvas.AddEdgeToRelation(shapeID, vertexID);
+                        if(returnValue == 1)
                             mode = ApplicationMode.Default;
+                        else if (returnValue == -1)
+                            MessageBox.Show("You cannot add more than one relation to an edge", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else if (returnValue == -2)
+                            MessageBox.Show("You cannot add relations between edges in different polygons", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
                 case ApplicationMode.AddingPolygon:
