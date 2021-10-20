@@ -42,6 +42,7 @@ namespace lab1
             this.addCircleButton = new System.Windows.Forms.Button();
             this.addPolygonButton = new System.Windows.Forms.Button();
             this.moveObjectButton = new System.Windows.Forms.Button();
+            this.equalLengthButton = new System.Windows.Forms.Button();
             this.tablePanel.SuspendLayout();
             this.menuTable.SuspendLayout();
             this.SuspendLayout();
@@ -80,6 +81,7 @@ namespace lab1
             // 
             this.menuTable.ColumnCount = 1;
             this.menuTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.menuTable.Controls.Add(this.equalLengthButton, 0, 10);
             this.menuTable.Controls.Add(this.fixedLengthButton, 0, 9);
             this.menuTable.Controls.Add(this.loadFromFileButton, 0, 8);
             this.menuTable.Controls.Add(this.saveToFileButton, 0, 7);
@@ -93,7 +95,8 @@ namespace lab1
             this.menuTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuTable.Location = new System.Drawing.Point(643, 3);
             this.menuTable.Name = "menuTable";
-            this.menuTable.RowCount = 10;
+            this.menuTable.RowCount = 11;
+            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -147,7 +150,7 @@ namespace lab1
             // deleteVertexButton
             // 
             this.deleteVertexButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.deleteVertexButton.Location = new System.Drawing.Point(3, 190);
+            this.deleteVertexButton.Location = new System.Drawing.Point(3, 226);
             this.deleteVertexButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.deleteVertexButton.Name = "deleteVertexButton";
             this.deleteVertexButton.Size = new System.Drawing.Size(148, 23);
@@ -159,7 +162,7 @@ namespace lab1
             // splitEdgeButton
             // 
             this.splitEdgeButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitEdgeButton.Location = new System.Drawing.Point(3, 226);
+            this.splitEdgeButton.Location = new System.Drawing.Point(3, 190);
             this.splitEdgeButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.splitEdgeButton.Name = "splitEdgeButton";
             this.splitEdgeButton.Size = new System.Drawing.Size(148, 23);
@@ -228,6 +231,18 @@ namespace lab1
             this.moveObjectButton.UseVisualStyleBackColor = true;
             this.moveObjectButton.Click += new System.EventHandler(this.moveObjectButton_Click);
             // 
+            // equalLengthButton
+            // 
+            this.equalLengthButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.equalLengthButton.Location = new System.Drawing.Point(3, 370);
+            this.equalLengthButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.equalLengthButton.Name = "equalLengthButton";
+            this.equalLengthButton.Size = new System.Drawing.Size(148, 23);
+            this.equalLengthButton.TabIndex = 13;
+            this.equalLengthButton.Text = "Equal length relation";
+            this.equalLengthButton.UseVisualStyleBackColor = true;
+            this.equalLengthButton.Click += new System.EventHandler(this.equalLengthButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -259,6 +274,7 @@ namespace lab1
         private System.Windows.Forms.Button loadFromFileButton;
         private System.Windows.Forms.Button moveObjectButton;
         private System.Windows.Forms.Button fixedLengthButton;
+        private System.Windows.Forms.Button equalLengthButton;
     }
 }
 
