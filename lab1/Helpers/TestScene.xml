@@ -3,22 +3,22 @@
   <PolygonList>
     <Polygon>
       <VertexList>
-        <Point>
+        <Shapes.Point>
           <X>331</X>
           <Y>483</Y>
-        </Point>
-        <Point>
+        </Shapes.Point>
+        <Shapes.Point>
           <X>1136</X>
           <Y>544</Y>
-        </Point>
-        <Point>
+        </Shapes.Point>
+        <Shapes.Point>
           <X>752</X>
           <Y>83</Y>
-        </Point>
-        <Point>
+        </Shapes.Point>
+        <Shapes.Point>
           <X>291</X>
           <Y>117</Y>
-        </Point>
+        </Shapes.Point>
       </VertexList>
       <Center>
         <X>627</X>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 
 namespace lab1
 {
@@ -15,7 +14,7 @@ namespace lab1
         private List<Shapes.Circle> circles = new();
 
         // used when adding a new polygon
-        private List<Point> addingPolygonVertices;
+        private List<Shapes.Point> addingPolygonVertices;
 
         // used when adding a new circle
         private Shapes.Circle addingCircle;
@@ -30,7 +29,7 @@ namespace lab1
         /// Start adding a new polygon to the canvas
         /// </summary>
         /// <param name="location">Starting location of polygon</param>
-        public void StartAddingPolygon(Point mousePosition)
+        public void StartAddingPolygon(Shapes.Point mousePosition)
         {
             addingPolygonVertices = new();
             addingPolygonVertices.Add(mousePosition);
@@ -41,7 +40,7 @@ namespace lab1
         /// </summary>
         /// <param name="location">The location</param>
         /// <returns>If drawing of the new polygon is finished, return true</returns>
-        public bool AddPointToPolygon(Point mousePosition)
+        public bool AddPointToPolygon(Shapes.Point mousePosition)
         {
             // if the first point was clicked, finish adding the new polygon
             if (addingPolygonVertices.Count > 3 && GraphicsHelpers.IsPointClicked(addingPolygonVertices[0], mousePosition))
@@ -59,7 +58,7 @@ namespace lab1
             return false;
         }
 
-        public void StartAddingCircle(Point mousePosition) => addingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
+        public void StartAddingCircle(Shapes.Point mousePosition) => addingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
 
         public void StopAddingShape()
         {
@@ -69,7 +68,7 @@ namespace lab1
             Redraw();
         }
 
-        public bool AddCircle(Point mousePosition)
+        public bool AddCircle(Shapes.Point mousePosition)
         {
             if (circle_anchored)
             {
@@ -86,13 +85,13 @@ namespace lab1
             return false;
         }
 
-        public void MouseMoveWhileAddingPolygon(Point mousePosition)
+        public void MouseMoveWhileAddingPolygon(Shapes.Point mousePosition)
         {
             addingPolygonVertices[^1] = mousePosition;
             Redraw();
         }
 
-        public void MouseMoveWhileAddingCircle(Point mousePosition)
+        public void MouseMoveWhileAddingCircle(Shapes.Point mousePosition)
         {
             if (circle_anchored)
                 addingCircle.Radius = GraphicsHelpers.Distance(addingCircle.Center, mousePosition);
@@ -111,13 +110,13 @@ namespace lab1
                 DrawAddingPolygon(g);
             if (addingCircle != null)
                 DrawCircle(g, addingCircle);
-            foreach(var polygon in polygons)
+            foreach (var polygon in polygons)
                 DrawPolygon(g, polygon);
             foreach (var circle in circles)
                 DrawCircle(g, circle);
         }
 
-        private void DrawVertice(Graphics g, Point location, Color? color = null)
+        private void DrawVertice(Graphics g, Shapes.Point location, Color? color = null)
         {
             Brush b = new SolidBrush(color ?? Color.Green);
             Pen p = new Pen(Color.Black, 1);
@@ -132,7 +131,7 @@ namespace lab1
             DrawVertice(g, addingPolygonVertices[0]);
             for (int i = 1; i < addingPolygonVertices.Count; ++i)
             {
-                g.DrawLine(p, addingPolygonVertices[i - 1], addingPolygonVertices[i]);
+                g.DrawLine(p, addingPolygonVertices[i - 1].ToStruct(), addingPolygonVertices[i].ToStruct());
                 DrawVertice(g, addingPolygonVertices[i]);
             }
         }
@@ -143,8 +142,8 @@ namespace lab1
             List<Point> vertices = polygon.VertexList.ToList();
             for (int i = 0; i < vertices.Count; ++i)
             {
-                g.DrawLineBresenham(p, vertices[i], vertices[(i + 1) % vertices.Count]);
-                Point center = GraphicsHelpers.SegmentCenter(vertices[i], vertices[(i + 1) % vertices.Count]);
+                g.DrawLineBresenham(Color.Black, vertices[i], vertices[(i + 1) % vertices.Count]);
+                Shapes.Point center = GraphicsHelpers.SegmentCenter(vertices[i], vertices[(i + 1) % vertices.Count]);
                 DrawVertice(g, center, Color.Yellow);
                 DrawVertice(g, vertices[i]);
             }
@@ -160,12 +159,20 @@ namespace lab1
             DrawVertice(g, circle.Center, Color.Red);
         }
 
+        private void DrawEdgesWithRelations(Graphics g)
+        {
+            foreach (var relation in relations)
+            {
+                g.DrawLineBresenham(relation.Color, relation.Edge1.p1, relation.Edge1.p2);
+            }
+        }
+
         /// <summary>
         /// Redraw the canvas after a change in contents
         /// </summary>
         public void Redraw() => panel.Invalidate();
 
-        public int IsCircleCenterClicked(Point mousePosition)
+        public int IsCircleCenterClicked(Shapes.Point mousePosition)
         {
             for (int i = 0; i < circles.Count; ++i)
                 if (GraphicsHelpers.IsPointClicked(circles[i].Center, mousePosition))
@@ -173,13 +180,13 @@ namespace lab1
             return -1;
         }
 
-        public void MoveCircle(int circleID, Point mousePosition)
+        public void MoveCircle(int circleID, Shapes.Point mousePosition)
         {
             circles[circleID].Center = mousePosition;
             Redraw();
         }
 
-        public int IsCircleEdgeClicked(Point mousePosition)
+        public int IsCircleEdgeClicked(Shapes.Point mousePosition)
         {
             for (int i = 0; i < circles.Count; ++i)
                 if (Math.Abs(GraphicsHelpers.Distance(circles[i].Center, mousePosition) - circles[i].Radius) < ClickAccuracy)
@@ -187,28 +194,28 @@ namespace lab1
             return -1;
         }
 
-        public void ResizeCircle(int circleID, Point mousePosition)
+        public void ResizeCircle(int circleID, Shapes.Point mousePosition)
         {
             circles[circleID].Radius = GraphicsHelpers.Distance(circles[circleID].Center, mousePosition);
             Redraw();
         }
 
-        public (int polygonID, int vertexID) IsPolygonVertexClicked(Point mousePosition)
+        public (int polygonID, int vertexID) IsPolygonVertexClicked(Shapes.Point mousePosition)
         {
-            for(int i = 0; i < polygons.Count; ++i)
+            for (int i = 0; i < polygons.Count; ++i)
                 for (int j = 0; j < polygons[i].VertexList.Count; ++j)
                     if (GraphicsHelpers.IsPointClicked(polygons[i].VertexList[j], mousePosition))
                         return (i, j);
             return (-1, -1);
         }
 
-        public void MovePolygonVertex(int polygonID, int vertexID, Point mousePosition)
+        public void MovePolygonVertex(int polygonID, int vertexID, Shapes.Point mousePosition)
         {
-            polygons[polygonID].VertexList[vertexID] = mousePosition;
+            polygons[polygonID].VertexList[vertexID].Move(mousePosition);
             Redraw();
         }
 
-        public int IsPolygonCenterClicked(Point mousePosition)
+        public int IsPolygonCenterClicked(Shapes.Point mousePosition)
         {
             for (int i = 0; i < polygons.Count; ++i)
                 if (GraphicsHelpers.IsPointClicked(polygons[i].Center, mousePosition))
@@ -260,7 +267,7 @@ namespace lab1
 
         public void SplitEdge(int polygonID, int lowerVertexID)
         {
-            Point center = GraphicsHelpers.SegmentCenter(polygons[polygonID].VertexList[lowerVertexID], polygons[polygonID].VertexList[(lowerVertexID + 1) % polygons[polygonID].VertexList.Count]);
+            Shapes.Point center = GraphicsHelpers.SegmentCenter(polygons[polygonID].VertexList[lowerVertexID], polygons[polygonID].VertexList[(lowerVertexID + 1) % polygons[polygonID].VertexList.Count]);
             polygons[polygonID].VertexList.Insert(lowerVertexID + 1, center);
             Redraw();
         }

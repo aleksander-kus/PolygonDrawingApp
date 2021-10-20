@@ -27,7 +27,7 @@ namespace lab1
             if (mode != ApplicationMode.Default)
                 return;
             mode = ApplicationMode.AddingPolygon;
-            canvas.StartAddingPolygon(MousePosition);
+            canvas.StartAddingPolygon(new Shapes.Point(MousePosition));
         }
 
         private void addCircleButton_Click(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace lab1
             if (mode != ApplicationMode.Default)
                 return;
             mode = ApplicationMode.AddingCircle;
-            canvas.StartAddingCircle(MousePosition);
+            canvas.StartAddingCircle(new Shapes.Point(MousePosition));
         }
 
         // change the mode to default on moveobjectbutton click only if we are not adding a cricle or polygon
@@ -52,71 +52,81 @@ namespace lab1
         private void splitEdgeButton_Click(object sender, EventArgs e) => mode = ApplicationMode.SplittinEdge;
 
         private void deleteVertexButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingVertex;
+        
+        private void fixedLengthButton_Click(object sender, EventArgs e) => mode = ApplicationMode.AddingFixedLengthRelation;
 
         private void canvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
+            Shapes.Point mouseLocation = new(e.X, e.Y);
             int shapeID, vertexID;
             switch (mode)
             {
                 case ApplicationMode.DeletingPolygon:
-                    if ((shapeID = canvas.IsPolygonCenterClicked(e.Location)) != -1)
+                    if ((shapeID = canvas.IsPolygonCenterClicked(mouseLocation)) != -1)
                     {
                         canvas.DeletePolygon(shapeID);
                         mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.DeletingCircle:
-                    if ((shapeID = canvas.IsCircleCenterClicked(e.Location)) != -1)
+                    if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
                     {
                         canvas.DeleteCircle(shapeID);
                         mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.DeletingVertex:
-                    if (((shapeID, vertexID) = canvas.IsPolygonVertexClicked(e.Location)) != (-1, -1))
+                    if (((shapeID, vertexID) = canvas.IsPolygonVertexClicked(mouseLocation)) != (-1, -1))
                     {
                         canvas.DeleteVertex(shapeID, vertexID);
                         mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.SplittinEdge:
-                    if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(e.Location)) != (-1, -1))
+                    if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                     {
                         canvas.SplitEdge(shapeID, vertexID);
                         mode = ApplicationMode.Default;
                     }
                     break;
+                case ApplicationMode.AddingFixedLengthRelation:
+                    if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
+                    {
+                        canvas.AddFixedLengthRelation(shapeID, vertexID);
+                        mode = ApplicationMode.Default;
+                    }
+                    break;
                 case ApplicationMode.AddingPolygon:
-                    if (canvas.AddPointToPolygon(e.Location))
+                    if (canvas.AddPointToPolygon(mouseLocation))
                         mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.AddingCircle:
-                    if (canvas.AddCircle(e.Location))
+                    if (canvas.AddCircle(mouseLocation))
                         mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.Default:
-                    if ((shapeID = canvas.IsCircleCenterClicked(e.Location)) != -1)
+                    if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
                     {
                         changingShapeID = shapeID;
                         mode = ApplicationMode.MovingCircleCenter;
                     }
-                    else if ((shapeID = canvas.IsCircleEdgeClicked(e.Location)) != -1)
+                    else if ((shapeID = canvas.IsCircleEdgeClicked(mouseLocation)) != -1)
                     {
                         changingShapeID = shapeID;
                         mode = ApplicationMode.ResizingCircle;
                     }
-                    else if (((shapeID, vertexID) = canvas.IsPolygonVertexClicked(e.Location)) != (-1, -1))
+                    else if (((shapeID, vertexID) = canvas.IsPolygonVertexClicked(mouseLocation)) != (-1, -1))
                     {
                         changingShapeID = shapeID;
                         changingVertexID = vertexID;
                         mode = ApplicationMode.MovingVertex;
                     }
-                    else if ((shapeID = canvas.IsPolygonCenterClicked(e.Location)) != -1)
+                    else if ((shapeID = canvas.IsPolygonCenterClicked(mouseLocation)) != -1)
                     {
                         changingShapeID = shapeID;
                         mode = ApplicationMode.MovingPolygonCenter;
                     }
-                    else if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(e.Location)) != (-1, -1))
+                    else if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                     {
                         changingShapeID = shapeID;
                         changingVertexID = vertexID;
@@ -130,28 +140,29 @@ namespace lab1
 
         private void canvasPanel_MouseMove(object sender, MouseEventArgs e)
         {
+            Shapes.Point mouseLocation = new(e.X, e.Y);
             switch (mode)
             {
                 case ApplicationMode.AddingPolygon:
-                    canvas.MouseMoveWhileAddingPolygon(e.Location);
+                    canvas.MouseMoveWhileAddingPolygon(mouseLocation);
                     break;
                 case ApplicationMode.AddingCircle:
-                    canvas.MouseMoveWhileAddingCircle(e.Location);
+                    canvas.MouseMoveWhileAddingCircle(mouseLocation);
                     break;
                 case ApplicationMode.MovingCircleCenter:
-                    canvas.MoveCircle(changingShapeID, e.Location);
+                    canvas.MoveCircle(changingShapeID, mouseLocation);
                     break;
                 case ApplicationMode.ResizingCircle:
-                    canvas.ResizeCircle(changingShapeID, e.Location);
+                    canvas.ResizeCircle(changingShapeID, mouseLocation);
                     break;
                 case ApplicationMode.MovingVertex:
-                    canvas.MovePolygonVertex(changingShapeID, changingVertexID, e.Location);
+                    canvas.MovePolygonVertex(changingShapeID, changingVertexID, mouseLocation);
                     break;
                 case ApplicationMode.MovingPolygonCenter:
-                    canvas.MovePolygon(changingShapeID, e.Location);
+                    canvas.MovePolygon(changingShapeID, mouseLocation);
                     break;
                 case ApplicationMode.MovingEdge:
-                    canvas.MoveEdge(changingShapeID, changingVertexID, e.Location);
+                    canvas.MoveEdge(changingShapeID, changingVertexID, mouseLocation);
                     break;
                 case ApplicationMode.Default:
                 default:
