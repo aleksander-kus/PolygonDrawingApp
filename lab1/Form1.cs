@@ -19,7 +19,7 @@ namespace lab1
         {
             canvas = new(canvasPanel);
             // load the test scene form the embedded file
-            canvas.Import(Helpers.XMLHelper.ReadFromXMLEmbedded<Helpers.SerializedCanvas>("lab1.Helpers.TestScene.xml"));
+            // canvas.Import(Helpers.XMLHelper.ReadFromXMLEmbedded<Helpers.SerializedCanvas>("lab1.Helpers.TestScene.xml"));
         }
 
         private void addPolygonButton_Click(object sender, EventArgs e)
