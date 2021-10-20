@@ -14,6 +14,7 @@
         DeletingCircle,
         DeletingVertex,
         SplittinEdge,
-        AddingFixedLengthRelation
+        AddingFixedLengthRelation,
+        AddingEqualLengthRelation
     }
 }
