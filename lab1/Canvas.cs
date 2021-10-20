@@ -22,6 +22,7 @@ namespace lab1
 
         // used with relations
         private List<Relations.Relation> relations = new();
+        private Relations.Relation addingRelation;
 
         public Canvas(BufferedPanel panel)
         {
@@ -153,7 +154,10 @@ namespace lab1
                 DrawPolygon(g, polygon);
             foreach (var circle in circles)
                 DrawCircle(g, circle);
-            DrawEdgesWithRelations(g);
+            foreach (var relation in relations)
+                DrawEdgesWithRelation(g, relation);
+            if (addingRelation != null)
+                DrawEdgesWithRelation(g, addingRelation);
         }
 
         private void DrawVertice(Graphics g, Shapes.Point location, Color? color = null)
@@ -199,15 +203,12 @@ namespace lab1
             DrawVertice(g, circle.Center, Color.Red);
         }
 
-        private void DrawEdgesWithRelations(Graphics g)
+        private void DrawEdgesWithRelation(Graphics g, Relations.Relation relation)
         {
-            foreach (var relation in relations)
-            {
+            if (relation.Edge1 != null)
                 g.DrawLineBresenham(relation.Color, relation.Edge1.p1, relation.Edge1.p2);
-                if (relation.Edge2 != null)
-                    g.DrawLineBresenham(relation.Color, relation.Edge2.p1, relation.Edge2.p2);
-
-            }
+            if (relation.Edge2 != null)
+                g.DrawLineBresenham(relation.Color, relation.Edge2.p1, relation.Edge2.p2);
         }
 
         /// <summary>
