@@ -319,5 +319,24 @@ namespace lab1
             Redraw();
             return true;
         }
+
+        public bool AddEqualLengthRelation(int polygonID, int lowerVertexID1, int lowerVertexID2)
+        {
+            Shapes.Point p1 = polygons[polygonID].VertexList[lowerVertexID1], p2 = polygons[polygonID].VertexList[(lowerVertexID1 + 1) % polygons[polygonID].VertexList.Count];
+            Shapes.Point p3 = polygons[polygonID].VertexList[lowerVertexID2], p4 = polygons[polygonID].VertexList[(lowerVertexID2 + 1) % polygons[polygonID].VertexList.Count];
+            Relations.EqualLengthRelation relation = new();
+            relation.Impose(new Shapes.Edge(p1, p2), new Shapes.Edge(p3, p4));
+            if (p1.R1 == null) p1.R1 = relation;
+            else if (p1.R2 == null) p1.R2 = relation;
+            if (p2.R1 == null) p2.R1 = relation;
+            else if (p2.R2 == null) p2.R2 = relation;
+            if (p3.R1 == null) p3.R1 = relation;
+            else if (p3.R2 == null) p3.R2 = relation;
+            if (p4.R1 == null) p4.R1 = relation;
+            else if (p4.R2 == null) p4.R2 = relation;
+            relations.Add(relation);
+            Redraw();
+            return true;
+        }
     }
 }
