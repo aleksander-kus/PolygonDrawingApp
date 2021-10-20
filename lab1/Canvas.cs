@@ -20,6 +20,9 @@ namespace lab1
         private Shapes.Circle addingCircle;
         private bool circle_anchored = false;
 
+        // used with relations
+        private List<Relations.Relation> relations = new();
+
         public Canvas(BufferedPanel panel)
         {
             this.panel = panel;
@@ -114,6 +117,7 @@ namespace lab1
                 DrawPolygon(g, polygon);
             foreach (var circle in circles)
                 DrawCircle(g, circle);
+            DrawEdgesWithRelations(g);
         }
 
         private void DrawVertice(Graphics g, Shapes.Point location, Color? color = null)
@@ -291,6 +295,22 @@ namespace lab1
             polygons = new(sc.PolygonList);
             circles = new(sc.CircleList);
             Redraw();
+        }
+
+        public bool AddFixedLengthRelation(int polygonID, int lowerVertexID)
+        {
+            Shapes.Point p1 = polygons[polygonID].VertexList[lowerVertexID], p2 = polygons[polygonID].VertexList[(lowerVertexID + 1) % polygons[polygonID].VertexList.Count];
+            if (p1.R2 != null && p2.R2 != null)
+                return false;
+            Relations.FixedLengthRelation relation = new();
+            relation.Impose(new Shapes.Edge(p1, p2));
+            if (p1.R1 == null) p1.R1 = relation;
+            else if (p1.R2 == null) p1.R2 = relation;
+            if (p2.R1 == null) p2.R1 = relation;
+            else if (p2.R2 == null) p2.R2 = relation;
+            relations.Add(relation);
+            Redraw();
+            return true;
         }
     }
 }
