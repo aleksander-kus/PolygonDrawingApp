@@ -32,6 +32,7 @@ namespace lab1
             this.tablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.canvasPanel = new lab1.BufferedPanel();
             this.menuTable = new System.Windows.Forms.TableLayoutPanel();
+            this.fixedLengthButton = new System.Windows.Forms.Button();
             this.loadFromFileButton = new System.Windows.Forms.Button();
             this.saveToFileButton = new System.Windows.Forms.Button();
             this.deleteVertexButton = new System.Windows.Forms.Button();
@@ -79,6 +80,7 @@ namespace lab1
             // 
             this.menuTable.ColumnCount = 1;
             this.menuTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.menuTable.Controls.Add(this.fixedLengthButton, 0, 9);
             this.menuTable.Controls.Add(this.loadFromFileButton, 0, 8);
             this.menuTable.Controls.Add(this.saveToFileButton, 0, 7);
             this.menuTable.Controls.Add(this.deleteVertexButton, 0, 6);
@@ -91,7 +93,8 @@ namespace lab1
             this.menuTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuTable.Location = new System.Drawing.Point(643, 3);
             this.menuTable.Name = "menuTable";
-            this.menuTable.RowCount = 9;
+            this.menuTable.RowCount = 10;
+            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -104,6 +107,18 @@ namespace lab1
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.menuTable.Size = new System.Drawing.Size(154, 444);
             this.menuTable.TabIndex = 1;
+            // 
+            // fixedLengthButton
+            // 
+            this.fixedLengthButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fixedLengthButton.Location = new System.Drawing.Point(3, 334);
+            this.fixedLengthButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.fixedLengthButton.Name = "fixedLengthButton";
+            this.fixedLengthButton.Size = new System.Drawing.Size(148, 23);
+            this.fixedLengthButton.TabIndex = 12;
+            this.fixedLengthButton.Text = "Fixed length restriction";
+            this.fixedLengthButton.UseVisualStyleBackColor = true;
+            this.fixedLengthButton.Click += new System.EventHandler(this.fixedLengthButton_Click);
             // 
             // loadFromFileButton
             // 
@@ -243,6 +258,7 @@ namespace lab1
         private System.Windows.Forms.Button saveToFileButton;
         private System.Windows.Forms.Button loadFromFileButton;
         private System.Windows.Forms.Button moveObjectButton;
+        private System.Windows.Forms.Button fixedLengthButton;
     }
 }
 
