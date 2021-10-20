@@ -11,9 +11,10 @@ namespace lab1.Relations
     {
         public abstract Color Color { get; }
 
-        public abstract Shapes.Edge Edge1 { get; }
-        public abstract Shapes.Edge Edge2 { get; }
+        public abstract Shapes.Edge Edge1 { get; set; }
+        public abstract Shapes.Edge Edge2 { get; set; }
 
+        public abstract void Impose();
         public abstract void Impose(Shapes.Edge e1, Shapes.Edge e2);
         public abstract void MovePoint(Shapes.Point clickedPoint, int dx, int dy);
     }
