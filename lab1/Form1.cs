@@ -18,6 +18,7 @@ namespace lab1
         private void Form1_Load(object sender, EventArgs e)
         {
             canvas = new(canvasPanel);
+            // load the test scene form the embedded file
             canvas.Import(Helpers.XMLHelper.ReadFromXMLEmbedded<Helpers.SerializedCanvas>("lab1.Helpers.TestScene.xml"));
         }
 
@@ -36,6 +37,8 @@ namespace lab1
             mode = ApplicationMode.AddingCircle;
             canvas.StartAddingCircle(MousePosition);
         }
+
+        private void moveObjectButton_Click(object sender, EventArgs e) => mode = ApplicationMode.Default;
 
         private void deletePolygonButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingPolygon;
 
