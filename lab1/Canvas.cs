@@ -23,6 +23,7 @@ namespace lab1
         // used with relations
         private List<Relations.Relation> relations = new();
         private Relations.Relation addingRelation;
+        private int addingRelationPolygonID = 0;
 
         public Canvas(BufferedPanel panel)
         {
@@ -70,17 +71,26 @@ namespace lab1
             Redraw();
         }
 
-        public bool AddEdgeToRelation(int polygonID, int lowerVertexID)
+        public int AddEdgeToRelation(int polygonID, int lowerVertexID)
         {
+            var newEdge = new Shapes.Edge(GetPointByID(polygonID, lowerVertexID), GetPointByID(polygonID, lowerVertexID + 1));
+            foreach (var relation in relations)
+                if (relation.Edge1.p1 == newEdge.p1 && relation.Edge1.p2 == newEdge.p2 || relation.Edge2 != null && relation.Edge2.p1 == newEdge.p1 && relation.Edge2.p2 == newEdge.p2)
+                    return -1;
             if (addingRelation.Edge1 == null)
             {
-                addingRelation.Edge1 = new Shapes.Edge(GetPointByID(polygonID, lowerVertexID), GetPointByID(polygonID, lowerVertexID + 1));
+                addingRelation.Edge1 = newEdge;
+                addingRelationPolygonID = polygonID;
                 Redraw();
-                return false;
+                return 0;
             }
             else
             {
-                addingRelation.Edge2 = new Shapes.Edge(GetPointByID(polygonID, lowerVertexID), GetPointByID(polygonID, lowerVertexID + 1));
+                if (addingRelation.Edge1.p1 == newEdge.p1 && addingRelation.Edge1.p2 == newEdge.p2)
+                    return -1;
+                if (addingRelationPolygonID != polygonID)
+                    return -2;
+                addingRelation.Edge2 = newEdge;
                 addingRelation.Impose();
                 Shapes.Point p1 = addingRelation.Edge1.p1, p2 = addingRelation.Edge1.p2, p3 = addingRelation.Edge2.p1, p4 = addingRelation.Edge2.p2;
                 if (p1.R1 == null) p1.R1 = addingRelation;
@@ -94,7 +104,7 @@ namespace lab1
                 relations.Add(addingRelation);
                 addingRelation = null;
                 Redraw();
-                return true;
+                return 1;
             }
         }
 
@@ -105,6 +115,7 @@ namespace lab1
             addingPolygonVertices = null;
             addingCircle = null;
             circle_anchored = false;
+            addingRelation = null;
             Redraw();
         }
 
@@ -341,11 +352,15 @@ namespace lab1
             Redraw();
         }
 
-        public bool AddFixedLengthRelation(int polygonID, int lowerVertexID)
+        public int AddFixedLengthRelation(int polygonID, int lowerVertexID)
         {
             Shapes.Point p1 = polygons[polygonID].VertexList[lowerVertexID], p2 = polygons[polygonID].VertexList[(lowerVertexID + 1) % polygons[polygonID].VertexList.Count];
+            Shapes.Edge newEdge = new(p1, p2);
+            foreach (var r in relations)
+                if (r.Edge1.p1 == newEdge.p1 && r.Edge1.p2 == newEdge.p2 || r.Edge2 != null && r.Edge2.p1 == newEdge.p1 && r.Edge2.p2 == newEdge.p2)
+                    return -1;
             if (p1.R2 != null && p2.R2 != null)
-                return false;
+                return 0;
             Relations.FixedLengthRelation relation = new();
             relation.Impose(new Shapes.Edge(p1, p2));
             if (p1.R1 == null) p1.R1 = relation;
@@ -354,17 +369,7 @@ namespace lab1
             else if (p2.R2 == null) p2.R2 = relation;
             relations.Add(relation);
             Redraw();
-            return true;
-        }
-
-        public bool AddEqualLengthRelation(int polygonID, int lowerVertexID1, int lowerVertexID2)
-        {
-            Shapes.Point p1 = polygons[polygonID].VertexList[lowerVertexID1], p2 = polygons[polygonID].VertexList[(lowerVertexID1 + 1) % polygons[polygonID].VertexList.Count];
-            Shapes.Point p3 = polygons[polygonID].VertexList[lowerVertexID2], p4 = polygons[polygonID].VertexList[(lowerVertexID2 + 1) % polygons[polygonID].VertexList.Count];
-            Relations.EqualLengthRelation relation = new();
-            relation.Impose(new Shapes.Edge(p1, p2), new Shapes.Edge(p3, p4));
-
-            return true;
+            return 1;
         }
     }
 }
