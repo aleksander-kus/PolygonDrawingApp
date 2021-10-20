@@ -17,5 +17,7 @@ namespace lab1.Shapes
             this.p1 = p1;
             this.p2 = p2;
         }
+
+        public int Length => (int)Math.Round(Math.Sqrt(GraphicsHelpers.SquaredDistance(p1, p2)));
     }
 }

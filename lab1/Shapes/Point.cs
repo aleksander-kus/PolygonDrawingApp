@@ -34,8 +34,8 @@ namespace lab1.Shapes
         {
             int delta_x = x - X;
             int delta_y = y - Y;
-            bool isR1Ignored = R1 == null || ignoreRelationWith != null && (R1.Edge1.p1 == ignoreRelationWith || R1.Edge1.p2 == ignoreRelationWith);
-            bool isR2Ignored = R2 == null || ignoreRelationWith != null && (R2.Edge1.p1 == ignoreRelationWith || R2.Edge1.p2 == ignoreRelationWith);
+            bool isR1Ignored = R1 == null || ignoreRelationWith != null && (R1.Edge1.p1 == ignoreRelationWith || R1.Edge1.p2 == ignoreRelationWith || R1.Edge2?.p1 == ignoreRelationWith || R1.Edge2?.p2 == ignoreRelationWith);
+            bool isR2Ignored = R2 == null || ignoreRelationWith != null && (R2.Edge1.p1 == ignoreRelationWith || R2.Edge1.p2 == ignoreRelationWith || R2.Edge2?.p1 == ignoreRelationWith || R2.Edge2?.p2 == ignoreRelationWith);
             X += delta_x;
             Y += delta_y;
             if (!isR2Ignored)
