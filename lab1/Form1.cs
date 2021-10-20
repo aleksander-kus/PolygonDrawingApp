@@ -38,6 +38,14 @@ namespace lab1
             canvas.StartAddingCircle(new Shapes.Point(MousePosition));
         }
 
+        private void equalLengthButton_Click(object sender, EventArgs e)
+        {
+            if (mode != ApplicationMode.Default)
+                return;
+            mode = ApplicationMode.AddingEqualLengthRelation;
+            canvas.StartAddingEqualLengthRelation();
+        }
+
         // change the mode to default on moveobjectbutton click only if we are not adding a cricle or polygon
         private void moveObjectButton_Click(object sender, EventArgs e)
         {
@@ -54,6 +62,8 @@ namespace lab1
         private void deleteVertexButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingVertex;
         
         private void fixedLengthButton_Click(object sender, EventArgs e) => mode = ApplicationMode.AddingFixedLengthRelation;
+        
+
 
         private void canvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
@@ -94,6 +104,13 @@ namespace lab1
                     {
                         canvas.AddFixedLengthRelation(shapeID, vertexID);
                         mode = ApplicationMode.Default;
+                    }
+                    break;
+                case ApplicationMode.AddingEqualLengthRelation:
+                    if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
+                    {
+                        if(canvas.AddEdgeToRelation(shapeID, vertexID))
+                            mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.AddingPolygon:
@@ -217,5 +234,6 @@ namespace lab1
                     canvas.Import(sc);
             }
         }
+
     }
 }
