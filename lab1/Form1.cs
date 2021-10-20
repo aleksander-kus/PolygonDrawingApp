@@ -39,8 +39,11 @@ namespace lab1
         }
 
         // change the mode to default on moveobjectbutton click only if we are not adding a cricle or polygon
-        private void moveObjectButton_Click(object sender, EventArgs e) => 
-            mode = (mode != ApplicationMode.AddingPolygon && mode != ApplicationMode.AddingCircle) ? ApplicationMode.Default : mode;
+        private void moveObjectButton_Click(object sender, EventArgs e)
+        {
+            canvas.StopAddingShape();
+            mode = ApplicationMode.Default;
+        }
 
         private void deletePolygonButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingPolygon;
 
