@@ -61,6 +61,14 @@ namespace lab1
 
         public void StartAddingCircle(Point mousePosition) => addingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
 
+        public void StopAddingShape()
+        {
+            addingPolygonVertices = null;
+            addingCircle = null;
+            circle_anchored = false;
+            Redraw();
+        }
+
         public bool AddCircle(Point mousePosition)
         {
             if (circle_anchored)
