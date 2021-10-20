@@ -55,30 +55,38 @@ namespace lab1
             {
                 case ApplicationMode.DeletingPolygon:
                     if ((shapeID = canvas.IsPolygonCenterClicked(e.Location)) != -1)
+                    {
                         canvas.DeletePolygon(shapeID);
-                    mode = ApplicationMode.Default;
+                        mode = ApplicationMode.Default;
+                    }
                     break;
                 case ApplicationMode.DeletingCircle:
                     if ((shapeID = canvas.IsCircleCenterClicked(e.Location)) != -1)
+                    {
                         canvas.DeleteCircle(shapeID);
-                    mode = ApplicationMode.Default;
+                        mode = ApplicationMode.Default;
+                    }
                     break;
                 case ApplicationMode.DeletingVertex:
                     if (((shapeID, vertexID) = canvas.IsPolygonVertexClicked(e.Location)) != (-1, -1))
+                    {
                         canvas.DeleteVertex(shapeID, vertexID);
-                    mode = ApplicationMode.Default;
+                        mode = ApplicationMode.Default;
+                    }
                     break;
                 case ApplicationMode.SplittinEdge:
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(e.Location)) != (-1, -1))
+                    {
                         canvas.SplitEdge(shapeID, vertexID);
-                    mode = ApplicationMode.Default;
+                        mode = ApplicationMode.Default;
+                    }
                     break;
                 case ApplicationMode.AddingPolygon:
-                    if(canvas.AddPointToPolygon(e.Location))
+                    if (canvas.AddPointToPolygon(e.Location))
                         mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.AddingCircle:
-                    if(canvas.AddCircle(e.Location))
+                    if (canvas.AddCircle(e.Location))
                         mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.Default:
@@ -109,7 +117,7 @@ namespace lab1
                         changingVertexID = vertexID;
                         mode = ApplicationMode.MovingEdge;
                     }
-                        break;
+                    break;
                 default:
                     break;
             }
