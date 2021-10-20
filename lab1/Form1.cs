@@ -182,7 +182,8 @@ namespace lab1
             if (sd.ShowDialog() == DialogResult.OK)
             {
                 var sc = canvas.Export();
-                Helpers.XMLHelper.WriteToXML(sd.FileName, sc);
+                if (Helpers.XMLHelper.WriteToXML(sd.FileName, sc) != true)
+                    MessageBox.Show("There was an error writing to file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -194,7 +195,10 @@ namespace lab1
             if (od.ShowDialog() == DialogResult.OK)
             {
                 var sc = Helpers.XMLHelper.ReadFromXML<Helpers.SerializedCanvas>(od.FileName);
-                canvas.Import(sc);
+                if (sc == null)
+                    MessageBox.Show("There was an error reading from file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    canvas.Import(sc);
             }
         }
     }
