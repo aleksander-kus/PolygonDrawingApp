@@ -13,6 +13,7 @@
         DeletingPolygon,
         DeletingCircle,
         DeletingVertex,
-        SplittinEdge
+        SplittinEdge,
+        AddingFixedLengthRelation
     }
 }
