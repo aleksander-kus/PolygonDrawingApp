@@ -138,8 +138,7 @@ namespace lab1
 
         private void DrawPolygon(Graphics g, Shapes.Polygon polygon)
         {
-            Pen p = new Pen(Color.Black, 1);
-            List<Point> vertices = polygon.VertexList.ToList();
+            List<Shapes.Point> vertices = polygon.VertexList;
             for (int i = 0; i < vertices.Count; ++i)
             {
                 g.DrawLineBresenham(Color.Black, vertices[i], vertices[(i + 1) % vertices.Count]);
@@ -148,6 +147,7 @@ namespace lab1
                 DrawVertice(g, vertices[i]);
             }
             DrawVertice(g, vertices[0]);
+            polygon.RecalculateMiddlePoint();
             DrawVertice(g, polygon.Center, Color.Red);
         }
 
@@ -182,7 +182,7 @@ namespace lab1
 
         public void MoveCircle(int circleID, Shapes.Point mousePosition)
         {
-            circles[circleID].Center = mousePosition;
+            circles[circleID].Center.Move(mousePosition);
             Redraw();
         }
 
