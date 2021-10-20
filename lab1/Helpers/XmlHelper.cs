@@ -101,13 +101,19 @@ namespace lab1.Helpers
         /// </summary>
         /// <typeparam name="T">Type of the root of XML file</typeparam>
         /// <param name="path">Path to XML file</param>
-        /// <returns></returns>
+        /// <returns>Diserialized object or default(<typeparamref name="T"/>) on error</returns>
         public static T ReadFromXML<T>(string path)
         {
-            using var fs = new FileStream(path, FileMode.Open);
-            var xs = new XmlSerializer(typeof(T));
-            T ret = (T)xs.Deserialize(fs);
-            return ret;
+            try
+            {
+                using var fs = new FileStream(path, FileMode.Open);
+                var xs = new XmlSerializer(typeof(T));
+                return (T)xs.Deserialize(fs);
+            }
+            catch (Exception)
+            {
+                return default;
+            }
         }
 
         /// <summary>
@@ -115,15 +121,20 @@ namespace lab1.Helpers
         /// </summary>
         /// <typeparam name="T">Type of the root of XML file</typeparam>
         /// <param name="path">Path to XML file</param>
-        /// <returns></returns>
+        /// <returns>Diserialized object or default(<typeparamref name="T"/>) on error</returns>
         public static T ReadFromXMLEmbedded<T>(string path)
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            using var stream = assembly.GetManifestResourceStream(path);
-            var xs = new XmlSerializer(typeof(T));
-            T ret = (T)xs.Deserialize(stream);
-
-            return ret;
+            try
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+                using var stream = assembly.GetManifestResourceStream(path);
+                var xs = new XmlSerializer(typeof(T));
+                return (T)xs.Deserialize(stream);
+            }
+            catch (Exception)
+            {
+                return default;
+            }
         }
 
         /// <summary>
@@ -132,11 +143,21 @@ namespace lab1.Helpers
         /// <typeparam name="T">Type of object to serialize</typeparam>
         /// <param name="path">Path to XML file</param>
         /// <param name="data">Object to be serialized</param>
-        public static void WriteToXML<T>(string path, T data)
+        /// <returns>True if writing was successful, false otherwise</returns>
+        public static bool WriteToXML<T>(string path, T data)
         {
-            using var fs = new FileStream(path, FileMode.Create);
-            var xs = new XmlSerializer(typeof(T));
-            xs.Serialize(fs, data);
+            try
+            {
+                using var fs = new FileStream(path, FileMode.Create);
+                var xs = new XmlSerializer(typeof(T));
+                xs.Serialize(fs, data);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
         // Auto-generate class files with this command:
