@@ -26,7 +26,7 @@ namespace lab1.Shapes
             VertexList = new(vertices);
         }
 
-        public void RecalculateMiddlePoint()
+        public void RecalculateCenterPoint()
         {
             // the center point has coordinates equal to the average coords of all points
             Center.Move(VertexList.Select(p => p.X).Aggregate((p1, p2) => p1 + p2) / VertexList.Count,

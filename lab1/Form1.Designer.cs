@@ -32,6 +32,7 @@ namespace lab1
             this.tablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.canvasPanel = new lab1.BufferedPanel();
             this.menuTable = new System.Windows.Forms.TableLayoutPanel();
+            this.equalLengthButton = new System.Windows.Forms.Button();
             this.fixedLengthButton = new System.Windows.Forms.Button();
             this.loadFromFileButton = new System.Windows.Forms.Button();
             this.saveToFileButton = new System.Windows.Forms.Button();
@@ -42,7 +43,7 @@ namespace lab1
             this.addCircleButton = new System.Windows.Forms.Button();
             this.addPolygonButton = new System.Windows.Forms.Button();
             this.moveObjectButton = new System.Windows.Forms.Button();
-            this.equalLengthButton = new System.Windows.Forms.Button();
+            this.removeRelationButton = new System.Windows.Forms.Button();
             this.tablePanel.SuspendLayout();
             this.menuTable.SuspendLayout();
             this.SuspendLayout();
@@ -81,6 +82,7 @@ namespace lab1
             // 
             this.menuTable.ColumnCount = 1;
             this.menuTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.menuTable.Controls.Add(this.removeRelationButton, 0, 11);
             this.menuTable.Controls.Add(this.equalLengthButton, 0, 10);
             this.menuTable.Controls.Add(this.fixedLengthButton, 0, 9);
             this.menuTable.Controls.Add(this.loadFromFileButton, 0, 8);
@@ -95,7 +97,8 @@ namespace lab1
             this.menuTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuTable.Location = new System.Drawing.Point(643, 3);
             this.menuTable.Name = "menuTable";
-            this.menuTable.RowCount = 11;
+            this.menuTable.RowCount = 12;
+            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -110,6 +113,18 @@ namespace lab1
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.menuTable.Size = new System.Drawing.Size(154, 444);
             this.menuTable.TabIndex = 1;
+            // 
+            // equalLengthButton
+            // 
+            this.equalLengthButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.equalLengthButton.Location = new System.Drawing.Point(3, 370);
+            this.equalLengthButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.equalLengthButton.Name = "equalLengthButton";
+            this.equalLengthButton.Size = new System.Drawing.Size(148, 23);
+            this.equalLengthButton.TabIndex = 13;
+            this.equalLengthButton.Text = "Equal length relation";
+            this.equalLengthButton.UseVisualStyleBackColor = true;
+            this.equalLengthButton.Click += new System.EventHandler(this.equalLengthButton_Click);
             // 
             // fixedLengthButton
             // 
@@ -231,17 +246,17 @@ namespace lab1
             this.moveObjectButton.UseVisualStyleBackColor = true;
             this.moveObjectButton.Click += new System.EventHandler(this.moveObjectButton_Click);
             // 
-            // equalLengthButton
+            // removeRelationButton
             // 
-            this.equalLengthButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.equalLengthButton.Location = new System.Drawing.Point(3, 370);
-            this.equalLengthButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.equalLengthButton.Name = "equalLengthButton";
-            this.equalLengthButton.Size = new System.Drawing.Size(148, 23);
-            this.equalLengthButton.TabIndex = 13;
-            this.equalLengthButton.Text = "Equal length relation";
-            this.equalLengthButton.UseVisualStyleBackColor = true;
-            this.equalLengthButton.Click += new System.EventHandler(this.equalLengthButton_Click);
+            this.removeRelationButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.removeRelationButton.Location = new System.Drawing.Point(3, 406);
+            this.removeRelationButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.removeRelationButton.Name = "removeRelationButton";
+            this.removeRelationButton.Size = new System.Drawing.Size(148, 23);
+            this.removeRelationButton.TabIndex = 14;
+            this.removeRelationButton.Text = "Remove relation";
+            this.removeRelationButton.UseVisualStyleBackColor = true;
+            this.removeRelationButton.Click += new System.EventHandler(this.removeRelationButton_Click);
             // 
             // Form1
             // 
@@ -275,6 +290,7 @@ namespace lab1
         private System.Windows.Forms.Button moveObjectButton;
         private System.Windows.Forms.Button fixedLengthButton;
         private System.Windows.Forms.Button equalLengthButton;
+        private System.Windows.Forms.Button removeRelationButton;
     }
 }
 

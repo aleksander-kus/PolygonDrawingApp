@@ -1,0 +1,68 @@
+﻿namespace lab1.Canvas.Helpers
+{
+    /// <summary>
+    /// A class containing methods to add points and shapes to the canvas
+    /// </summary>
+    public class CanvasAdder : CanvasHelper
+    {
+        public CanvasAdder(CanvasResources r): base(r)
+        {
+        }
+
+        /// <summary>
+        /// Add a new point to the polygon
+        /// </summary>
+        /// <param name="location">The location</param>
+        /// <returns>If drawing of the new polygon is finished, return true</returns>
+        public bool AddPointToPolygon(Shapes.Point mousePosition)
+        {
+            // if the first point was clicked, finish adding the new resources.polygon
+            if (resources.AddingPolygonVertices.Count > 3 && GraphicsHelpers.IsPointClicked(resources.AddingPolygonVertices[0], mousePosition))
+            {
+                resources.AddingPolygonVertices.RemoveAt(resources.AddingPolygonVertices.Count - 1);
+                resources.Polygons.Add(new Shapes.Polygon(resources.AddingPolygonVertices));
+                resources.AddingPolygonVertices = null;
+                return true;
+            }
+            // else add a new point to the resources.polygon
+            else
+                resources.AddingPolygonVertices.Add(mousePosition);
+            return false;
+        }
+
+        /// <summary>
+        /// Start adding a new resources.polygon to the canvas
+        /// </summary>
+        /// <param name="location">Starting location of polygon</param>
+        public void StartAddingPolygon(Shapes.Point mousePosition)
+        {
+            resources.AddingPolygonVertices = new();
+            resources.AddingPolygonVertices.Add(mousePosition);
+        }
+
+        public void StartAddingCircle(Shapes.Point mousePosition) => resources.AddingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
+
+        public void StopAddingShape()
+        {
+            resources.AddingPolygonVertices = null;
+            resources.AddingCircle = null;
+            resources.Circle_anchored = false;
+            resources.AddingRelation = null;
+        }
+
+        public bool AddCircle(Shapes.Point mousePosition)
+        {
+            if (resources.Circle_anchored)
+            {
+                resources.AddingCircle.Radius = GraphicsHelpers.Distance(resources.AddingCircle.Center, mousePosition);
+                resources.Circles.Add(resources.AddingCircle);
+                resources.AddingCircle = null;
+                resources.Circle_anchored = false;
+                return true;
+            }
+            resources.AddingCircle.Center = mousePosition;
+            resources.Circle_anchored = true;
+            return false;
+        }
+    }
+}

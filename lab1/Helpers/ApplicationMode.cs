@@ -15,6 +15,7 @@
         DeletingVertex,
         SplittinEdge,
         AddingFixedLengthRelation,
-        AddingEqualLengthRelation
+        AddingEqualLengthRelation,
+        RemovingRelation
     }
 }

@@ -6,7 +6,7 @@ namespace lab1
     public partial class Form1 : Form
     {
         private ApplicationMode mode = ApplicationMode.Default;
-        private Canvas canvas;
+        private Canvas.Canvas canvas;
         private int changingShapeID = -1;
         private int changingVertexID = -1;
 
@@ -60,9 +60,10 @@ namespace lab1
         private void splitEdgeButton_Click(object sender, EventArgs e) => mode = ApplicationMode.SplittinEdge;
 
         private void deleteVertexButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingVertex;
-        
+
         private void fixedLengthButton_Click(object sender, EventArgs e) => mode = ApplicationMode.AddingFixedLengthRelation;
-        
+
+        private void removeRelationButton_Click(object sender, EventArgs e) => mode = ApplicationMode.RemovingRelation;
 
 
         private void canvasPanel_MouseDown(object sender, MouseEventArgs e)
@@ -102,7 +103,7 @@ namespace lab1
                 case ApplicationMode.AddingFixedLengthRelation:
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                     {
-                        if(canvas.AddFixedLengthRelation(shapeID, vertexID) == -1)
+                        if (canvas.AddFixedLengthRelation(shapeID, vertexID) == -1)
                             MessageBox.Show("You cannot add more than one relation to an edge", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else
                             mode = ApplicationMode.Default;
@@ -112,12 +113,19 @@ namespace lab1
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                     {
                         int returnValue = canvas.AddEdgeToRelation(shapeID, vertexID);
-                        if(returnValue == 1)
+                        if (returnValue == 1)
                             mode = ApplicationMode.Default;
                         else if (returnValue == -1)
                             MessageBox.Show("You cannot add more than one relation to an edge", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else if (returnValue == -2)
                             MessageBox.Show("You cannot add relations between edges in different polygons", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
+                case ApplicationMode.RemovingRelation:
+                    if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
+                    {
+                        if (canvas.RemoveRelation(shapeID, vertexID))
+                            mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.AddingPolygon:
@@ -221,8 +229,7 @@ namespace lab1
             sd.DefaultExt = "xml";
             if (sd.ShowDialog() == DialogResult.OK)
             {
-                var sc = canvas.Export();
-                if (Helpers.XMLHelper.WriteToXML(sd.FileName, sc) != true)
+                if (canvas.Export(sd.FileName) != true)
                     MessageBox.Show("There was an error writing to file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -234,11 +241,8 @@ namespace lab1
             od.DefaultExt = "xml";
             if (od.ShowDialog() == DialogResult.OK)
             {
-                var sc = Helpers.XMLHelper.ReadFromXML<Helpers.SerializedCanvas>(od.FileName);
-                if (sc == null)
+                if (canvas.Import(od.FileName) != true)
                     MessageBox.Show("There was an error reading from file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
-                    canvas.Import(sc);
             }
         }
 

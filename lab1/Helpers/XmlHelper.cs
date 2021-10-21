@@ -155,7 +155,7 @@ namespace lab1.Helpers
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
 
         }

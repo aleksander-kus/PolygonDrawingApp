@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace lab1.Shapes
 {
@@ -11,6 +12,10 @@ namespace lab1.Shapes
     {
         public Point p1 { get; set; }
         public Point p2 { get; set; }
+
+        private Edge()
+        {
+        }
 
         public Edge(Point p1, Point p2)
         {
