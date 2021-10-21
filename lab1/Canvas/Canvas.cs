@@ -49,6 +49,12 @@ namespace lab1.Canvas
         /// <returns>If drawing of the new resources.polygon is finished, return true</returns>
         public bool AddPointToPolygon(Shapes.Point mousePosition) =>
             RedrawAndReturn(adder.AddPointToPolygon, mousePosition);
+        public void SplitEdge(int polygonID, int lowerVertexID)
+        {
+            relationManager.RemoveRelation(polygonID, lowerVertexID);
+            adder.SplitEdge(polygonID, lowerVertexID);
+            drawer.Redraw();
+        }
         public void StartAddingCircle(Shapes.Point mousePosition) =>
             adder.StartAddingCircle(mousePosition);
         public bool AddCircle(Shapes.Point mousePosition) =>
@@ -95,13 +101,6 @@ namespace lab1.Canvas
 
         public void DeleteVertex(int polygonID, int vertexID) =>
             ExecuteAndRedraw(deleter.DeleteVertex, polygonID, vertexID);
-
-        public void SplitEdge(int polygonID, int lowerVertexID)
-        {
-            Shapes.Point center = GraphicsHelpers.SegmentCenter(resources.GetPointByID(polygonID, lowerVertexID), resources.GetPointByID(polygonID, lowerVertexID));
-            resources.Polygons[polygonID].VertexList.Insert(lowerVertexID + 1, center);
-            drawer.Redraw();
-        }
 
         public void DeletePolygon(int polygonID) =>
             ExecuteAndRedraw(deleter.DeletePolygon, polygonID);
