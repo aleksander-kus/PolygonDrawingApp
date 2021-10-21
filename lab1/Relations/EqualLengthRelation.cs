@@ -8,10 +8,12 @@ namespace lab1.Relations
     public class EqualLengthRelation : Relation
     {
         public override Color Color => Color.Red;
+        public override char Symbol => 'E';
 
         public override Edge Edge1 { get; set; }
 
         public override Edge Edge2 { get; set; }
+
 
         private void AdjustEdge(Edge toAdjust, Edge other, Shapes.Point movedPoint)
         {

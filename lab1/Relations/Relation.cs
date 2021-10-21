@@ -11,7 +11,7 @@ namespace lab1.Relations
     public abstract class Relation 
     {
         public abstract Color Color { get; }
-
+        public abstract char Symbol { get; }
 
         public abstract Shapes.Edge Edge1 { get; set; }
         public abstract Shapes.Edge Edge2 { get; set; }

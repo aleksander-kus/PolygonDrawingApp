@@ -9,6 +9,8 @@ namespace lab1.Relations
     {
         public override Color Color { get; } = Color.LightGreen;
 
+        public override char Symbol => 'F';
+
         private Shapes.Point first = null;
         public override Edge Edge1 { get; set; }
 

@@ -26,19 +26,21 @@ namespace lab1.Canvas.Helpers
             if (resources.AddingCircle != null)
                 DrawCircle(g, resources.AddingCircle);
             foreach (var polygon in resources.Polygons)
-                DrawPolygon(g, polygon);
+                DrawPolygonEdges(g, polygon);
             foreach (var circle in resources.Circles)
                 DrawCircle(g, circle);
             foreach (var relation in resources.Relations)
                 DrawEdgesWithRelation(g, relation);
             if (resources.AddingRelation != null)
                 DrawEdgesWithRelation(g, resources.AddingRelation);
+            foreach (var polygon in resources.Polygons)
+                DrawPolygonVertices(g, polygon);
         }
 
-        private static void DrawVertice(Graphics g, Shapes.Point location, Color? color = null)
+        private void DrawVertice(Graphics g, Shapes.Point location, Color? color = null)
         {
-            Brush b = new SolidBrush(color ?? Color.Green);
-            Pen p = new(Color.Black, 1);
+            using Brush b = new SolidBrush(color ?? Color.Green);
+            using Pen p = new(Color.Black, 1);
             Rectangle r = new() { X = location.X - 3, Y = location.Y - 3, Height = 6, Width = 6 };
             g.FillEllipse(b, r);
             g.DrawEllipse(p, r);
@@ -46,7 +48,7 @@ namespace lab1.Canvas.Helpers
 
         private void DrawAddingPolygon(Graphics g)
         {
-            Pen p = new(Color.Black, 1);
+            using Pen p = new(Color.Black, 1);
             DrawVertice(g, resources.AddingPolygonVertices[0]);
             for (int i = 1; i < resources.AddingPolygonVertices.Count; ++i)
             {
@@ -55,12 +57,20 @@ namespace lab1.Canvas.Helpers
             }
         }
 
-        private static void DrawPolygon(Graphics g, Shapes.Polygon polygon)
+        private void DrawPolygonEdges(Graphics g, Shapes.Polygon polygon)
         {
             List<Shapes.Point> vertices = polygon.VertexList;
             for (int i = 0; i < vertices.Count; ++i)
             {
                 g.DrawLineBresenham(Color.Black, vertices[i], vertices[(i + 1) % vertices.Count]);
+            }
+        }
+
+        private void DrawPolygonVertices(Graphics g, Shapes.Polygon polygon)
+        {
+            List<Shapes.Point> vertices = polygon.VertexList;
+            for (int i = 0; i < vertices.Count; ++i)
+            {
                 Shapes.Point center = GraphicsHelpers.SegmentCenter(vertices[i], vertices[(i + 1) % vertices.Count]);
                 DrawVertice(g, center, Color.Yellow);
                 DrawVertice(g, vertices[i]);
@@ -70,20 +80,32 @@ namespace lab1.Canvas.Helpers
             DrawVertice(g, polygon.Center, Color.Red);
         }
 
-        private static void DrawCircle(Graphics g, Shapes.Circle circle)
+        private  void DrawCircle(Graphics g, Shapes.Circle circle)
         {
-            Pen p = new(circle.FixedRadius ? Color.Blue : Color.Black, 1);
+            using Pen p = new(circle.FixedRadius ? Color.Blue : Color.Black, 1);
             Rectangle r = new(circle.Center.X - circle.Radius, circle.Center.Y - circle.Radius, 2 * circle.Radius, 2 * circle.Radius);
             g.DrawEllipse(p, r);
             DrawVertice(g, circle.Center, circle.Anchored ? Color.Brown : Color.Red);
         }
 
-        private static void DrawEdgesWithRelation(Graphics g, Relations.Relation relation)
+        private void DrawEdgesWithRelation(Graphics g, Relations.Relation relation)
         {
+            void DrawEdge(Shapes.Edge edge)
+            {
+                g.DrawLineBresenham(relation.Color, edge.p1, edge.p2);
+                using Brush b = new SolidBrush(relation.Color);
+                using Font f = new("Arial", 15f);
+                int index = resources.Relations.IndexOf(relation);
+                g.DrawString($"{relation.Symbol}{ (index == -1 ? string.Empty : index.ToString()) }", f, b, edge.Center.ToStruct());
+            }
             if (relation.Edge1 != null)
-                g.DrawLineBresenham(relation.Color, relation.Edge1.p1, relation.Edge1.p2);
+            {
+                DrawEdge(relation.Edge1);
+            }
             if (relation.Edge2 != null)
-                g.DrawLineBresenham(relation.Color, relation.Edge2.p1, relation.Edge2.p2);
+            {
+                DrawEdge(relation.Edge2);
+            }
         }
 
         /// <summary>

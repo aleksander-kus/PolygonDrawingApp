@@ -24,5 +24,6 @@ namespace lab1.Shapes
         }
 
         public int Length => (int)Math.Round(Math.Sqrt(GraphicsHelpers.SquaredDistance(p1, p2)));
+        public Point Center => GraphicsHelpers.SegmentCenter(p1, p2);
     }
 }

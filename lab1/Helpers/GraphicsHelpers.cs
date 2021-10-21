@@ -53,7 +53,7 @@ namespace lab1
         /// <param name="p2">Ending point</param>
         public static void DrawLineBresenham(this Graphics g, Color color, Shapes.Point p1, Shapes.Point p2)
         {
-            Brush b = new SolidBrush(color);
+            using Brush b = new SolidBrush(color);
             int dx = Math.Abs(p2.X - p1.X), dy = Math.Abs(p2.Y - p1.Y);
             int x_increment = (p1.X < p2.X) ? 1 : p1.X == p2.X ? 0 : -1;
             int y_increment = (p1.Y < p2.Y) ? 1 : p1.Y == p2.Y ? 0 : -1;
