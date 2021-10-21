@@ -17,6 +17,8 @@
         AddingFixedLengthRelation,
         AddingEqualLengthRelation,
         AddingParallelRelation,
+        AddingFixedRadius,
+        AddingAnchor,
         RemovingRelation
     }
 }

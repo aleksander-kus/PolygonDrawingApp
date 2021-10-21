@@ -18,7 +18,7 @@ namespace lab1
         private void Form1_Load(object sender, EventArgs e)
         {
             canvas = new(canvasPanel);
-            // load the test scene form the embedded file
+            // load test scene form the embedded file
             canvas.ImportFromEmbedded("lab1.Helpers.TestScene.xml");
         }
 
@@ -73,6 +73,9 @@ namespace lab1
 
         private void removeRelationButton_Click(object sender, EventArgs e) => mode = ApplicationMode.RemovingRelation;
 
+        private void anchorCircleButton_Click(object sender, EventArgs e) => mode = ApplicationMode.AddingAnchor;
+
+        private void fixedRadiusButton_Click(object sender, EventArgs e) => mode = ApplicationMode.AddingFixedRadius;
 
         private void canvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
@@ -99,6 +102,24 @@ namespace lab1
                     {
                         canvas.DeleteVertex(shapeID, vertexID);
                         mode = ApplicationMode.Default;
+                    }
+                    break;
+                case ApplicationMode.AddingFixedRadius:
+                    if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
+                    {
+                        if (canvas.SetFixedRadius(shapeID) == false)
+                            MessageBox.Show("You cannot add more relations to this circle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            mode = ApplicationMode.Default;
+                    }
+                    break;
+                case ApplicationMode.AddingAnchor:
+                    if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
+                    {
+                        if (canvas.AnchorCircle(shapeID) == false)
+                            MessageBox.Show("You cannot add more relations to this circle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.SplittinEdge:

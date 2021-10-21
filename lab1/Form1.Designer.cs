@@ -32,6 +32,10 @@ namespace lab1
             this.tablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.canvasPanel = new lab1.BufferedPanel();
             this.menuTable = new System.Windows.Forms.TableLayoutPanel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.anchorCircleButton = new System.Windows.Forms.Button();
+            this.fixedRadiusButton = new System.Windows.Forms.Button();
+            this.parallelRelationButton = new System.Windows.Forms.Button();
             this.equalLengthButton = new System.Windows.Forms.Button();
             this.fixedLengthButton = new System.Windows.Forms.Button();
             this.loadFromFileButton = new System.Windows.Forms.Button();
@@ -43,8 +47,6 @@ namespace lab1
             this.addCircleButton = new System.Windows.Forms.Button();
             this.addPolygonButton = new System.Windows.Forms.Button();
             this.moveObjectButton = new System.Windows.Forms.Button();
-            this.parallelRelationButton = new System.Windows.Forms.Button();
-            this.removeRelationButton = new System.Windows.Forms.Button();
             this.tablePanel.SuspendLayout();
             this.menuTable.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +85,9 @@ namespace lab1
             // 
             this.menuTable.ColumnCount = 1;
             this.menuTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.menuTable.Controls.Add(this.removeRelationButton, 0, 13);
+            this.menuTable.Controls.Add(this.button2, 0, 14);
+            this.menuTable.Controls.Add(this.anchorCircleButton, 0, 13);
+            this.menuTable.Controls.Add(this.fixedRadiusButton, 0, 13);
             this.menuTable.Controls.Add(this.parallelRelationButton, 0, 12);
             this.menuTable.Controls.Add(this.equalLengthButton, 0, 10);
             this.menuTable.Controls.Add(this.fixedLengthButton, 0, 9);
@@ -99,7 +103,9 @@ namespace lab1
             this.menuTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuTable.Location = new System.Drawing.Point(790, 3);
             this.menuTable.Name = "menuTable";
-            this.menuTable.RowCount = 14;
+            this.menuTable.RowCount = 15;
+            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -116,6 +122,54 @@ namespace lab1
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.menuTable.Size = new System.Drawing.Size(191, 555);
             this.menuTable.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button2.Location = new System.Drawing.Point(3, 514);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(185, 23);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "Remove relation";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.removeRelationButton_Click);
+            // 
+            // anchorCircleButton
+            // 
+            this.anchorCircleButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.anchorCircleButton.Location = new System.Drawing.Point(3, 442);
+            this.anchorCircleButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.anchorCircleButton.Name = "anchorCircleButton";
+            this.anchorCircleButton.Size = new System.Drawing.Size(185, 23);
+            this.anchorCircleButton.TabIndex = 17;
+            this.anchorCircleButton.Text = "Anchor circle";
+            this.anchorCircleButton.UseVisualStyleBackColor = true;
+            this.anchorCircleButton.Click += new System.EventHandler(this.anchorCircleButton_Click);
+            // 
+            // fixedRadiusButton
+            // 
+            this.fixedRadiusButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fixedRadiusButton.Location = new System.Drawing.Point(3, 478);
+            this.fixedRadiusButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.fixedRadiusButton.Name = "fixedRadiusButton";
+            this.fixedRadiusButton.Size = new System.Drawing.Size(185, 23);
+            this.fixedRadiusButton.TabIndex = 16;
+            this.fixedRadiusButton.Text = "Fixed radius";
+            this.fixedRadiusButton.UseVisualStyleBackColor = true;
+            this.fixedRadiusButton.Click += new System.EventHandler(this.fixedRadiusButton_Click);
+            // 
+            // parallelRelationButton
+            // 
+            this.parallelRelationButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.parallelRelationButton.Location = new System.Drawing.Point(3, 406);
+            this.parallelRelationButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.parallelRelationButton.Name = "parallelRelationButton";
+            this.parallelRelationButton.Size = new System.Drawing.Size(185, 23);
+            this.parallelRelationButton.TabIndex = 15;
+            this.parallelRelationButton.Text = "Parallel relation";
+            this.parallelRelationButton.UseVisualStyleBackColor = true;
+            this.parallelRelationButton.Click += new System.EventHandler(this.parallelRelationButton_Click);
             // 
             // equalLengthButton
             // 
@@ -168,7 +222,7 @@ namespace lab1
             // deleteVertexButton
             // 
             this.deleteVertexButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.deleteVertexButton.Location = new System.Drawing.Point(3, 226);
+            this.deleteVertexButton.Location = new System.Drawing.Point(3, 190);
             this.deleteVertexButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.deleteVertexButton.Name = "deleteVertexButton";
             this.deleteVertexButton.Size = new System.Drawing.Size(185, 23);
@@ -180,7 +234,7 @@ namespace lab1
             // splitEdgeButton
             // 
             this.splitEdgeButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitEdgeButton.Location = new System.Drawing.Point(3, 190);
+            this.splitEdgeButton.Location = new System.Drawing.Point(3, 226);
             this.splitEdgeButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.splitEdgeButton.Name = "splitEdgeButton";
             this.splitEdgeButton.Size = new System.Drawing.Size(185, 23);
@@ -249,30 +303,6 @@ namespace lab1
             this.moveObjectButton.UseVisualStyleBackColor = true;
             this.moveObjectButton.Click += new System.EventHandler(this.moveObjectButton_Click);
             // 
-            // parallelRelationButton
-            // 
-            this.parallelRelationButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.parallelRelationButton.Location = new System.Drawing.Point(3, 406);
-            this.parallelRelationButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.parallelRelationButton.Name = "parallelRelationButton";
-            this.parallelRelationButton.Size = new System.Drawing.Size(185, 23);
-            this.parallelRelationButton.TabIndex = 15;
-            this.parallelRelationButton.Text = "Parallel relation";
-            this.parallelRelationButton.UseVisualStyleBackColor = true;
-            this.parallelRelationButton.Click += new System.EventHandler(this.parallelRelationButton_Click);
-            // 
-            // removeRelationButton
-            // 
-            this.removeRelationButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.removeRelationButton.Location = new System.Drawing.Point(3, 442);
-            this.removeRelationButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.removeRelationButton.Name = "removeRelationButton";
-            this.removeRelationButton.Size = new System.Drawing.Size(185, 23);
-            this.removeRelationButton.TabIndex = 16;
-            this.removeRelationButton.Text = "Remove relation";
-            this.removeRelationButton.UseVisualStyleBackColor = true;
-            this.removeRelationButton.Click += new System.EventHandler(this.removeRelationButton_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -305,8 +335,10 @@ namespace lab1
         private System.Windows.Forms.Button moveObjectButton;
         private System.Windows.Forms.Button fixedLengthButton;
         private System.Windows.Forms.Button equalLengthButton;
-        private System.Windows.Forms.Button removeRelationButton;
+        private System.Windows.Forms.Button fixedRadiusButton;
         private System.Windows.Forms.Button parallelRelationButton;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button anchorCircleButton;
     }
 }
 

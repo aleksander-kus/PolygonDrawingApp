@@ -9,10 +9,10 @@ namespace lab1.Canvas.Helpers
         }
 
         public void MoveCircle(int circleID, Shapes.Point mousePosition) =>
-            resources.Circles[circleID].Center.Move(mousePosition);
+            resources.Circles[circleID].MoveCenter(mousePosition);
 
         public void ResizeCircle(int circleID, Shapes.Point mousePosition) =>
-            resources.Circles[circleID].Radius = GraphicsHelpers.Distance(resources.Circles[circleID].Center, mousePosition);
+            resources.Circles[circleID].ResizeOrMove(mousePosition);
 
         public void MovePolygonVertex(int polygonID, int vertexID, Shapes.Point mousePosition) =>
             resources.Polygons[polygonID].VertexList[vertexID].Move(mousePosition);

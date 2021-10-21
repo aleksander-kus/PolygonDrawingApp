@@ -129,6 +129,10 @@ namespace lab1.Canvas
             RedrawAndReturn(relationManager.AddEdgeToRelation, polygonID, lowerVertexID);
         public bool RemoveRelation(int polygonID, int vertexID) => 
             RedrawAndReturn(relationManager.RemoveRelation, polygonID, vertexID);
+        public bool AnchorCircle(int circleID) =>
+            RedrawAndReturn(adder.AnchorCircle, circleID);
+        public bool SetFixedRadius(int circleID) =>
+            RedrawAndReturn(adder.SetFixedRadius, circleID);
 
         // HELPERS
 

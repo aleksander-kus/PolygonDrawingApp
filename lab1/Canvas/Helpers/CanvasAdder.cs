@@ -64,5 +64,23 @@
             resources.Circle_anchored = true;
             return false;
         }
+
+        public bool AnchorCircle(int circleID)
+        {
+            Shapes.Circle circle = resources.Circles[circleID];
+            if (circle.FixedRadius)
+                return false;
+            circle.Anchored = true;
+            return true;
+        }
+
+        public bool SetFixedRadius(int circleID)
+        {
+            Shapes.Circle circle = resources.Circles[circleID];
+            if (circle.Anchored)
+                return false;
+            circle.FixedRadius = true;
+            return true;
+        }
     }
 }

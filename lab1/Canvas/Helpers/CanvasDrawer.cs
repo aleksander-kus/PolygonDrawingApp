@@ -72,10 +72,10 @@ namespace lab1.Canvas.Helpers
 
         private static void DrawCircle(Graphics g, Shapes.Circle circle)
         {
-            Pen p = new(Color.Black, 1);
+            Pen p = new(circle.FixedRadius ? Color.Blue : Color.Black, 1);
             Rectangle r = new(circle.Center.X - circle.Radius, circle.Center.Y - circle.Radius, 2 * circle.Radius, 2 * circle.Radius);
             g.DrawEllipse(p, r);
-            DrawVertice(g, circle.Center, Color.Red);
+            DrawVertice(g, circle.Center, circle.Anchored ? Color.Brown : Color.Red);
         }
 
         private static void DrawEdgesWithRelation(Graphics g, Relations.Relation relation)
