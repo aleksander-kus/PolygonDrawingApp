@@ -36,6 +36,11 @@ namespace lab1
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.deletePolygonButton = new System.Windows.Forms.Button();
@@ -44,17 +49,15 @@ namespace lab1
             this.addPolygonButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.button15 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.moveObjectButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.button19 = new System.Windows.Forms.Button();
@@ -65,6 +68,8 @@ namespace lab1
             this.menuTable.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -88,7 +93,7 @@ namespace lab1
             this.tablePanel.RowCount = 1;
             this.tablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 961F));
-            this.tablePanel.Size = new System.Drawing.Size(1484, 961);
+            this.tablePanel.Size = new System.Drawing.Size(1484, 1041);
             this.tablePanel.TabIndex = 0;
             // 
             // canvasPanel
@@ -98,7 +103,7 @@ namespace lab1
             this.canvasPanel.Location = new System.Drawing.Point(0, 0);
             this.canvasPanel.Margin = new System.Windows.Forms.Padding(0);
             this.canvasPanel.Name = "canvasPanel";
-            this.canvasPanel.Size = new System.Drawing.Size(1187, 961);
+            this.canvasPanel.Size = new System.Drawing.Size(1187, 1041);
             this.canvasPanel.TabIndex = 0;
             this.canvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.canvasPanel_Paint);
             this.canvasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvasPanel_MouseDown);
@@ -109,7 +114,8 @@ namespace lab1
             // 
             this.menuTable.ColumnCount = 1;
             this.menuTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.menuTable.Controls.Add(this.groupBox4, 0, 4);
+            this.menuTable.Controls.Add(this.groupBox4, 0, 5);
+            this.menuTable.Controls.Add(this.groupBox1, 0, 4);
             this.menuTable.Controls.Add(this.groupBox8, 0, 1);
             this.menuTable.Controls.Add(this.groupBox3, 0, 3);
             this.menuTable.Controls.Add(this.moveObjectButton, 0, 0);
@@ -135,17 +141,17 @@ namespace lab1
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.menuTable.Size = new System.Drawing.Size(291, 955);
+            this.menuTable.Size = new System.Drawing.Size(291, 1035);
             this.menuTable.TabIndex = 1;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.tableLayoutPanel4);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Location = new System.Drawing.Point(3, 494);
+            this.groupBox4.Location = new System.Drawing.Point(3, 606);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(285, 96);
-            this.groupBox4.TabIndex = 3;
+            this.groupBox4.Size = new System.Drawing.Size(285, 91);
+            this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Save and load";
             // 
@@ -161,32 +167,91 @@ namespace lab1
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(279, 74);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(279, 69);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // button14
             // 
             this.button14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button14.Location = new System.Drawing.Point(3, 46);
+            this.button14.Location = new System.Drawing.Point(3, 39);
             this.button14.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(273, 23);
-            this.button14.TabIndex = 11;
+            this.button14.TabIndex = 12;
             this.button14.Text = "Load from file";
             this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.loadFromFileButton_Click);
             // 
             // button13
             // 
             this.button13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button13.Location = new System.Drawing.Point(3, 10);
-            this.button13.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.button13.Location = new System.Drawing.Point(3, 3);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(273, 23);
-            this.button13.TabIndex = 10;
+            this.button13.TabIndex = 11;
             this.button13.Text = "Save to file";
             this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.saveToFileButton_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tableLayoutPanel5);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(3, 474);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(285, 126);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Circle relations";
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.button5, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.button3, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.button4, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 19);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(279, 104);
+            this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // button5
+            // 
+            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button5.Location = new System.Drawing.Point(3, 75);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(273, 23);
+            this.button5.TabIndex = 13;
+            this.button5.Text = "Tangent relation";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button3.Location = new System.Drawing.Point(3, 39);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(273, 23);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "Fixed radius";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.fixedRadiusButton_Click);
+            // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button4.Location = new System.Drawing.Point(3, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(273, 23);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "Anchor circle";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.anchorCircleButton_Click);
             // 
             // groupBox8
             // 
@@ -194,7 +259,7 @@ namespace lab1
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox8.Location = new System.Drawing.Point(3, 39);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(285, 169);
+            this.groupBox8.Size = new System.Drawing.Size(285, 165);
             this.groupBox8.TabIndex = 3;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Polygons";
@@ -217,17 +282,17 @@ namespace lab1
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(279, 147);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(279, 143);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // deletePolygonButton
             // 
             this.deletePolygonButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.deletePolygonButton.Location = new System.Drawing.Point(3, 118);
+            this.deletePolygonButton.Location = new System.Drawing.Point(3, 111);
             this.deletePolygonButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.deletePolygonButton.Name = "deletePolygonButton";
             this.deletePolygonButton.Size = new System.Drawing.Size(273, 23);
-            this.deletePolygonButton.TabIndex = 19;
+            this.deletePolygonButton.TabIndex = 4;
             this.deletePolygonButton.Text = "Delete polygon";
             this.deletePolygonButton.UseVisualStyleBackColor = true;
             this.deletePolygonButton.Click += new System.EventHandler(this.deletePolygonButton_Click);
@@ -235,11 +300,11 @@ namespace lab1
             // deleteVertexButton
             // 
             this.deleteVertexButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.deleteVertexButton.Location = new System.Drawing.Point(3, 82);
+            this.deleteVertexButton.Location = new System.Drawing.Point(3, 75);
             this.deleteVertexButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.deleteVertexButton.Name = "deleteVertexButton";
             this.deleteVertexButton.Size = new System.Drawing.Size(273, 23);
-            this.deleteVertexButton.TabIndex = 16;
+            this.deleteVertexButton.TabIndex = 3;
             this.deleteVertexButton.Text = "Delete vertex";
             this.deleteVertexButton.UseVisualStyleBackColor = true;
             this.deleteVertexButton.Click += new System.EventHandler(this.deleteVertexButton_Click);
@@ -247,11 +312,11 @@ namespace lab1
             // splitEdgeButton
             // 
             this.splitEdgeButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitEdgeButton.Location = new System.Drawing.Point(3, 46);
+            this.splitEdgeButton.Location = new System.Drawing.Point(3, 39);
             this.splitEdgeButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.splitEdgeButton.Name = "splitEdgeButton";
             this.splitEdgeButton.Size = new System.Drawing.Size(273, 23);
-            this.splitEdgeButton.TabIndex = 14;
+            this.splitEdgeButton.TabIndex = 2;
             this.splitEdgeButton.Text = "Split edge";
             this.splitEdgeButton.UseVisualStyleBackColor = true;
             this.splitEdgeButton.Click += new System.EventHandler(this.splitEdgeButton_Click);
@@ -259,11 +324,10 @@ namespace lab1
             // addPolygonButton
             // 
             this.addPolygonButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.addPolygonButton.Location = new System.Drawing.Point(3, 10);
-            this.addPolygonButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.addPolygonButton.Location = new System.Drawing.Point(3, 3);
             this.addPolygonButton.Name = "addPolygonButton";
             this.addPolygonButton.Size = new System.Drawing.Size(273, 23);
-            this.addPolygonButton.TabIndex = 13;
+            this.addPolygonButton.TabIndex = 1;
             this.addPolygonButton.Text = "Add polygon";
             this.addPolygonButton.UseVisualStyleBackColor = true;
             this.addPolygonButton.Click += new System.EventHandler(this.addPolygonButton_Click);
@@ -272,54 +336,55 @@ namespace lab1
             // 
             this.groupBox3.Controls.Add(this.tableLayoutPanel3);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox3.Location = new System.Drawing.Point(3, 319);
+            this.groupBox3.Location = new System.Drawing.Point(3, 306);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(285, 169);
+            this.groupBox3.Size = new System.Drawing.Size(285, 162);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Polygon relations";
             // 
             // tableLayoutPanel3
             // 
+            this.tableLayoutPanel3.AutoSize = true;
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.button15, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.button6, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.button12, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.button11, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.button10, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 19);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 6;
+            this.tableLayoutPanel3.RowCount = 5;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(279, 147);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(279, 140);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // button15
+            // button6
             // 
-            this.button15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button15.Location = new System.Drawing.Point(3, 118);
-            this.button15.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(273, 23);
-            this.button15.TabIndex = 19;
-            this.button15.Text = "Remove relation";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.removeRelationButton_Click);
+            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button6.Location = new System.Drawing.Point(3, 111);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(273, 23);
+            this.button6.TabIndex = 10;
+            this.button6.Text = "Remove relation";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.removeRelationButton_Click);
             // 
             // button12
             // 
             this.button12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button12.Location = new System.Drawing.Point(3, 82);
+            this.button12.Location = new System.Drawing.Point(3, 75);
             this.button12.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(273, 23);
-            this.button12.TabIndex = 16;
+            this.button12.TabIndex = 9;
             this.button12.Text = "Parallel relation";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.parallelRelationButton_Click);
@@ -327,11 +392,11 @@ namespace lab1
             // button11
             // 
             this.button11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button11.Location = new System.Drawing.Point(3, 46);
+            this.button11.Location = new System.Drawing.Point(3, 39);
             this.button11.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(273, 23);
-            this.button11.TabIndex = 14;
+            this.button11.TabIndex = 8;
             this.button11.Text = "Equal length relation";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.equalLengthButton_Click);
@@ -339,11 +404,10 @@ namespace lab1
             // button10
             // 
             this.button10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button10.Location = new System.Drawing.Point(3, 10);
-            this.button10.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.button10.Location = new System.Drawing.Point(3, 3);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(273, 23);
-            this.button10.TabIndex = 13;
+            this.button10.TabIndex = 7;
             this.button10.Text = "Fixed length restriction";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.fixedLengthButton_Click);
@@ -355,7 +419,7 @@ namespace lab1
             this.moveObjectButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.moveObjectButton.Name = "moveObjectButton";
             this.moveObjectButton.Size = new System.Drawing.Size(285, 23);
-            this.moveObjectButton.TabIndex = 11;
+            this.moveObjectButton.TabIndex = 0;
             this.moveObjectButton.Text = "Move object";
             this.moveObjectButton.UseVisualStyleBackColor = true;
             this.moveObjectButton.Click += new System.EventHandler(this.moveObjectButton_Click);
@@ -364,9 +428,9 @@ namespace lab1
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel2);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(3, 214);
+            this.groupBox2.Location = new System.Drawing.Point(3, 210);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(285, 99);
+            this.groupBox2.Size = new System.Drawing.Size(285, 90);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Circles";
@@ -375,10 +439,8 @@ namespace lab1
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.button9, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.button8, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.button7, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.button6, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.button2, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.button1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 19);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -388,53 +450,31 @@ namespace lab1
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(279, 77);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(279, 68);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // button9
+            // button2
             // 
-            this.button9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button9.Location = new System.Drawing.Point(3, 82);
-            this.button9.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(273, 23);
-            this.button9.TabIndex = 19;
-            this.button9.Text = "Fixed radius";
-            this.button9.UseVisualStyleBackColor = true;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button2.Location = new System.Drawing.Point(3, 39);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(273, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Delete circle";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.deleteCircleButton_Click);
             // 
-            // button8
+            // button1
             // 
-            this.button8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button8.Location = new System.Drawing.Point(3, 118);
-            this.button8.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(273, 7);
-            this.button8.TabIndex = 18;
-            this.button8.Text = "Anchor circle";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button7.Location = new System.Drawing.Point(3, 46);
-            this.button7.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(273, 23);
-            this.button7.TabIndex = 7;
-            this.button7.Text = "Delete circle";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button6.Location = new System.Drawing.Point(3, 10);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(273, 23);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "Add circle";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.deleteCircleButton_Click);
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(273, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Add circle";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.addCircleButton_Click);
             // 
             // groupBox6
             // 
@@ -509,7 +549,7 @@ namespace lab1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1484, 961);
+            this.ClientSize = new System.Drawing.Size(1484, 1041);
             this.Controls.Add(this.tablePanel);
             this.Name = "Form1";
             this.Text = "Shape editor";
@@ -519,9 +559,12 @@ namespace lab1
             this.menuTable.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -537,22 +580,13 @@ namespace lab1
         private BufferedPanel canvasPanel;
         private System.Windows.Forms.TableLayoutPanel menuTable;
         private System.Windows.Forms.Button moveObjectButton;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button13;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Button button19;
@@ -565,6 +599,18 @@ namespace lab1
         private System.Windows.Forms.Button addPolygonButton;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button6;
     }
 }
 
