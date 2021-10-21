@@ -23,6 +23,9 @@
         public void StartAddingEqualLengthRelation() =>
             resources.AddingRelation = new Relations.EqualLengthRelation();
 
+        public void StartAddingParallelRelation() =>
+            resources.AddingRelation = new Relations.ParallelRelation();
+
         public int AddEdgeToRelation(int polygonID, int lowerVertexID)
         {
             var newEdge = resources.GetEdgeByLowerPointID(polygonID, lowerVertexID);

@@ -1,37 +1,65 @@
 <?xml version="1.0"?>
 <Canvas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://example.org/ak/canvas">
-  <PolygonList>
-    <Polygon>
-      <VertexList>
-        <Shapes.Point>
-          <X>331</X>
-          <Y>483</Y>
-        </Shapes.Point>
-        <Shapes.Point>
-          <X>1136</X>
-          <Y>544</Y>
-        </Shapes.Point>
-        <Shapes.Point>
-          <X>752</X>
-          <Y>83</Y>
-        </Shapes.Point>
-        <Shapes.Point>
-          <X>291</X>
-          <Y>117</Y>
-        </Shapes.Point>
-      </VertexList>
-      <Center>
-        <X>627</X>
-        <Y>306</Y>
-      </Center>
-    </Polygon>
-  </PolygonList>
-  <CircleList>
-    <Circle Radius="151">
-      <Center>
-        <X>1155</X>
-        <Y>170</Y>
-      </Center>
-    </Circle>
-  </CircleList>
+	<PolygonList>
+		<Polygon>
+			<VertexList>
+				<Point X="402" Y="104" />
+				<Point X="99" Y="151" />
+				<Point X="339" Y="330" />
+				<Point X="822" Y="410" />
+				<Point X="667" Y="148" />
+			</VertexList>
+		</Polygon>
+		<Polygon>
+			<VertexList>
+				<Point X="894" Y="168" />
+				<Point X="873" Y="473" />
+				<Point X="1094" Y="480" />
+				<Point X="1381" Y="271" />
+				<Point X="1239" Y="132" />
+				<Point X="1021" Y="95" />
+			</VertexList>
+		</Polygon>
+	</PolygonList>
+	<CircleList />
+	<RelationList>
+		<ParallelRelation>
+			<Edge1>
+				<p1 X="339" Y="330" />
+				<p2 X="822" Y="410" />
+			</Edge1>
+			<Edge2>
+				<p1 X="667" Y="148" />
+				<p2 X="402" Y="104" />
+			</Edge2>
+		</ParallelRelation>
+		<FixedLengthRelation>
+			<Edge1>
+				<p1 X="402" Y="104" />
+				<p2 X="99" Y="151" />
+			</Edge1>
+		</FixedLengthRelation>
+		<FixedLengthRelation>
+			<Edge1>
+				<p1 X="1021" Y="95" />
+				<p2 X="894" Y="168" />
+			</Edge1>
+		</FixedLengthRelation>
+		<FixedLengthRelation>
+			<Edge1>
+				<p1 X="1381" Y="271" />
+				<p2 X="1239" Y="132" />
+			</Edge1>
+		</FixedLengthRelation>
+		<EqualLengthRelation>
+			<Edge1>
+				<p1 X="1239" Y="132" />
+				<p2 X="1021" Y="95" />
+			</Edge1>
+			<Edge2>
+				<p1 X="873" Y="473" />
+				<p2 X="1094" Y="480" />
+			</Edge2>
+		</EqualLengthRelation>
+	</RelationList>
 </Canvas>

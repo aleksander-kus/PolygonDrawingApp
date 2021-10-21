@@ -43,6 +43,7 @@ namespace lab1
             this.addCircleButton = new System.Windows.Forms.Button();
             this.addPolygonButton = new System.Windows.Forms.Button();
             this.moveObjectButton = new System.Windows.Forms.Button();
+            this.parallelRelationButton = new System.Windows.Forms.Button();
             this.removeRelationButton = new System.Windows.Forms.Button();
             this.tablePanel.SuspendLayout();
             this.menuTable.SuspendLayout();
@@ -61,7 +62,7 @@ namespace lab1
             this.tablePanel.RowCount = 1;
             this.tablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 450F));
-            this.tablePanel.Size = new System.Drawing.Size(800, 450);
+            this.tablePanel.Size = new System.Drawing.Size(984, 561);
             this.tablePanel.TabIndex = 0;
             // 
             // canvasPanel
@@ -71,7 +72,7 @@ namespace lab1
             this.canvasPanel.Location = new System.Drawing.Point(0, 0);
             this.canvasPanel.Margin = new System.Windows.Forms.Padding(0);
             this.canvasPanel.Name = "canvasPanel";
-            this.canvasPanel.Size = new System.Drawing.Size(640, 450);
+            this.canvasPanel.Size = new System.Drawing.Size(787, 561);
             this.canvasPanel.TabIndex = 0;
             this.canvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.canvasPanel_Paint);
             this.canvasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvasPanel_MouseDown);
@@ -82,7 +83,8 @@ namespace lab1
             // 
             this.menuTable.ColumnCount = 1;
             this.menuTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.menuTable.Controls.Add(this.removeRelationButton, 0, 11);
+            this.menuTable.Controls.Add(this.removeRelationButton, 0, 13);
+            this.menuTable.Controls.Add(this.parallelRelationButton, 0, 12);
             this.menuTable.Controls.Add(this.equalLengthButton, 0, 10);
             this.menuTable.Controls.Add(this.fixedLengthButton, 0, 9);
             this.menuTable.Controls.Add(this.loadFromFileButton, 0, 8);
@@ -95,9 +97,10 @@ namespace lab1
             this.menuTable.Controls.Add(this.addPolygonButton, 0, 1);
             this.menuTable.Controls.Add(this.moveObjectButton, 0, 0);
             this.menuTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.menuTable.Location = new System.Drawing.Point(643, 3);
+            this.menuTable.Location = new System.Drawing.Point(790, 3);
             this.menuTable.Name = "menuTable";
-            this.menuTable.RowCount = 12;
+            this.menuTable.RowCount = 14;
+            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -111,7 +114,7 @@ namespace lab1
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.menuTable.Size = new System.Drawing.Size(154, 444);
+            this.menuTable.Size = new System.Drawing.Size(191, 555);
             this.menuTable.TabIndex = 1;
             // 
             // equalLengthButton
@@ -120,7 +123,7 @@ namespace lab1
             this.equalLengthButton.Location = new System.Drawing.Point(3, 370);
             this.equalLengthButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.equalLengthButton.Name = "equalLengthButton";
-            this.equalLengthButton.Size = new System.Drawing.Size(148, 23);
+            this.equalLengthButton.Size = new System.Drawing.Size(185, 23);
             this.equalLengthButton.TabIndex = 13;
             this.equalLengthButton.Text = "Equal length relation";
             this.equalLengthButton.UseVisualStyleBackColor = true;
@@ -132,7 +135,7 @@ namespace lab1
             this.fixedLengthButton.Location = new System.Drawing.Point(3, 334);
             this.fixedLengthButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.fixedLengthButton.Name = "fixedLengthButton";
-            this.fixedLengthButton.Size = new System.Drawing.Size(148, 23);
+            this.fixedLengthButton.Size = new System.Drawing.Size(185, 23);
             this.fixedLengthButton.TabIndex = 12;
             this.fixedLengthButton.Text = "Fixed length restriction";
             this.fixedLengthButton.UseVisualStyleBackColor = true;
@@ -144,7 +147,7 @@ namespace lab1
             this.loadFromFileButton.Location = new System.Drawing.Point(3, 298);
             this.loadFromFileButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.loadFromFileButton.Name = "loadFromFileButton";
-            this.loadFromFileButton.Size = new System.Drawing.Size(148, 23);
+            this.loadFromFileButton.Size = new System.Drawing.Size(185, 23);
             this.loadFromFileButton.TabIndex = 10;
             this.loadFromFileButton.Text = "Load from file";
             this.loadFromFileButton.UseVisualStyleBackColor = true;
@@ -156,7 +159,7 @@ namespace lab1
             this.saveToFileButton.Location = new System.Drawing.Point(3, 262);
             this.saveToFileButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.saveToFileButton.Name = "saveToFileButton";
-            this.saveToFileButton.Size = new System.Drawing.Size(148, 23);
+            this.saveToFileButton.Size = new System.Drawing.Size(185, 23);
             this.saveToFileButton.TabIndex = 9;
             this.saveToFileButton.Text = "Save to file";
             this.saveToFileButton.UseVisualStyleBackColor = true;
@@ -168,7 +171,7 @@ namespace lab1
             this.deleteVertexButton.Location = new System.Drawing.Point(3, 226);
             this.deleteVertexButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.deleteVertexButton.Name = "deleteVertexButton";
-            this.deleteVertexButton.Size = new System.Drawing.Size(148, 23);
+            this.deleteVertexButton.Size = new System.Drawing.Size(185, 23);
             this.deleteVertexButton.TabIndex = 8;
             this.deleteVertexButton.Text = "Delete vertex";
             this.deleteVertexButton.UseVisualStyleBackColor = true;
@@ -180,7 +183,7 @@ namespace lab1
             this.splitEdgeButton.Location = new System.Drawing.Point(3, 190);
             this.splitEdgeButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.splitEdgeButton.Name = "splitEdgeButton";
-            this.splitEdgeButton.Size = new System.Drawing.Size(148, 23);
+            this.splitEdgeButton.Size = new System.Drawing.Size(185, 23);
             this.splitEdgeButton.TabIndex = 7;
             this.splitEdgeButton.Text = "Split edge";
             this.splitEdgeButton.UseVisualStyleBackColor = true;
@@ -192,7 +195,7 @@ namespace lab1
             this.deleteCircleButton.Location = new System.Drawing.Point(3, 154);
             this.deleteCircleButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.deleteCircleButton.Name = "deleteCircleButton";
-            this.deleteCircleButton.Size = new System.Drawing.Size(148, 23);
+            this.deleteCircleButton.Size = new System.Drawing.Size(185, 23);
             this.deleteCircleButton.TabIndex = 6;
             this.deleteCircleButton.Text = "Delete circle";
             this.deleteCircleButton.UseVisualStyleBackColor = true;
@@ -204,7 +207,7 @@ namespace lab1
             this.deletePolygonButton.Location = new System.Drawing.Point(3, 118);
             this.deletePolygonButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.deletePolygonButton.Name = "deletePolygonButton";
-            this.deletePolygonButton.Size = new System.Drawing.Size(148, 23);
+            this.deletePolygonButton.Size = new System.Drawing.Size(185, 23);
             this.deletePolygonButton.TabIndex = 4;
             this.deletePolygonButton.Text = "Delete polygon";
             this.deletePolygonButton.UseVisualStyleBackColor = true;
@@ -216,7 +219,7 @@ namespace lab1
             this.addCircleButton.Location = new System.Drawing.Point(3, 82);
             this.addCircleButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.addCircleButton.Name = "addCircleButton";
-            this.addCircleButton.Size = new System.Drawing.Size(148, 23);
+            this.addCircleButton.Size = new System.Drawing.Size(185, 23);
             this.addCircleButton.TabIndex = 2;
             this.addCircleButton.Text = "Add circle";
             this.addCircleButton.UseVisualStyleBackColor = true;
@@ -228,7 +231,7 @@ namespace lab1
             this.addPolygonButton.Location = new System.Drawing.Point(3, 46);
             this.addPolygonButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.addPolygonButton.Name = "addPolygonButton";
-            this.addPolygonButton.Size = new System.Drawing.Size(148, 23);
+            this.addPolygonButton.Size = new System.Drawing.Size(185, 23);
             this.addPolygonButton.TabIndex = 0;
             this.addPolygonButton.Text = "Add polygon";
             this.addPolygonButton.UseVisualStyleBackColor = true;
@@ -240,20 +243,32 @@ namespace lab1
             this.moveObjectButton.Location = new System.Drawing.Point(3, 10);
             this.moveObjectButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.moveObjectButton.Name = "moveObjectButton";
-            this.moveObjectButton.Size = new System.Drawing.Size(148, 23);
+            this.moveObjectButton.Size = new System.Drawing.Size(185, 23);
             this.moveObjectButton.TabIndex = 11;
             this.moveObjectButton.Text = "Move object";
             this.moveObjectButton.UseVisualStyleBackColor = true;
             this.moveObjectButton.Click += new System.EventHandler(this.moveObjectButton_Click);
             // 
+            // parallelRelationButton
+            // 
+            this.parallelRelationButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.parallelRelationButton.Location = new System.Drawing.Point(3, 406);
+            this.parallelRelationButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.parallelRelationButton.Name = "parallelRelationButton";
+            this.parallelRelationButton.Size = new System.Drawing.Size(185, 23);
+            this.parallelRelationButton.TabIndex = 15;
+            this.parallelRelationButton.Text = "Parallel relation";
+            this.parallelRelationButton.UseVisualStyleBackColor = true;
+            this.parallelRelationButton.Click += new System.EventHandler(this.parallelRelationButton_Click);
+            // 
             // removeRelationButton
             // 
             this.removeRelationButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.removeRelationButton.Location = new System.Drawing.Point(3, 406);
+            this.removeRelationButton.Location = new System.Drawing.Point(3, 442);
             this.removeRelationButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.removeRelationButton.Name = "removeRelationButton";
-            this.removeRelationButton.Size = new System.Drawing.Size(148, 23);
-            this.removeRelationButton.TabIndex = 14;
+            this.removeRelationButton.Size = new System.Drawing.Size(185, 23);
+            this.removeRelationButton.TabIndex = 16;
             this.removeRelationButton.Text = "Remove relation";
             this.removeRelationButton.UseVisualStyleBackColor = true;
             this.removeRelationButton.Click += new System.EventHandler(this.removeRelationButton_Click);
@@ -262,7 +277,7 @@ namespace lab1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.tablePanel);
             this.Name = "Form1";
             this.Text = "Shape editor";
@@ -291,6 +306,7 @@ namespace lab1
         private System.Windows.Forms.Button fixedLengthButton;
         private System.Windows.Forms.Button equalLengthButton;
         private System.Windows.Forms.Button removeRelationButton;
+        private System.Windows.Forms.Button parallelRelationButton;
     }
 }
 

@@ -16,6 +16,7 @@
         SplittinEdge,
         AddingFixedLengthRelation,
         AddingEqualLengthRelation,
+        AddingParallelRelation,
         RemovingRelation
     }
 }

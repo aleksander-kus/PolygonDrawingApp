@@ -5,9 +5,9 @@ using System.Numerics;
 
 namespace lab1.Relations
 {
-    public class EqualLengthRelation : Relation
+    public class ParallelRelation : Relation
     {
-        public override Color Color => Color.Red;
+        public override Color Color => Color.LightBlue;
 
         public override Edge Edge1 { get; set; }
 
@@ -17,15 +17,15 @@ namespace lab1.Relations
         {
             if (movedPoint == toAdjust.p2)
             {
-                Vector2 v = new(toAdjust.p1.X - toAdjust.p2.X, toAdjust.p1.Y - toAdjust.p2.Y);
-                var v2 = other.Length * Vector2.Normalize(v);
-                toAdjust.p1.Move(toAdjust.p2.X + (int)Math.Round(v2.X), toAdjust.p2.Y + (int)Math.Round(v2.Y), toAdjust.p2);
+                Vector2 v = new(other.p1.X - other.p2.X, other.p1.Y - other.p2.Y);
+                var v2 = toAdjust.Length * Vector2.Normalize(v);
+                toAdjust.p2.Move(toAdjust.p1.X + (int)Math.Round(v2.X), toAdjust.p1.Y + (int)Math.Round(v2.Y), toAdjust.p2);
             }
             else
             {
-                Vector2 v = new(toAdjust.p2.X - toAdjust.p1.X, toAdjust.p2.Y - toAdjust.p1.Y);
-                var v2 = other.Length * Vector2.Normalize(v);
-                toAdjust.p2.Move(toAdjust.p1.X + (int)Math.Round(v2.X), toAdjust.p1.Y + (int)Math.Round(v2.Y), toAdjust.p1);
+                Vector2 v = new(other.p2.X - other.p1.X, other.p2.Y - other.p1.Y);
+                var v2 = toAdjust.Length * Vector2.Normalize(v);
+                toAdjust.p1.Move(toAdjust.p2.X + (int)Math.Round(v2.X), toAdjust.p2.Y + (int)Math.Round(v2.Y), toAdjust.p1);
             }
 
         }

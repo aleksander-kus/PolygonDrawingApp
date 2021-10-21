@@ -114,10 +114,15 @@ namespace lab1.Canvas
         public bool Import(string path) =>
             RedrawAndReturn(serializer.Import, path);
 
+        public bool ImportFromEmbedded(string path) =>
+            RedrawAndReturn(serializer.ImportFromEmbedded, path);
+
         // RELATIONS
 
         public void StartAddingEqualLengthRelation() => 
             ExecuteAndRedraw(relationManager.StartAddingEqualLengthRelation);
+        public void StartAddingParallelRelation() =>
+            ExecuteAndRedraw(relationManager.StartAddingParallelRelation);
         public int AddFixedLengthRelation(int polygonID, int lowerVertexID) 
             => RedrawAndReturn(relationManager.AddFixedLengthRelation, polygonID, lowerVertexID);
         public int AddEdgeToRelation(int polygonID, int lowerVertexID) => 

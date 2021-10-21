@@ -19,7 +19,7 @@ namespace lab1
         {
             canvas = new(canvasPanel);
             // load the test scene form the embedded file
-            // canvas.Import(Helpers.XMLHelper.ReadFromXMLEmbedded<Helpers.SerializedCanvas>("lab1.Helpers.TestScene.xml"));
+            canvas.ImportFromEmbedded("lab1.Helpers.TestScene.xml");
         }
 
         private void addPolygonButton_Click(object sender, EventArgs e)
@@ -44,6 +44,14 @@ namespace lab1
                 return;
             mode = ApplicationMode.AddingEqualLengthRelation;
             canvas.StartAddingEqualLengthRelation();
+        }
+
+        private void parallelRelationButton_Click(object sender, EventArgs e)
+        {
+            if (mode != ApplicationMode.Default)
+                return;
+            mode = ApplicationMode.AddingParallelRelation;
+            canvas.StartAddingParallelRelation();
         }
 
         // change the mode to default on moveobjectbutton click only if we are not adding a cricle or polygon
@@ -110,6 +118,7 @@ namespace lab1
                     }
                     break;
                 case ApplicationMode.AddingEqualLengthRelation:
+                case ApplicationMode.AddingParallelRelation:
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                     {
                         int returnValue = canvas.AddEdgeToRelation(shapeID, vertexID);
@@ -245,6 +254,5 @@ namespace lab1
                     MessageBox.Show("There was an error reading from file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }

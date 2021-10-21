@@ -18,6 +18,7 @@ namespace lab1.Canvas.Helpers
 
             [XmlArray("RelationList")]
             [XmlArrayItem("EqualLengthRelation", typeof(Relations.EqualLengthRelation))]
+            [XmlArrayItem("ParallelRelation", typeof(Relations.ParallelRelation))]
             [XmlArrayItem("FixedLengthRelation", typeof(Relations.FixedLengthRelation))]
             public List<Relations.Relation> RelationList { get; set; } = new();
         }
@@ -48,6 +49,21 @@ namespace lab1.Canvas.Helpers
             SerializedCanvas sc = lab1.Helpers.XMLHelper.ReadFromXML<SerializedCanvas>(path);
             if (sc == null)
                 return false;
+            ImportFromSerializedCanvas(sc);
+            return true;
+        }
+
+        public bool ImportFromEmbedded(string path)
+        {
+            SerializedCanvas sc = lab1.Helpers.XMLHelper.ReadFromXMLEmbedded<SerializedCanvas>(path);
+            if (sc == null)
+                return false;
+            ImportFromSerializedCanvas(sc);
+            return true;
+        }
+
+        private void ImportFromSerializedCanvas(SerializedCanvas sc)
+        {
             resources.Polygons = new(sc.PolygonList);
             resources.Circles = new(sc.CircleList);
             resources.Relations = new(sc.RelationList);
@@ -56,7 +72,7 @@ namespace lab1.Canvas.Helpers
                 Shapes.Edge e = relation.Edge1;
                 Shapes.Edge newEdge = new(FindVertex(e.p1), FindVertex(e.p2));
                 relation.Edge1 = newEdge;
-                if(relation.Edge2 != null)
+                if (relation.Edge2 != null)
                 {
                     e = relation.Edge2;
                     newEdge = new(FindVertex(e.p1), FindVertex(e.p2));
@@ -64,7 +80,6 @@ namespace lab1.Canvas.Helpers
                 }
                 relation.Impose();
             }
-            return true;
         }
     }
 }
