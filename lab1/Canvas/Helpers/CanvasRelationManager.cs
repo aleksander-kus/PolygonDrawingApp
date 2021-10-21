@@ -1,4 +1,6 @@
-﻿namespace lab1.Canvas.Helpers
+﻿using System;
+
+namespace lab1.Canvas.Helpers
 {
     public class CanvasRelationManager : CanvasHelper
     {
@@ -27,6 +29,9 @@
         public void StartAddingParallelRelation() =>
             resources.AddingRelation = new Relations.ParallelRelation();
 
+        public void StartAddingTangentRelation() =>
+            resources.AddingRelation = new Relations.TangentRelation();
+
         public int AddEdgeToRelation(int polygonID, int lowerVertexID)
         {
             var newEdge = resources.GetEdgeByLowerPointID(polygonID, lowerVertexID);
@@ -51,6 +56,15 @@
                 resources.AddingRelation = null;
                 return 1;
             }
+        }
+
+        public int AddCircleToRelation(int circleID)
+        {
+            if (resources.AddingRelation == null)
+                throw new NotImplementedException();
+            resources.AddingRelation.Circle = resources.Circles[circleID];
+            resources.AddingRelation.Impose();
+            return 1;
         }
         public int AddFixedLengthRelation(int polygonID, int lowerVertexID)
         {

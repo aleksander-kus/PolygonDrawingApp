@@ -38,7 +38,7 @@ namespace lab1
             this.button13 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.button5 = new System.Windows.Forms.Button();
+            this.tangentRelationButton = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -92,7 +92,7 @@ namespace lab1
             this.tablePanel.Name = "tablePanel";
             this.tablePanel.RowCount = 1;
             this.tablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 961F));
+            this.tablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1041F));
             this.tablePanel.Size = new System.Drawing.Size(1484, 1041);
             this.tablePanel.TabIndex = 0;
             // 
@@ -180,6 +180,7 @@ namespace lab1
             this.button14.TabIndex = 12;
             this.button14.Text = "Load from file";
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.loadFromFileButton_Click);
             // 
             // button13
             // 
@@ -190,6 +191,7 @@ namespace lab1
             this.button13.TabIndex = 11;
             this.button13.Text = "Save to file";
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.saveToFileButton_Click);
             // 
             // groupBox1
             // 
@@ -206,7 +208,7 @@ namespace lab1
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.button5, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.tangentRelationButton, 0, 2);
             this.tableLayoutPanel5.Controls.Add(this.button3, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.button4, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -219,16 +221,17 @@ namespace lab1
             this.tableLayoutPanel5.Size = new System.Drawing.Size(279, 104);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
-            // button5
+            // tangentRelationButton
             // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button5.Location = new System.Drawing.Point(3, 75);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(273, 23);
-            this.button5.TabIndex = 13;
-            this.button5.Text = "Tangent relation";
-            this.button5.UseVisualStyleBackColor = true;
+            this.tangentRelationButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tangentRelationButton.Location = new System.Drawing.Point(3, 75);
+            this.tangentRelationButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.tangentRelationButton.Name = "tangentRelationButton";
+            this.tangentRelationButton.Size = new System.Drawing.Size(273, 23);
+            this.tangentRelationButton.TabIndex = 13;
+            this.tangentRelationButton.Text = "Tangent relation";
+            this.tangentRelationButton.UseVisualStyleBackColor = true;
+            this.tangentRelationButton.Click += new System.EventHandler(this.tangentRelationButton_Click);
             // 
             // button3
             // 
@@ -607,7 +610,7 @@ namespace lab1
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button tangentRelationButton;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button6;

@@ -10,11 +10,12 @@ namespace lab1.Relations
         public override Color Color { get; } = Color.LightGreen;
 
         public override char Symbol => 'F';
+        
+        public override Edge Edge1 { get; set; }
+        public override Edge Edge2 { get; set; } = null;
+        public override Circle Circle { get; set; } = null;
 
         private Shapes.Point first = null;
-        public override Edge Edge1 { get; set; }
-
-        public override Edge Edge2 { get; set; } = null;
 
         /// <summary>
         /// Change the edges so that the relation is fulfilled

@@ -54,6 +54,12 @@ namespace lab1
             canvas.StartAddingParallelRelation();
         }
 
+        private void tangentRelationButton_Click(object sender, EventArgs e)
+        {
+            Mode = ApplicationMode.AddingTangentRelation;
+            canvas.StartAddingTangentRelation();
+        }
+
         private void ResetToDefaultMode()
         {
             canvas.StopAddingShape();
@@ -145,6 +151,7 @@ namespace lab1
                     break;
                 case ApplicationMode.AddingEqualLengthRelation:
                 case ApplicationMode.AddingParallelRelation:
+                case ApplicationMode.AddingTangentRelation:
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                     {
                         int returnValue = canvas.AddEdgeToRelation(shapeID, vertexID);
@@ -155,6 +162,14 @@ namespace lab1
                         else if (returnValue == -2)
                             MessageBox.Show("You cannot add relations between edges in different polygons", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                    else if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
+                    {
+                        if (canvas.AddCircleToRelation(shapeID) != 1)
+                            MessageBox.Show("You cannot add more relations to this circle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            Mode = ApplicationMode.Default;
+                    }
+                    break;
                     break;
                 case ApplicationMode.RemovingRelation:
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))

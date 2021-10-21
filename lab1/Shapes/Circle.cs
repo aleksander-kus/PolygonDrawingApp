@@ -16,6 +16,9 @@ namespace lab1.Shapes
         [XmlAttribute(DataType = "int")]
         public int Radius { get; set; }
 
+        [XmlIgnore]
+        public Relations.Relation R1 { get; set; }
+
         public void ResizeOrMove(Point mouseLocation)
         {
             if (!FixedRadius)
@@ -31,7 +34,11 @@ namespace lab1.Shapes
         public void MoveCenter(Point mouseLocation)
         {
             if (!Anchored)
+            {
                 Center.Move(mouseLocation);
+                if (R1 != null)
+                    R1.MovePoint(Center, Vector2.Zero);
+            }
         }
     }
 }

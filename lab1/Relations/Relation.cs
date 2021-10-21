@@ -15,6 +15,7 @@ namespace lab1.Relations
 
         public abstract Shapes.Edge Edge1 { get; set; }
         public abstract Shapes.Edge Edge2 { get; set; }
+        public abstract Shapes.Circle Circle { get; set; }
 
         protected void RemoveRelationFromEdgePoints(Shapes.Edge edge)
         {

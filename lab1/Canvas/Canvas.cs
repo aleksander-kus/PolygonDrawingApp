@@ -122,12 +122,16 @@ namespace lab1.Canvas
             ExecuteAndRedraw(relationManager.StartAddingEqualLengthRelation);
         public void StartAddingParallelRelation() =>
             ExecuteAndRedraw(relationManager.StartAddingParallelRelation);
+        public void StartAddingTangentRelation() =>
+            ExecuteAndRedraw(relationManager.StartAddingTangentRelation);
         public void StopAddingRelation() =>
             ExecuteAndRedraw(relationManager.StopAddingRelation);
-        public int AddFixedLengthRelation(int polygonID, int lowerVertexID) 
-            => RedrawAndReturn(relationManager.AddFixedLengthRelation, polygonID, lowerVertexID);
+        public int AddFixedLengthRelation(int polygonID, int lowerVertexID) =>
+            RedrawAndReturn(relationManager.AddFixedLengthRelation, polygonID, lowerVertexID);
         public int AddEdgeToRelation(int polygonID, int lowerVertexID) => 
             RedrawAndReturn(relationManager.AddEdgeToRelation, polygonID, lowerVertexID);
+        public int AddCircleToRelation(int circleID) =>
+            RedrawAndReturn(relationManager.AddCircleToRelation, circleID);
         public bool RemoveRelation(int polygonID, int vertexID) => 
             RedrawAndReturn(relationManager.RemoveRelation, polygonID, vertexID);
         public bool AnchorCircle(int circleID) =>

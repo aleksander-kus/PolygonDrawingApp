@@ -11,8 +11,8 @@ namespace lab1.Relations
         public override char Symbol => 'E';
 
         public override Edge Edge1 { get; set; }
-
         public override Edge Edge2 { get; set; }
+        public override Circle Circle { get; set; } = null;
 
 
         private void AdjustEdge(Edge toAdjust, Edge other, Shapes.Point movedPoint)

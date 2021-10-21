@@ -19,6 +19,7 @@
         AddingParallelRelation,
         AddingFixedRadius,
         AddingAnchor,
+        AddingTangentRelation,
         RemovingRelation
     }
 }
