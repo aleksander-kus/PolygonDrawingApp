@@ -1,6 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Numerics;
+﻿using System.Numerics;
 using System.Xml.Serialization;
 
 namespace lab1.Shapes
@@ -9,10 +7,10 @@ namespace lab1.Shapes
     {
         public Point Center { get; set; }
 
-        [XmlAttribute(DataType = "bool")]
+        [XmlAttribute(DataType = "boolean")]
         public bool Anchored { get; set; } = false;
 
-        [XmlAttribute(DataType = "bool")]
+        [XmlAttribute(DataType = "boolean")]
         public bool FixedRadius { get; set; } = false;
 
         [XmlAttribute(DataType = "int")]

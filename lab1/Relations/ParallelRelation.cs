@@ -27,7 +27,6 @@ namespace lab1.Relations
                 var v2 = toAdjust.Length * Vector2.Normalize(v);
                 toAdjust.p1.Move(toAdjust.p2.X + (int)Math.Round(v2.X), toAdjust.p2.Y + (int)Math.Round(v2.Y), toAdjust.p1);
             }
-
         }
 
         private void AddRelationToEdgePoints(Edge edge)

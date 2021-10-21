@@ -9,12 +9,13 @@
         public bool RemoveRelation(int shapeID, int vertexID)
         {
             Shapes.Point p1 = resources.GetPointByID(shapeID, vertexID), p2 = resources.GetPointByID(shapeID, vertexID + 1);
-            Relations.Relation r;
-            if (p1.R1 == p2.R1 || p1.R1 == p2.R2)
+            Relations.Relation r = null;
+            if (p1.R1 != null && (p1.R1 == p2.R1 || p1.R1 == p2.R2))
                 r = p1.R1;
-            else if (p1.R2 == p2.R1 || p1.R2 == p2.R2)
+            else if (p1.R2 != null && (p1.R2 == p2.R1 || p1.R2 == p2.R2))
                 r = p1.R2;
-            else return false;  // no relation on this edge
+            if(r == null)
+                return false;  // no relation on this edge
             r.Remove();
             resources.Relations.Remove(r);
             return true;
@@ -65,5 +66,7 @@
             resources.Relations.Add(relation);
             return 1;
         }
+
+        public void StopAddingRelation() => resources.AddingRelation = null;
     }
 }

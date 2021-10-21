@@ -122,6 +122,8 @@ namespace lab1.Canvas
             ExecuteAndRedraw(relationManager.StartAddingEqualLengthRelation);
         public void StartAddingParallelRelation() =>
             ExecuteAndRedraw(relationManager.StartAddingParallelRelation);
+        public void StopAddingRelation() =>
+            ExecuteAndRedraw(relationManager.StopAddingRelation);
         public int AddFixedLengthRelation(int polygonID, int lowerVertexID) 
             => RedrawAndReturn(relationManager.AddFixedLengthRelation, polygonID, lowerVertexID);
         public int AddEdgeToRelation(int polygonID, int lowerVertexID) => 

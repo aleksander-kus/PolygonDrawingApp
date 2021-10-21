@@ -10,7 +10,6 @@ namespace lab1.Relations
         public override Color Color { get; } = Color.LightGreen;
 
         private Shapes.Point first = null;
-        private int counter = 0;
         public override Edge Edge1 { get; set; }
 
         public override Edge Edge2 { get; set; } = null;

@@ -6,6 +6,14 @@ namespace lab1
     public partial class Form1 : Form
     {
         private ApplicationMode mode = ApplicationMode.Default;
+        private ApplicationMode Mode { get => mode; 
+            set
+            {
+                if(mode != ApplicationMode.Default)
+                    ResetToDefaultMode();
+                mode = value;
+            }
+        }
         private Canvas.Canvas canvas;
         private int changingShapeID = -1;
         private int changingVertexID = -1;
@@ -24,84 +32,81 @@ namespace lab1
 
         private void addPolygonButton_Click(object sender, EventArgs e)
         {
-            if (mode != ApplicationMode.Default)
-                return;
-            mode = ApplicationMode.AddingPolygon;
+            Mode = ApplicationMode.AddingPolygon;
             canvas.StartAddingPolygon(new Shapes.Point(MousePosition));
         }
 
         private void addCircleButton_Click(object sender, EventArgs e)
         {
-            if (mode != ApplicationMode.Default)
-                return;
-            mode = ApplicationMode.AddingCircle;
+            Mode = ApplicationMode.AddingCircle;
             canvas.StartAddingCircle(new Shapes.Point(MousePosition));
         }
 
         private void equalLengthButton_Click(object sender, EventArgs e)
         {
-            if (mode != ApplicationMode.Default)
-                return;
-            mode = ApplicationMode.AddingEqualLengthRelation;
+            Mode = ApplicationMode.AddingEqualLengthRelation;
             canvas.StartAddingEqualLengthRelation();
         }
 
         private void parallelRelationButton_Click(object sender, EventArgs e)
         {
-            if (mode != ApplicationMode.Default)
-                return;
-            mode = ApplicationMode.AddingParallelRelation;
+            Mode = ApplicationMode.AddingParallelRelation;
             canvas.StartAddingParallelRelation();
+        }
+
+        private void ResetToDefaultMode()
+        {
+            canvas.StopAddingShape();
+            canvas.StopAddingRelation();
         }
 
         // change the mode to default on moveobjectbutton click only if we are not adding a cricle or polygon
         private void moveObjectButton_Click(object sender, EventArgs e)
         {
-            canvas.StopAddingShape();
-            mode = ApplicationMode.Default;
+            Mode = ApplicationMode.Default;
         }
 
-        private void deletePolygonButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingPolygon;
+        private void deletePolygonButton_Click(object sender, EventArgs e) => Mode = ApplicationMode.DeletingPolygon;
 
-        private void deleteCircleButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingCircle;
+        private void deleteCircleButton_Click(object sender, EventArgs e) => Mode = ApplicationMode.DeletingCircle;
 
-        private void splitEdgeButton_Click(object sender, EventArgs e) => mode = ApplicationMode.SplittinEdge;
+        private void splitEdgeButton_Click(object sender, EventArgs e) => Mode = ApplicationMode.SplittinEdge;
 
-        private void deleteVertexButton_Click(object sender, EventArgs e) => mode = ApplicationMode.DeletingVertex;
+        private void deleteVertexButton_Click(object sender, EventArgs e) => Mode = ApplicationMode.DeletingVertex;
 
-        private void fixedLengthButton_Click(object sender, EventArgs e) => mode = ApplicationMode.AddingFixedLengthRelation;
+        private void fixedLengthButton_Click(object sender, EventArgs e) => Mode = ApplicationMode.AddingFixedLengthRelation;
 
-        private void removeRelationButton_Click(object sender, EventArgs e) => mode = ApplicationMode.RemovingRelation;
+        private void removeRelationButton_Click(object sender, EventArgs e) => Mode = ApplicationMode.RemovingRelation;
 
-        private void anchorCircleButton_Click(object sender, EventArgs e) => mode = ApplicationMode.AddingAnchor;
+        private void anchorCircleButton_Click(object sender, EventArgs e) => Mode = ApplicationMode.AddingAnchor;
 
-        private void fixedRadiusButton_Click(object sender, EventArgs e) => mode = ApplicationMode.AddingFixedRadius;
+        private void fixedRadiusButton_Click(object sender, EventArgs e) => Mode = ApplicationMode.AddingFixedRadius;
 
         private void canvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
             Shapes.Point mouseLocation = new(e.X, e.Y);
             int shapeID, vertexID;
-            switch (mode)
+            switch (Mode)
             {
                 case ApplicationMode.DeletingPolygon:
                     if ((shapeID = canvas.IsPolygonCenterClicked(mouseLocation)) != -1)
                     {
                         canvas.DeletePolygon(shapeID);
-                        mode = ApplicationMode.Default;
+                        Mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.DeletingCircle:
                     if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
                     {
                         canvas.DeleteCircle(shapeID);
-                        mode = ApplicationMode.Default;
+                        Mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.DeletingVertex:
                     if (((shapeID, vertexID) = canvas.IsPolygonVertexClicked(mouseLocation)) != (-1, -1))
                     {
                         canvas.DeleteVertex(shapeID, vertexID);
-                        mode = ApplicationMode.Default;
+                        Mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.AddingFixedRadius:
@@ -110,7 +115,7 @@ namespace lab1
                         if (canvas.SetFixedRadius(shapeID) == false)
                             MessageBox.Show("You cannot add more relations to this circle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else
-                            mode = ApplicationMode.Default;
+                            Mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.AddingAnchor:
@@ -119,14 +124,14 @@ namespace lab1
                         if (canvas.AnchorCircle(shapeID) == false)
                             MessageBox.Show("You cannot add more relations to this circle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else
-                            mode = ApplicationMode.Default;
+                            Mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.SplittinEdge:
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                     {
                         canvas.SplitEdge(shapeID, vertexID);
-                        mode = ApplicationMode.Default;
+                        Mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.AddingFixedLengthRelation:
@@ -135,7 +140,7 @@ namespace lab1
                         if (canvas.AddFixedLengthRelation(shapeID, vertexID) == -1)
                             MessageBox.Show("You cannot add more than one relation to an edge", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else
-                            mode = ApplicationMode.Default;
+                            Mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.AddingEqualLengthRelation:
@@ -144,7 +149,7 @@ namespace lab1
                     {
                         int returnValue = canvas.AddEdgeToRelation(shapeID, vertexID);
                         if (returnValue == 1)
-                            mode = ApplicationMode.Default;
+                            Mode = ApplicationMode.Default;
                         else if (returnValue == -1)
                             MessageBox.Show("You cannot add more than one relation to an edge", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else if (returnValue == -2)
@@ -155,44 +160,44 @@ namespace lab1
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                     {
                         if (canvas.RemoveRelation(shapeID, vertexID))
-                            mode = ApplicationMode.Default;
+                            Mode = ApplicationMode.Default;
                     }
                     break;
                 case ApplicationMode.AddingPolygon:
                     if (canvas.AddPointToPolygon(mouseLocation))
-                        mode = ApplicationMode.Default;
+                        Mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.AddingCircle:
                     if (canvas.AddCircle(mouseLocation))
-                        mode = ApplicationMode.Default;
+                        Mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.Default:
                     if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
                     {
                         changingShapeID = shapeID;
-                        mode = ApplicationMode.MovingCircleCenter;
+                        Mode = ApplicationMode.MovingCircleCenter;
                     }
                     else if ((shapeID = canvas.IsCircleEdgeClicked(mouseLocation)) != -1)
                     {
                         changingShapeID = shapeID;
-                        mode = ApplicationMode.ResizingCircle;
+                        Mode = ApplicationMode.ResizingCircle;
                     }
                     else if (((shapeID, vertexID) = canvas.IsPolygonVertexClicked(mouseLocation)) != (-1, -1))
                     {
                         changingShapeID = shapeID;
                         changingVertexID = vertexID;
-                        mode = ApplicationMode.MovingVertex;
+                        Mode = ApplicationMode.MovingVertex;
                     }
                     else if ((shapeID = canvas.IsPolygonCenterClicked(mouseLocation)) != -1)
                     {
                         changingShapeID = shapeID;
-                        mode = ApplicationMode.MovingPolygonCenter;
+                        Mode = ApplicationMode.MovingPolygonCenter;
                     }
                     else if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                     {
                         changingShapeID = shapeID;
                         changingVertexID = vertexID;
-                        mode = ApplicationMode.MovingEdge;
+                        Mode = ApplicationMode.MovingEdge;
                     }
                     break;
                 default:
@@ -203,7 +208,7 @@ namespace lab1
         private void canvasPanel_MouseMove(object sender, MouseEventArgs e)
         {
             Shapes.Point mouseLocation = new(e.X, e.Y);
-            switch (mode)
+            switch (Mode)
             {
                 case ApplicationMode.AddingPolygon:
                     canvas.MouseMoveWhileAddingPolygon(mouseLocation);
@@ -234,7 +239,7 @@ namespace lab1
 
         private void canvasPanel_MouseUp(object sender, MouseEventArgs e)
         {
-            switch (mode)
+            switch (Mode)
             {
                 case ApplicationMode.MovingPolygonCenter:
                 case ApplicationMode.MovingVertex:
@@ -243,7 +248,7 @@ namespace lab1
                 case ApplicationMode.ResizingCircle:
                     changingShapeID = -1;
                     changingVertexID = -1;
-                    mode = ApplicationMode.Default;
+                    Mode = ApplicationMode.Default;
                     break;
                 default:
                     break;

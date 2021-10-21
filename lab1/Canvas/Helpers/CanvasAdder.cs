@@ -5,7 +5,7 @@
     /// </summary>
     public class CanvasAdder : CanvasHelper
     {
-        public CanvasAdder(CanvasResources r): base(r)
+        public CanvasAdder(CanvasResources r) : base(r)
         {
         }
 
@@ -40,15 +40,14 @@
             resources.AddingPolygonVertices.Add(mousePosition);
         }
 
-        public void StartAddingCircle(Shapes.Point mousePosition) => resources.AddingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
-
-        public void StopAddingShape()
+        public void SplitEdge(int polygonID, int lowerVertexID)
         {
-            resources.AddingPolygonVertices = null;
-            resources.AddingCircle = null;
-            resources.Circle_anchored = false;
-            resources.AddingRelation = null;
+            Shapes.Point p1 = resources.GetPointByID(polygonID, lowerVertexID), p2 = resources.GetPointByID(polygonID, lowerVertexID + 1);
+            Shapes.Point center = GraphicsHelpers.SegmentCenter(p1, p2);
+            resources.Polygons[polygonID].VertexList.Insert(lowerVertexID + 1, center);
         }
+
+        public void StartAddingCircle(Shapes.Point mousePosition) => resources.AddingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
 
         public bool AddCircle(Shapes.Point mousePosition)
         {
@@ -81,6 +80,14 @@
                 return false;
             circle.FixedRadius = true;
             return true;
+        }
+
+        public void StopAddingShape()
+        {
+            resources.AddingPolygonVertices = null;
+            resources.AddingCircle = null;
+            resources.Circle_anchored = false;
+            resources.AddingRelation = null;
         }
     }
 }

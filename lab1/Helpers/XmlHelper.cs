@@ -112,7 +112,7 @@ namespace lab1.Helpers
             }
             catch (Exception)
             {
-                return default;
+                throw;
             }
         }
 
