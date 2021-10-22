@@ -80,12 +80,16 @@ namespace lab1.Canvas.Helpers
             DrawVertice(g, polygon.Center, Color.Red);
         }
 
-        private  void DrawCircle(Graphics g, Shapes.Circle circle)
+        private void DrawCircle(Graphics g, Shapes.Circle circle, Color? color = null)
         {
-            using Pen p = new(circle.FixedRadius ? Color.Blue : Color.Black, 1);
+            Pen p = new(color ?? Color.Black, 1);
             Rectangle r = new(circle.Center.X - circle.Radius, circle.Center.Y - circle.Radius, 2 * circle.Radius, 2 * circle.Radius);
             g.DrawEllipse(p, r);
             DrawVertice(g, circle.Center, circle.Anchored ? Color.Brown : Color.Red);
+            if (circle.FixedRadius)
+                p.Color = Color.Blue;
+            g.DrawLine(p, circle.Center.ToStruct(), new Point(circle.Center.X + circle.Radius, circle.Center.Y));
+            p.Dispose();
         }
 
         private void DrawEdgesWithRelation(Graphics g, Relations.Relation relation)
@@ -105,6 +109,14 @@ namespace lab1.Canvas.Helpers
             if (relation.Edge2 != null)
             {
                 DrawEdge(relation.Edge2);
+            }
+            if (relation.Circle != null)
+            {
+                DrawCircle(g, relation.Circle, relation.Color);
+                using Brush b = new SolidBrush(relation.Color);
+                using Font f = new("Arial", 15f);
+                int index = resources.Relations.IndexOf(relation);
+                g.DrawString($"{relation.Symbol}{ (index == -1 ? string.Empty : index.ToString()) }", f, b, relation.Circle.Center.ToStruct());
             }
         }
 

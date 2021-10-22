@@ -35,10 +35,8 @@ namespace lab1.Shapes
 
         public System.Drawing.Point ToStruct() => new(X, Y);
 
-        public bool Equals(Point p)
-        {
-            return p.X == X && p.Y == Y;
-        }
+        public bool Equals(Point p) => p.X == X && p.Y == Y;
+        
         public void Move(Point destination, Point ignoreRelationWith = null) => Move(destination.X, destination.Y, ignoreRelationWith);
         public void Move(int x, int y, Point ignoreRelationWith = null) => Move(new Vector2(x - X, y - Y), ignoreRelationWith);
         public void Move(Vector2 vec, Point ignoreRelationWith = null)

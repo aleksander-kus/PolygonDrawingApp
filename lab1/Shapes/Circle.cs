@@ -29,6 +29,8 @@ namespace lab1.Shapes
                 Vector2 v2 = (GraphicsHelpers.Distance(mouseLocation, Center) - Radius) * Vector2.Normalize(vec);
                 Center.Move(v2);
             }
+            if (R1 != null)
+                R1.MovePoint(Center, Vector2.Zero);
         }
 
         public void MoveCenter(Point mouseLocation)
@@ -37,8 +39,10 @@ namespace lab1.Shapes
             {
                 Center.Move(mouseLocation);
                 if (R1 != null)
-                    R1.MovePoint(Center, Vector2.Zero);
+                    R1.MovePoint(Center, Vector2.One);
             }
         }
+
+        public bool Equals(Circle c) => c.Center.Equals(Center) && c.Radius == Radius && c.Anchored == Anchored && c.FixedRadius == FixedRadius;
     }
 }

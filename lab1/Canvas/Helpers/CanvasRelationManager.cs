@@ -60,10 +60,14 @@ namespace lab1.Canvas.Helpers
 
         public int AddCircleToRelation(int circleID)
         {
-            if (resources.AddingRelation == null)
-                throw new NotImplementedException();
+            if (resources.AddingRelation.Edge1 == null)
+                return -2;
+            if (resources.Circles[circleID].R1 != null)
+                return -1;
             resources.AddingRelation.Circle = resources.Circles[circleID];
             resources.AddingRelation.Impose();
+            resources.Relations.Add(resources.AddingRelation);
+            resources.AddingRelation = null;
             return 1;
         }
         public int AddFixedLengthRelation(int polygonID, int lowerVertexID)

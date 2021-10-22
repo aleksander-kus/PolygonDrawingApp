@@ -20,6 +20,7 @@ namespace lab1.Canvas.Helpers
             [XmlArrayItem("EqualLengthRelation", typeof(Relations.EqualLengthRelation))]
             [XmlArrayItem("ParallelRelation", typeof(Relations.ParallelRelation))]
             [XmlArrayItem("FixedLengthRelation", typeof(Relations.FixedLengthRelation))]
+            [XmlArrayItem("TangentRelation", typeof(Relations.TangentRelation))]
             public List<Relations.Relation> RelationList { get; set; } = new();
         }
 
@@ -35,14 +36,7 @@ namespace lab1.Canvas.Helpers
             return lab1.Helpers.XMLHelper.WriteToXML(path, sc);
         }
 
-        private Shapes.Point FindVertex(Shapes.Point p)
-        {
-            foreach (var poly in resources.Polygons)
-                for (int i = 0; i < poly.VertexList.Count; ++i)
-                    if (p.Equals(poly.VertexList[i]))
-                        return poly.VertexList[i];
-            return null;
-        }
+
 
         public bool Import(string path)
         {
@@ -62,6 +56,23 @@ namespace lab1.Canvas.Helpers
             return true;
         }
 
+        private Shapes.Point FindVertex(Shapes.Point p)
+        {
+            foreach (var poly in resources.Polygons)
+                for (int i = 0; i < poly.VertexList.Count; ++i)
+                    if (p.Equals(poly.VertexList[i]))
+                        return poly.VertexList[i];
+            return null;
+        }
+
+        private Shapes.Circle FindCircle(Shapes.Circle c)
+        {
+            foreach (var circle in resources.Circles)
+                if (c.Equals(circle))
+                    return circle;
+            return null;
+        }
+
         private void ImportFromSerializedCanvas(SerializedCanvas sc)
         {
             resources.Polygons = new(sc.PolygonList);
@@ -77,6 +88,11 @@ namespace lab1.Canvas.Helpers
                     e = relation.Edge2;
                     newEdge = new(FindVertex(e.p1), FindVertex(e.p2));
                     relation.Edge2 = newEdge;
+                }
+                if(relation.Circle != null)
+                {
+                    Shapes.Circle c = relation.Circle;
+                    relation.Circle = FindCircle(c);
                 }
                 relation.Impose();
             }

@@ -6,10 +6,12 @@ namespace lab1
     public partial class Form1 : Form
     {
         private ApplicationMode mode = ApplicationMode.Default;
-        private ApplicationMode Mode { get => mode; 
+        private ApplicationMode Mode
+        {
+            get => mode;
             set
             {
-                if(mode != ApplicationMode.Default)
+                if (mode != ApplicationMode.Default)
                     ResetToDefaultMode();
                 mode = value;
             }
@@ -119,7 +121,7 @@ namespace lab1
                     if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
                     {
                         if (canvas.SetFixedRadius(shapeID) == false)
-                            MessageBox.Show("You cannot add more relations to this circle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ErrorBox("You cannot add more relations to this circle");
                         else
                             Mode = ApplicationMode.Default;
                     }
@@ -128,7 +130,7 @@ namespace lab1
                     if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
                     {
                         if (canvas.AnchorCircle(shapeID) == false)
-                            MessageBox.Show("You cannot add more relations to this circle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ErrorBox("You cannot add more relations to this circle");
                         else
                             Mode = ApplicationMode.Default;
                     }
@@ -144,7 +146,7 @@ namespace lab1
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                     {
                         if (canvas.AddFixedLengthRelation(shapeID, vertexID) == -1)
-                            MessageBox.Show("You cannot add more than one relation to an edge", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ErrorBox("You cannot add more than one relation to an edge");
                         else
                             Mode = ApplicationMode.Default;
                     }
@@ -158,18 +160,20 @@ namespace lab1
                         if (returnValue == 1)
                             Mode = ApplicationMode.Default;
                         else if (returnValue == -1)
-                            MessageBox.Show("You cannot add more than one relation to an edge", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ErrorBox("You cannot add more than one relation to an edge");
                         else if (returnValue == -2)
-                            MessageBox.Show("You cannot add relations between edges in different polygons", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ErrorBox("You cannot add relations between edges in different polygons");
                     }
                     else if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
                     {
-                        if (canvas.AddCircleToRelation(shapeID) != 1)
-                            MessageBox.Show("You cannot add more relations to this circle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        else
+                        int returnValue = canvas.AddCircleToRelation(shapeID);
+                        if (returnValue == 1)
                             Mode = ApplicationMode.Default;
+                        else if (returnValue == -1)
+                            ErrorBox("You cannot add more relations to this circle");
+                        else if (returnValue == -2)
+                            ErrorBox("Please select the edge first");
                     }
-                    break;
                     break;
                 case ApplicationMode.RemovingRelation:
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
@@ -280,7 +284,7 @@ namespace lab1
             if (sd.ShowDialog() == DialogResult.OK)
             {
                 if (canvas.Export(sd.FileName) != true)
-                    MessageBox.Show("There was an error writing to file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErrorBox("There was an error writing to file");
             }
         }
 
@@ -292,8 +296,9 @@ namespace lab1
             if (od.ShowDialog() == DialogResult.OK)
             {
                 if (canvas.Import(od.FileName) != true)
-                    MessageBox.Show("There was an error reading from file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErrorBox("There was an error reading from file");
             }
         }
+        private void ErrorBox(string message) => MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 }

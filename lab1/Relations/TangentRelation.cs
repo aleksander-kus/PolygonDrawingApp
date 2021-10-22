@@ -1,11 +1,7 @@
 ﻿using lab1.Shapes;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace lab1.Relations
 {
@@ -21,7 +17,19 @@ namespace lab1.Relations
 
         private void MakeEdgeTangent()
         {
+            Vector2 vec = new(Edge1.p2.X - Edge1.p1.X, Edge1.p2.Y - Edge1.p1.Y);
+            Vector2 v2 = new(vec.Y, -vec.X);
+            Vector2 v3 = (Circle.Radius - DistanceFromPointToEdgeLine(Circle.Center)) * Vector2.Normalize(v2);
+            Edge1.p2.Move(v3);
+            Edge1.p1.Move(v3);
+        }
 
+        private void MakeCircleTangent()
+        {
+            Vector2 vec = new(Edge1.p2.X - Edge1.p1.X, Edge1.p2.Y - Edge1.p1.Y);
+            Vector2 v2 = new(-vec.Y, vec.X);
+            Vector2 v3 = (Circle.Radius - DistanceFromPointToEdgeLine(Circle.Center)) * Vector2.Normalize(v2);
+            Circle.Center.Move(v3);
         }
 
         private int DistanceFromPointToEdgeLine(Shapes.Point point)
@@ -32,39 +40,45 @@ namespace lab1.Relations
 
         private void Adjust(Shapes.Point clickedPoint)
         {
-            if(clickedPoint == Circle.Center)
+            if (Circle.FixedRadius)
             {
-                if(Circle.FixedRadius)
-                {
-                    Vector2 vec = new(Edge1.p2.X - Edge1.p1.X, Edge1.p2.Y - Edge1.p1.Y);
-                    Vector2 v2 = new(vec.Y, -vec.X);
-                    Vector2 v3 = (Circle.Radius - DistanceFromPointToEdgeLine(clickedPoint)) * Vector2.Normalize(v2);
-                    Edge1.p2.Move(v3);
-                    Edge1.p1.Move(v3);
-                }
+                if (clickedPoint == Circle.Center)
+                    MakeEdgeTangent();
+                else
+                    MakeCircleTangent();
             }
             else
-            {
+                Circle.Radius = DistanceFromPointToEdgeLine(Circle.Center);
+        }
 
-            }
+        private void AddRelationToEdgePoints(Edge edge)
+        {
+            if (edge.p1.R1 == null) edge.p1.R1 = this;
+            else if (edge.p1.R2 == null) edge.p1.R2 = this;
+            if (edge.p2.R1 == null) edge.p2.R1 = this;
+            else if (edge.p2.R2 == null) edge.p2.R2 = this;
         }
 
         public override void Impose()
         {
             Circle.R1 = this;
+            AddRelationToEdgePoints(Edge1);
             Adjust(Circle.Center);
             Adjust(Circle.Center);
         }
 
         public override void MovePoint(Shapes.Point clickedPoint, Vector2 vec)
         {
-            
-            Adjust(clickedPoint);
+            if (clickedPoint == Circle.Center && vec == Vector2.Zero)
+                MakeEdgeTangent();
+            else
+                Adjust(clickedPoint);
         }
 
         public override void Remove()
         {
-            throw new NotImplementedException();
+            RemoveRelationFromEdgePoints(Edge1);
+            Circle.R1 = null;
         }
     }
 }
