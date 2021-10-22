@@ -23,14 +23,12 @@ namespace lab1.Canvas.Helpers
         public void MovePolygon(int polygonID, Shapes.Point mousePosition)
         {
             Shapes.Point center = resources.Polygons[polygonID].Center;
-            int delta_x = mousePosition.X - center.X;
-            int delta_y = mousePosition.Y - center.Y;
+            Vector2 vec = new(mousePosition.X - center.X, mousePosition.Y - center.Y);
             for (int i = 0; i < resources.Polygons[polygonID].VertexList.Count; ++i)
             {
                 // while moving the whole resources.polygon no resources.relations can change (except circle-edge resources.relations)
                 Shapes.Point p = resources.Polygons[polygonID].VertexList[i];
-                p.X += delta_x;
-                p.Y += delta_y;
+                p.Move(vec, ignoreNonTangent: true);
             }
         }
 
