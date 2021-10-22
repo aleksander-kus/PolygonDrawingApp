@@ -32,6 +32,7 @@ namespace lab1
             this.tablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.canvasPanel = new lab1.BufferedPanel();
             this.menuTable = new System.Windows.Forms.TableLayoutPanel();
+            this.resetCanvasButton = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.button14 = new System.Windows.Forms.Button();
@@ -114,6 +115,7 @@ namespace lab1
             // 
             this.menuTable.ColumnCount = 1;
             this.menuTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.menuTable.Controls.Add(this.resetCanvasButton, 0, 8);
             this.menuTable.Controls.Add(this.groupBox4, 0, 5);
             this.menuTable.Controls.Add(this.groupBox1, 0, 4);
             this.menuTable.Controls.Add(this.groupBox8, 0, 1);
@@ -123,7 +125,7 @@ namespace lab1
             this.menuTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuTable.Location = new System.Drawing.Point(1190, 3);
             this.menuTable.Name = "menuTable";
-            this.menuTable.RowCount = 17;
+            this.menuTable.RowCount = 9;
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -132,17 +134,21 @@ namespace lab1
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.menuTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.menuTable.Size = new System.Drawing.Size(291, 1035);
             this.menuTable.TabIndex = 1;
+            // 
+            // resetCanvasButton
+            // 
+            this.resetCanvasButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.resetCanvasButton.Location = new System.Drawing.Point(3, 710);
+            this.resetCanvasButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.resetCanvasButton.Name = "resetCanvasButton";
+            this.resetCanvasButton.Size = new System.Drawing.Size(285, 23);
+            this.resetCanvasButton.TabIndex = 15;
+            this.resetCanvasButton.Text = "Reset canvas";
+            this.resetCanvasButton.UseVisualStyleBackColor = true;
+            this.resetCanvasButton.Click += new System.EventHandler(this.resetCanvasButton_Click);
             // 
             // groupBox4
             // 
@@ -614,6 +620,7 @@ namespace lab1
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button resetCanvasButton;
     }
 }
 

@@ -36,7 +36,7 @@ namespace lab1.Canvas
 
         // ADDING SHAPES
         // Adding shapes is performed by the CanvasAdder class
-        public void StartAddingPolygon(Shapes.Point mousePosition) => 
+        public void StartAddingPolygon(Shapes.Point mousePosition) =>
             adder.StartAddingPolygon(mousePosition);
         public bool AddPointToPolygon(Shapes.Point mousePosition) =>
             RedrawAndReturn(adder.AddPointToPolygon, mousePosition);

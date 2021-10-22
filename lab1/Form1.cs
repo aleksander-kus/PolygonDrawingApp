@@ -303,5 +303,11 @@ namespace lab1
             }
         }
         private void ErrorBox(string message) => MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        private void resetCanvasButton_Click(object sender, EventArgs e)
+        {
+            canvas = new Canvas.Canvas(canvasPanel);
+            canvasPanel.Invalidate();
+        }
     }
 }
