@@ -54,13 +54,13 @@ namespace lab1.Shapes
         /// </summary>
         /// <param name="vec"></param>
         /// <param name="ignoreRelationWith"></param>
-        public void Move(Vector2 vec, Point ignoreRelationWith = null)
+        public void Move(Vector2 vec, Point ignoreRelationWith = null, bool ignoreNonTangent = false)
         {
             X += (int)Math.Round(vec.X);
             Y += (int)Math.Round(vec.Y);
 
-            bool isR1Ignored = R1 == null || ignoreRelationWith != null && (R1.Edge1.p1 == ignoreRelationWith || R1.Edge1.p2 == ignoreRelationWith || R1.Edge2?.p1 == ignoreRelationWith || R1.Edge2?.p2 == ignoreRelationWith);
-            bool isR2Ignored = R2 == null || ignoreRelationWith != null && (R2.Edge1.p1 == ignoreRelationWith || R2.Edge1.p2 == ignoreRelationWith || R2.Edge2?.p1 == ignoreRelationWith || R2.Edge2?.p2 == ignoreRelationWith);
+            bool isR1Ignored = R1 == null || (R1.Circle == null && ignoreNonTangent) || ignoreRelationWith != null && (R1.Edge1.p1 == ignoreRelationWith || R1.Edge1.p2 == ignoreRelationWith || R1.Edge2?.p1 == ignoreRelationWith || R1.Edge2?.p2 == ignoreRelationWith);
+            bool isR2Ignored = R2 == null || (R2.Circle == null && ignoreNonTangent) || ignoreRelationWith != null && (R2.Edge1.p1 == ignoreRelationWith || R2.Edge1.p2 == ignoreRelationWith || R2.Edge2?.p1 == ignoreRelationWith || R2.Edge2?.p2 == ignoreRelationWith);
             if (isR1Ignored && isR2Ignored) return;
             if (!isR2Ignored)
             {
