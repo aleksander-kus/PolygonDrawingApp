@@ -65,6 +65,7 @@ namespace lab1
             this.button20 = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.removeCircleRelationsButton = new System.Windows.Forms.Button();
             this.tablePanel.SuspendLayout();
             this.menuTable.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -141,7 +142,7 @@ namespace lab1
             // resetCanvasButton
             // 
             this.resetCanvasButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.resetCanvasButton.Location = new System.Drawing.Point(3, 710);
+            this.resetCanvasButton.Location = new System.Drawing.Point(3, 744);
             this.resetCanvasButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.resetCanvasButton.Name = "resetCanvasButton";
             this.resetCanvasButton.Size = new System.Drawing.Size(285, 23);
@@ -154,7 +155,7 @@ namespace lab1
             // 
             this.groupBox4.Controls.Add(this.tableLayoutPanel4);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Location = new System.Drawing.Point(3, 606);
+            this.groupBox4.Location = new System.Drawing.Point(3, 640);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(285, 91);
             this.groupBox4.TabIndex = 4;
@@ -205,7 +206,7 @@ namespace lab1
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(3, 474);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(285, 126);
+            this.groupBox1.Size = new System.Drawing.Size(285, 160);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Circle relations";
@@ -214,17 +215,19 @@ namespace lab1
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.removeCircleRelationsButton, 0, 3);
             this.tableLayoutPanel5.Controls.Add(this.tangentRelationButton, 0, 2);
             this.tableLayoutPanel5.Controls.Add(this.button3, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.button4, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 19);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowCount = 4;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(279, 104);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(279, 138);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // tangentRelationButton
@@ -554,6 +557,18 @@ namespace lab1
             this.tableLayoutPanel7.Size = new System.Drawing.Size(200, 100);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
+            // removeCircleRelationsButton
+            // 
+            this.removeCircleRelationsButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.removeCircleRelationsButton.Location = new System.Drawing.Point(3, 111);
+            this.removeCircleRelationsButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.removeCircleRelationsButton.Name = "removeCircleRelationsButton";
+            this.removeCircleRelationsButton.Size = new System.Drawing.Size(273, 23);
+            this.removeCircleRelationsButton.TabIndex = 14;
+            this.removeCircleRelationsButton.Text = "Remove circle relations";
+            this.removeCircleRelationsButton.UseVisualStyleBackColor = true;
+            this.removeCircleRelationsButton.Click += new System.EventHandler(this.removeCircleRelationsButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -621,6 +636,7 @@ namespace lab1
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button resetCanvasButton;
+        private System.Windows.Forms.Button removeCircleRelationsButton;
     }
 }
 

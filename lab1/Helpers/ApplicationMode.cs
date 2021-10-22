@@ -23,6 +23,7 @@
         AddingFixedRadius,
         AddingAnchor,
         AddingTangentRelation,
-        RemovingRelation
+        RemovingRelation,
+        RemovingCircleRelations
     }
 }

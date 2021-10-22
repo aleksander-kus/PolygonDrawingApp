@@ -24,6 +24,20 @@
             return true;
         }
 
+        public bool RemoveCircleRelations(int circleID)
+        {
+            Shapes.Circle circle = resources.Circles[circleID];
+            circle.Anchored = false;
+            circle.FixedRadius = false;
+            Relations.Relation r = circle.R1;
+            if (r != null)
+            {
+                r.Remove();
+                resources.Relations.Remove(r);
+            }
+            return true;
+        }
+
         public void StartAddingEqualLengthRelation() =>
             resources.AddingRelation = new Relations.EqualLengthRelation();
 

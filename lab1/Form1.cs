@@ -90,6 +90,8 @@ namespace lab1
 
         private void fixedRadiusButton_Click(object sender, EventArgs e) => Mode = ApplicationMode.AddingFixedRadius;
 
+        private void removeCircleRelationsButton_Click(object sender, EventArgs e) => Mode = ApplicationMode.RemovingCircleRelations;
+
         private void canvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
             Shapes.Point mouseLocation = new(e.X, e.Y);
@@ -157,6 +159,10 @@ namespace lab1
                 case ApplicationMode.RemovingRelation:
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                         canvas.RemoveRelation(shapeID, vertexID);
+                    break;
+                case ApplicationMode.RemovingCircleRelations:
+                    if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
+                        canvas.RemoveCircleRelations(shapeID);
                     break;
                 case ApplicationMode.AddingPolygon:
                     if (canvas.AddPointToPolygon(mouseLocation))

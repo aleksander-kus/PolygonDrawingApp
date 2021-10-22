@@ -122,6 +122,8 @@ namespace lab1.Canvas
             RedrawAndReturn(adder.AnchorCircle, circleID);
         public bool SetFixedRadius(int circleID) =>
             RedrawAndReturn(adder.SetFixedRadius, circleID);
+        public bool RemoveCircleRelations(int circleID) =>
+            RedrawAndReturn(relationManager.RemoveCircleRelations, circleID);
 
         // HELPERS
         // These helper functions help to make the class more tidy with expression-bodied methods
