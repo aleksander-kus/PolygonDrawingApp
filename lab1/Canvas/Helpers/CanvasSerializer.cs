@@ -3,6 +3,9 @@ using System.Xml.Serialization;
 
 namespace lab1.Canvas.Helpers
 {
+    /// <summary>
+    /// A class to serialize and deserialize canvas contents
+    /// </summary>
     public class CanvasSerializer : CanvasHelper
     {
         [XmlRoot("Canvas", Namespace = "http://example.org/ak/canvas")]
@@ -30,17 +33,21 @@ namespace lab1.Canvas.Helpers
 
         public bool Export(string path)
         {
-            SerializedCanvas sc = new() { PolygonList = new List<Shapes.Polygon>(resources.Polygons), CircleList = new List<Shapes.Circle>(resources.Circles),
-            RelationList = new List<Relations.Relation>(resources.Relations)};
+            SerializedCanvas sc = new()
+            {
+                PolygonList = new List<Shapes.Polygon>(resources.Polygons),
+                CircleList = new List<Shapes.Circle>(resources.Circles),
+                RelationList = new List<Relations.Relation>(resources.Relations)
+            };
 
-            return lab1.Helpers.XMLHelper.WriteToXML(path, sc);
+            return XMLHelper.WriteToXML(path, sc);
         }
 
 
 
         public bool Import(string path)
         {
-            SerializedCanvas sc = lab1.Helpers.XMLHelper.ReadFromXML<SerializedCanvas>(path);
+            SerializedCanvas sc = XMLHelper.ReadFromXML<SerializedCanvas>(path);
             if (sc == null)
                 return false;
             ImportFromSerializedCanvas(sc);
@@ -49,7 +56,7 @@ namespace lab1.Canvas.Helpers
 
         public bool ImportFromEmbedded(string path)
         {
-            SerializedCanvas sc = lab1.Helpers.XMLHelper.ReadFromXMLEmbedded<SerializedCanvas>(path);
+            SerializedCanvas sc = XMLHelper.ReadFromXMLEmbedded<SerializedCanvas>(path);
             if (sc == null)
                 return false;
             ImportFromSerializedCanvas(sc);
@@ -89,7 +96,7 @@ namespace lab1.Canvas.Helpers
                     newEdge = new(FindVertex(e.p1), FindVertex(e.p2));
                     relation.Edge2 = newEdge;
                 }
-                if(relation.Circle != null)
+                if (relation.Circle != null)
                 {
                     Shapes.Circle c = relation.Circle;
                     relation.Circle = FindCircle(c);

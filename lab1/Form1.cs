@@ -12,7 +12,7 @@ namespace lab1
             set
             {
                 if (mode != ApplicationMode.Default)
-                    ResetToDefaultMode();
+                    ResetToDefaultMode();  // stop adding shapes and relations to canvas if the mode was changed
                 mode = value;
             }
         }
@@ -96,6 +96,7 @@ namespace lab1
             int shapeID, vertexID;
             switch (Mode)
             {
+                // if we are in a mode other than default, determine if an object was clicked and then act accordingly to mode
                 case ApplicationMode.DeletingPolygon:
                     if ((shapeID = canvas.IsPolygonCenterClicked(mouseLocation)) != -1)
                     {
@@ -191,6 +192,7 @@ namespace lab1
                         Mode = ApplicationMode.Default;
                     break;
                 case ApplicationMode.Default:
+                    // if something was clicked in default mode, signalize that we want to move it
                     if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
                     {
                         changingShapeID = shapeID;
@@ -260,6 +262,7 @@ namespace lab1
         {
             switch (Mode)
             {
+                // stop moving the object if we were in a moving mode
                 case ApplicationMode.MovingPolygonCenter:
                 case ApplicationMode.MovingVertex:
                 case ApplicationMode.MovingEdge:

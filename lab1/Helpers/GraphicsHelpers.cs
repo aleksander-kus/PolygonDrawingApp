@@ -42,7 +42,7 @@ namespace lab1
         /// <returns>Distance between two points rounded down</returns>
         public static int Distance(Shapes.Point p1, Shapes.Point p2) => (int)Math.Sqrt(SquaredDistance(p1, p2));
 
-        public static void PutPixel(this Graphics g, Brush b, int x, int y) => g.FillRectangle(b, x, y, 1, 1);
+        private static void PutPixel(this Graphics g, Brush b, int x, int y) => g.FillRectangle(b, x, y, 1, 1);
 
         /// <summary>
         /// Draws a between specified points with Bresenham's Algorithm
@@ -86,7 +86,7 @@ namespace lab1
             // go along Y-axis
             else
             {
-                int d = 2 * dx  - dy;
+                int d = 2 * dx - dy;
                 int across_increment = (dx - dy) * 2;
                 int same_line_increment = 2 * dx;
                 while (y != p2.Y)

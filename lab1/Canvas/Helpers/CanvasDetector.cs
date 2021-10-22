@@ -7,7 +7,7 @@ namespace lab1.Canvas.Helpers
     /// </summary>
     public class CanvasDetector : CanvasHelper
     {
-        public CanvasDetector(CanvasResources r): base(r)
+        public CanvasDetector(CanvasResources r) : base(r)
         {
         }
 

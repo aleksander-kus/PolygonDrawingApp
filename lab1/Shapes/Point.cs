@@ -12,15 +12,14 @@ namespace lab1.Shapes
         [XmlAttribute("Y", DataType = "int")]
         public int Y { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore]  // relations have to be ignored by the serializer to prevent loops
         public Relations.Relation R1 { get; set; }
         [XmlIgnore]
         public Relations.Relation R2 { get; set; }
 
-        private bool preventInfiniteLoop = false;
-        
-        // A private default constructor for deserializing
-        private Point()
+        private bool preventInfiniteLoop = false;  // used when working with relations
+
+        private Point()  // A private default constructor for deserializing
         {
 
         }
@@ -36,9 +35,25 @@ namespace lab1.Shapes
         public System.Drawing.Point ToStruct() => new(X, Y);
 
         public bool Equals(Point p) => p.X == X && p.Y == Y;
-        
+
+        /// <summary>
+        /// Move point to destination point
+        /// </summary>
+        /// <param name="destination"></param>
+        /// <param name="ignoreRelationWith"></param>
         public void Move(Point destination, Point ignoreRelationWith = null) => Move(destination.X, destination.Y, ignoreRelationWith);
+        /// <summary>
+        /// Move point to destination point denoted by two coordinates
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="ignoreRelationWith"></param>
         public void Move(int x, int y, Point ignoreRelationWith = null) => Move(new Vector2(x - X, y - Y), ignoreRelationWith);
+        /// <summary>
+        /// Move point by a given vector
+        /// </summary>
+        /// <param name="vec"></param>
+        /// <param name="ignoreRelationWith"></param>
         public void Move(Vector2 vec, Point ignoreRelationWith = null)
         {
             X += (int)Math.Round(vec.X);
@@ -51,13 +66,13 @@ namespace lab1.Shapes
             {
                 (int x, int y) prev = (X, Y);
                 R2.MovePoint(this, vec);
-                if ((X, Y) != prev)
+                if ((X, Y) != prev)  // if a point was moved while moving other points, it means we have a relation loop
                 {
                     preventInfiniteLoop = true;
                     return;
                 }
             }
-            if(preventInfiniteLoop)
+            if (preventInfiniteLoop)  // dont try fixing other relation if we have a loop
             {
                 preventInfiniteLoop = false;
                 return;

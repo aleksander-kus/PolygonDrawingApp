@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace lab1.Canvas.Helpers
+﻿namespace lab1.Canvas.Helpers
 {
+    /// <summary>
+    /// A class containing methods for adding and deleting relations
+    /// </summary>
     public class CanvasRelationManager : CanvasHelper
     {
         public CanvasRelationManager(CanvasResources r) : base(r)
@@ -16,7 +17,7 @@ namespace lab1.Canvas.Helpers
                 r = p1.R1;
             else if (p1.R2 != null && (p1.R2 == p2.R1 || p1.R2 == p2.R2))
                 r = p1.R2;
-            if(r == null)
+            if (r == null)
                 return false;  // no relation on this edge
             r.Remove();
             resources.Relations.Remove(r);

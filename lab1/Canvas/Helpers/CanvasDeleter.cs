@@ -1,5 +1,8 @@
 ﻿namespace lab1.Canvas.Helpers
 {
+    /// <summary>
+    /// A class containing methods to delete shapes from the canvas
+    /// </summary>
     public class CanvasDeleter : CanvasHelper
     {
         public CanvasDeleter(CanvasResources r) : base(r)
@@ -33,9 +36,9 @@
 
         public void DeletePolygon(int polygonID)
         {
-            foreach(var point in resources.Polygons[polygonID].VertexList)
+            foreach (var point in resources.Polygons[polygonID].VertexList)
                 RemovePointRelations(point);
-            
+
             resources.Polygons.RemoveAt(polygonID);
         }
 

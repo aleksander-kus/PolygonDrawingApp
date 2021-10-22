@@ -19,6 +19,11 @@ namespace lab1.Shapes
         [XmlIgnore]
         public Relations.Relation R1 { get; set; }
 
+        /// <summary>
+        /// Change the radius so that it equals the distance between the center and <paramref name="mouseLocation"/>
+        /// </summary>
+        /// <param name="mouseLocation"></param>
+        /// <remarks>If the radius is fixed, the center will be moved accordingly to preserve the radius</remarks>
         public void ResizeOrMove(Point mouseLocation)
         {
             if (!FixedRadius)
@@ -33,11 +38,16 @@ namespace lab1.Shapes
                 R1.MovePoint(Center, Vector2.Zero);
         }
 
-        public void MoveCenter(Point mouseLocation)
+        /// <summary>
+        /// Move the center point to destination
+        /// </summary>
+        /// <param name="destination"></param>
+        /// <remarks>If the center is anchored nothing will happen</remarks>
+        public void MoveCenter(Point destination)
         {
             if (!Anchored)
             {
-                Center.Move(mouseLocation);
+                Center.Move(destination);
                 if (R1 != null)
                     R1.MovePoint(Center, Vector2.One);
             }

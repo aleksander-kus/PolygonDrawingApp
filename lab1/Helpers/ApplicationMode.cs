@@ -1,5 +1,8 @@
 ﻿namespace lab1
 {
+    /// <summary>
+    /// Application mode used by the UI when determining what a click on the canvas should mean
+    /// </summary>
     public enum ApplicationMode
     {
         Default = 0,

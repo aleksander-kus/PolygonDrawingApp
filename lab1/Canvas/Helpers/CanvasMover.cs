@@ -2,6 +2,9 @@
 
 namespace lab1.Canvas.Helpers
 {
+    /// <summary>
+    /// A class with methods to handle moving objects on the canvas
+    /// </summary>
     public class CanvasMover : CanvasHelper
     {
         public CanvasMover(CanvasResources r) : base(r)

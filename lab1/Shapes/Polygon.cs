@@ -1,9 +1,6 @@
-﻿using System.Xml.Serialization;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Drawing;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace lab1.Shapes
 {
@@ -12,11 +9,10 @@ namespace lab1.Shapes
         [XmlArray("VertexList")]
         public List<Point> VertexList { get; private set; }
 
-        [XmlIgnore]
+        [XmlIgnore]  // ignored by the serializer because it is calculated on drawing anyways
         public Point Center { get; private set; } = new Point(0, 0);
 
-        // A private default constructor for deserializing
-        private Polygon()
+        private Polygon()  // A private default constructor for deserializing
         {
             VertexList = new();
         }

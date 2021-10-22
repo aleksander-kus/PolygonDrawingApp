@@ -5,8 +5,11 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace lab1.Helpers
+namespace lab1.Canvas.Helpers
 {
+    /// <summary>
+    /// A helper class for working with XML serialization
+    /// </summary>
     public static class XMLHelper
     {
         private static bool invalid_xml = false;
