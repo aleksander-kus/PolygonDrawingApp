@@ -134,7 +134,9 @@ namespace lab1
                     if (((shapeID, vertexID) = canvas.IsPolygonEdgeClicked(mouseLocation)) != (-1, -1))
                     {
                         int returnValue = canvas.AddEdgeToRelation(shapeID, vertexID);
-                        if (returnValue == -1)
+                        if (returnValue == 1)
+                            Mode = ApplicationMode.Default;
+                        else if (returnValue == -1)
                             ErrorBox("You cannot add more than one relation to an edge");
                         else if (returnValue == -2)
                             ErrorBox("You cannot add relations between edges in different polygons");
@@ -144,7 +146,9 @@ namespace lab1
                     else if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
                     {
                         int returnValue = canvas.AddCircleToRelation(shapeID);
-                        if (returnValue == -1)
+                        if (returnValue == 1)
+                            Mode = ApplicationMode.Default;
+                        else if (returnValue == -1)
                             ErrorBox("You cannot add more relations to this circle");
                         else if (returnValue == -2)
                             ErrorBox("Please select the edge first");
