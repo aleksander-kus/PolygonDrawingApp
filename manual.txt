@@ -1,0 +1,33 @@
+Obsługa programu:
+- do obsługi programu należy używać myszki i opcjonalnie klawiszy M, F i Escape
+- program działa w kilku trybach: dodawania obiektów, usuwania i domyślnym (poruszania)
+- w trybach dodawania i usuwania nie można poruszać obiektami
+- aby móc poruszać obiektami należy przejść do trybu domyślnego poprzez naciśnięcie przycisku "Move object" lub wciśnięcie klawisza M lub Escape
+- aby przejść do trybów dodawania i usuwania odpowiednich elementów należy wybrać przycisk z menu po prawej stronie
+- dodając wielokąt lub okrąg można nacisnąć klawisz F (Finish) aby program automatycznie dokończył dodawanie
+- dodając wielokąt można również kliknąć na punkt początkowy (aby "domknąć" figurę). Wtedy także dodawanie zostanie zakończone
+
+Opis założeń i algorytmu relacji:
+- każda relacja ma przypisaną do siebie literę i swój kolor, widoczne na predefiniowanej scenie
+a) relacje typu krawędź - krawędź
+- przy ustawianiu zadanej długości krawędzi należy kliknąć na krawędź po kliknięciu przycisku "Fixed length relation", 
+  jej długość zostanie zachowana. Podobnie przy zadanej długości promienia okręgu (przycisk "Fixed radius")
+- przy przesuwaniu krawędzi o niezmiennej długości przesuwana jest cała krawędź w kierunku przesuwania punktu
+- w przypadku relacji równej długości dwóch krawędzi, przy zmianie jednej krawędzi druga zostaje wydłużona (skrócona) w linii prostej
+- w przypadku relacji równoległości, przy zmianie jednego z wierzchołków krawędzi, jeden z wierzchołków przeciwnej krawędzi jest poruszany, 
+  aby zachować równoległość
+- w przypadku dużej ilości różnych relacji w odrębie jednego wielokąta program może nie zachować niektórych z nich, 
+  aby umożliwić zachowanie pozostałych przy przesuwaniu wielokąta
+b) relacje typu krawędź - okrąg
+- okrąg nie może jednocześnie mieć usztywnionego środka i zadanej długości promienia (edycja niemożliwa)
+- przy przesuwaniu krawędzi w relacji styczności z okręgiem zmieniany jest promień okręgu, aby zachować relację
+- przy przesuwaniu krawędzi w relacji styczności z okręgiem o zadanym promieniu cały okrąg jest przesuwany, aby zachować relację
+- przy zmianie promienia okręgu o usztywnionym środku krawędź w relacji z okręgiem jest przesuwana, aby zachować relację
+- przy przesuwaniu środka okręgu o zadanym promieniu przesuwana jest cała krawędź styczna, aby zachować relację
+c) opis implementacji
+- relacje dziedziczną z bazowej klasy abstrakcyjnej
+- każdy punkt krawędzi ma przypisaną do siebie relację występującą na danej krawędzi
+- każdy punkt może mieć maksymalnie 2 relacje (wychodzą z niego maksymalnie 2 krawędzie)
+- przy poruszaniu punktu program sprawdza, czy do punktu przypisane są jakieś relacje.
+  Jeżeli tak jest, relacja jest poprawiana dla przesuniętego punktu
+- poprawianie relacji przesuwa kolejne punkty
