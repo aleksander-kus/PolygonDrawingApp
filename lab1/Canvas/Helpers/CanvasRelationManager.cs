@@ -51,6 +51,8 @@
                     return -1;
                 if (resources.AddingRelationPolygonID != polygonID)
                     return -2;
+                if (resources.AddingRelation is Relations.TangentRelation)
+                    return -3;
                 resources.AddingRelation.Edge2 = newEdge;
                 resources.AddingRelation.Impose();
                 resources.Relations.Add(resources.AddingRelation);

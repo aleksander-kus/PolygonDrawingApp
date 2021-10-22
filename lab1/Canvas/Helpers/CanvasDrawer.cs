@@ -85,10 +85,10 @@ namespace lab1.Canvas.Helpers
             Pen p = new(color ?? Color.Black, 1);
             Rectangle r = new(circle.Center.X - circle.Radius, circle.Center.Y - circle.Radius, 2 * circle.Radius, 2 * circle.Radius);
             g.DrawEllipse(p, r);
-            DrawVertice(g, circle.Center, circle.Anchored ? Color.Brown : Color.Red);
             if (circle.FixedRadius)
                 p.Color = Color.Blue;
             g.DrawLine(p, circle.Center.ToStruct(), new Point(circle.Center.X + circle.Radius, circle.Center.Y));
+            DrawVertice(g, circle.Center, circle.Anchored ? Color.Brown : Color.Red);
             p.Dispose();
         }
 

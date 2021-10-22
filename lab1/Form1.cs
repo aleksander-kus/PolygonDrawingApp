@@ -164,6 +164,8 @@ namespace lab1
                             ErrorBox("You cannot add more than one relation to an edge");
                         else if (returnValue == -2)
                             ErrorBox("You cannot add relations between edges in different polygons");
+                        else if (returnValue == -3)
+                            ErrorBox("You have to add a circle to this relation");
                     }
                     else if ((shapeID = canvas.IsCircleCenterClicked(mouseLocation)) != -1)
                     {
