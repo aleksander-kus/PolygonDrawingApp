@@ -1,37 +1,98 @@
 <?xml version="1.0"?>
 <Canvas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://example.org/ak/canvas">
-  <PolygonList>
-    <Polygon>
-      <VertexList>
-        <Point>
-          <X>331</X>
-          <Y>483</Y>
-        </Point>
-        <Point>
-          <X>1136</X>
-          <Y>544</Y>
-        </Point>
-        <Point>
-          <X>752</X>
-          <Y>83</Y>
-        </Point>
-        <Point>
-          <X>291</X>
-          <Y>117</Y>
-        </Point>
-      </VertexList>
-      <Center>
-        <X>627</X>
-        <Y>306</Y>
-      </Center>
-    </Polygon>
-  </PolygonList>
-  <CircleList>
-    <Circle Radius="151">
-      <Center>
-        <X>1155</X>
-        <Y>170</Y>
-      </Center>
-    </Circle>
-  </CircleList>
+	<PolygonList>
+		<Polygon>
+			<VertexList>
+				<Point X="448" Y="107" />
+				<Point X="145" Y="154" />
+				<Point X="328" Y="332" />
+				<Point X="809" Y="417" />
+				<Point X="668" Y="146" />
+			</VertexList>
+		</Polygon>
+		<Polygon>
+			<VertexList>
+				<Point X="894" Y="193" />
+				<Point X="912" Y="470" />
+				<Point X="1130" Y="477" />
+				<Point X="1381" Y="271" />
+				<Point X="1239" Y="132" />
+				<Point X="1021" Y="120" />
+			</VertexList>
+		</Polygon>
+		<Polygon>
+			<VertexList>
+				<Point X="280" Y="545" />
+				<Point X="290" Y="856" />
+				<Point X="596" Y="820" />
+				<Point X="622" Y="697" />
+			</VertexList>
+		</Polygon>
+	</PolygonList>
+	<CircleList>
+		<Circle Anchored="false" FixedRadius="false" Radius="77">
+			<Center X="696" Y="646" />
+		</Circle>
+		<Circle Anchored="false" FixedRadius="true" Radius="88">
+			<Center X="199" Y="768" />
+		</Circle>
+	</CircleList>
+	<RelationList>
+		<ParallelRelation>
+			<Edge1>
+				<p1 X="328" Y="332" />
+				<p2 X="809" Y="417" />
+			</Edge1>
+			<Edge2>
+				<p1 X="668" Y="146" />
+				<p2 X="448" Y="107" />
+			</Edge2>
+		</ParallelRelation>
+		<FixedLengthRelation>
+			<Edge1>
+				<p1 X="448" Y="107" />
+				<p2 X="145" Y="154" />
+			</Edge1>
+		</FixedLengthRelation>
+		<FixedLengthRelation>
+			<Edge1>
+				<p1 X="1021" Y="120" />
+				<p2 X="894" Y="193" />
+			</Edge1>
+		</FixedLengthRelation>
+		<FixedLengthRelation>
+			<Edge1>
+				<p1 X="1381" Y="271" />
+				<p2 X="1239" Y="132" />
+			</Edge1>
+		</FixedLengthRelation>
+		<EqualLengthRelation>
+			<Edge1>
+				<p1 X="1239" Y="132" />
+				<p2 X="1021" Y="120" />
+			</Edge1>
+			<Edge2>
+				<p1 X="912" Y="470" />
+				<p2 X="1130" Y="477" />
+			</Edge2>
+		</EqualLengthRelation>
+		<TangentRelation>
+			<Edge1>
+				<p1 X="622" Y="697" />
+				<p2 X="280" Y="545" />
+			</Edge1>
+			<Circle Anchored="false" FixedRadius="false" Radius="77">
+				<Center X="696" Y="646" />
+			</Circle>
+		</TangentRelation>
+		<TangentRelation>
+			<Edge1>
+				<p1 X="280" Y="545" />
+				<p2 X="290" Y="856" />
+			</Edge1>
+			<Circle Anchored="false" FixedRadius="true" Radius="88">
+				<Center X="199" Y="768" />
+			</Circle>
+		</TangentRelation>
+	</RelationList>
 </Canvas>

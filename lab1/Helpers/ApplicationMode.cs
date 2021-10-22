@@ -1,5 +1,8 @@
 ﻿namespace lab1
 {
+    /// <summary>
+    /// Application mode used by the UI when determining what a click on the canvas should mean
+    /// </summary>
     public enum ApplicationMode
     {
         Default = 0,
@@ -13,6 +16,13 @@
         DeletingPolygon,
         DeletingCircle,
         DeletingVertex,
-        SplittinEdge
+        SplittinEdge,
+        AddingFixedLengthRelation,
+        AddingEqualLengthRelation,
+        AddingParallelRelation,
+        AddingFixedRadius,
+        AddingAnchor,
+        AddingTangentRelation,
+        RemovingRelation
     }
 }
