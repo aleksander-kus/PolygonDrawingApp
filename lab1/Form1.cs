@@ -28,6 +28,7 @@ namespace lab1
         private void Form1_Load(object sender, EventArgs e)
         {
             canvas = new(canvasPanel);
+            KeyPreview = true;
             // load test scene form the embedded file
             canvas.ImportFromEmbedded("lab1.Helpers.TestScene.xml");
         }
@@ -290,6 +291,17 @@ namespace lab1
             Mode = ApplicationMode.Default;
             canvas = new Canvas.Canvas(canvasPanel);
             canvasPanel.Invalidate();
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.M || e.KeyCode == Keys.Escape)
+                Mode = ApplicationMode.Default;
+            if (e.KeyCode == Keys.F)
+            {
+                if(canvas.FinishAddingShape(new Shapes.Point(canvasPanel.PointToClient(MousePosition))))
+                    Mode = ApplicationMode.Default;
+            }
         }
     }
 }

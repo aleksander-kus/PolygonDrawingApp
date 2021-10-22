@@ -39,6 +39,7 @@ namespace lab1
             this.button13 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.removeCircleRelationsButton = new System.Windows.Forms.Button();
             this.tangentRelationButton = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -65,7 +66,6 @@ namespace lab1
             this.button20 = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.removeCircleRelationsButton = new System.Windows.Forms.Button();
             this.tablePanel.SuspendLayout();
             this.menuTable.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -229,6 +229,18 @@ namespace lab1
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(279, 138);
             this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // removeCircleRelationsButton
+            // 
+            this.removeCircleRelationsButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.removeCircleRelationsButton.Location = new System.Drawing.Point(3, 111);
+            this.removeCircleRelationsButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.removeCircleRelationsButton.Name = "removeCircleRelationsButton";
+            this.removeCircleRelationsButton.Size = new System.Drawing.Size(273, 23);
+            this.removeCircleRelationsButton.TabIndex = 14;
+            this.removeCircleRelationsButton.Text = "Remove circle relations";
+            this.removeCircleRelationsButton.UseVisualStyleBackColor = true;
+            this.removeCircleRelationsButton.Click += new System.EventHandler(this.removeCircleRelationsButton_Click);
             // 
             // tangentRelationButton
             // 
@@ -557,18 +569,6 @@ namespace lab1
             this.tableLayoutPanel7.Size = new System.Drawing.Size(200, 100);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
-            // removeCircleRelationsButton
-            // 
-            this.removeCircleRelationsButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.removeCircleRelationsButton.Location = new System.Drawing.Point(3, 111);
-            this.removeCircleRelationsButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.removeCircleRelationsButton.Name = "removeCircleRelationsButton";
-            this.removeCircleRelationsButton.Size = new System.Drawing.Size(273, 23);
-            this.removeCircleRelationsButton.TabIndex = 14;
-            this.removeCircleRelationsButton.Text = "Remove circle relations";
-            this.removeCircleRelationsButton.UseVisualStyleBackColor = true;
-            this.removeCircleRelationsButton.Click += new System.EventHandler(this.removeCircleRelationsButton_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -579,6 +579,7 @@ namespace lab1
             this.Text = "Shape editor";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.tablePanel.ResumeLayout(false);
             this.menuTable.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);

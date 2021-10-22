@@ -52,6 +52,7 @@ namespace lab1.Canvas
         public bool AddCircle(Shapes.Point mousePosition) =>
             RedrawAndReturn(adder.AddCircle, mousePosition);
         public void StopAddingShape() => ExecuteAndRedraw(adder.StopAddingShape);
+        public bool FinishAddingShape(Shapes.Point mousePosition) => RedrawAndReturn(adder.FinishAddingShape, mousePosition);
 
         // DETECTING CLICKS
         // Determining if an object was clicked or not is handled by the CanvasDetector class

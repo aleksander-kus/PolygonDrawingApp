@@ -9,11 +9,15 @@
         {
         }
 
-        /// <summary>
-        /// Add a new point to the polygon
-        /// </summary>
-        /// <param name="location">The location</param>
-        /// <returns>If drawing of the new polygon is finished, return true</returns>
+
+        public void StartAddingPolygon(Shapes.Point mousePosition)
+        {
+            resources.AddingPolygonVertices = new();
+            resources.AddingPolygonVertices.Add(mousePosition);
+        }
+
+        public void StartAddingCircle(Shapes.Point mousePosition) => resources.AddingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
+
         public bool AddPointToPolygon(Shapes.Point mousePosition)
         {
             // if the first point was clicked, finish adding the new resources.polygon
@@ -30,25 +34,6 @@
             return false;
         }
 
-        /// <summary>
-        /// Start adding a new resources.polygon to the canvas
-        /// </summary>
-        /// <param name="location">Starting location of polygon</param>
-        public void StartAddingPolygon(Shapes.Point mousePosition)
-        {
-            resources.AddingPolygonVertices = new();
-            resources.AddingPolygonVertices.Add(mousePosition);
-        }
-
-        public void SplitEdge(int polygonID, int lowerVertexID)
-        {
-            Shapes.Point p1 = resources.GetPointByID(polygonID, lowerVertexID), p2 = resources.GetPointByID(polygonID, lowerVertexID + 1);
-            Shapes.Point center = GraphicsHelpers.SegmentCenter(p1, p2);
-            resources.Polygons[polygonID].VertexList.Insert(lowerVertexID + 1, center);
-        }
-
-        public void StartAddingCircle(Shapes.Point mousePosition) => resources.AddingCircle = new Shapes.Circle { Center = mousePosition, Radius = 1 };
-
         public bool AddCircle(Shapes.Point mousePosition)
         {
             if (resources.Circle_anchored)
@@ -62,6 +47,13 @@
             resources.AddingCircle.Center = mousePosition;
             resources.Circle_anchored = true;
             return false;
+        }
+
+        public void SplitEdge(int polygonID, int lowerVertexID)
+        {
+            Shapes.Point p1 = resources.GetPointByID(polygonID, lowerVertexID), p2 = resources.GetPointByID(polygonID, lowerVertexID + 1);
+            Shapes.Point center = GraphicsHelpers.SegmentCenter(p1, p2);
+            resources.Polygons[polygonID].VertexList.Insert(lowerVertexID + 1, center);
         }
 
         public bool AnchorCircle(int circleID)
@@ -80,6 +72,21 @@
                 return false;
             circle.FixedRadius = true;
             return true;
+        }
+
+        public bool FinishAddingShape(Shapes.Point mousePosition)
+        {
+            if (resources.AddingPolygonVertices != null && resources.AddingPolygonVertices.Count > 3)
+            {
+                AddPointToPolygon(resources.AddingPolygonVertices[0]);
+                return true;
+            }
+            if(resources.AddingCircle != null)
+            {
+                AddCircle(mousePosition);
+                return true;
+            }
+            return false;
         }
 
         public void StopAddingShape()
