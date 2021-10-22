@@ -65,7 +65,7 @@ namespace lab1.Shapes
             if (!isR2Ignored)
             {
                 (int x, int y) prev = (X, Y);
-                R2.MovePoint(this, vec);
+                R2.FixRelation(this, vec);
                 if ((X, Y) != prev)  // if a point was moved while moving other points, it means we have a relation loop
                 {
                     preventInfiniteLoop = true;
@@ -79,7 +79,7 @@ namespace lab1.Shapes
             }
             if (!isR1Ignored)
             {
-                R1.MovePoint(this, vec);
+                R1.FixRelation(this, vec);
             }
         }
     }

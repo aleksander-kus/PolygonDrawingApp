@@ -54,7 +54,7 @@ namespace lab1.Relations
             AdjustEdge(Edge1, Edge2, null);
         }
 
-        public override void MovePoint(Shapes.Point clickedPoint, Vector2 vec)
+        public override void FixRelation(Shapes.Point clickedPoint, Vector2 vec)
         {
             if (clickedPoint == Edge1.p1 || clickedPoint == Edge1.p2)
                 AdjustEdge(Edge2, Edge1, clickedPoint);

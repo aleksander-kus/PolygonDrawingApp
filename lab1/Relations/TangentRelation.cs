@@ -67,7 +67,7 @@ namespace lab1.Relations
             Adjust(Circle.Center);
         }
 
-        public override void MovePoint(Shapes.Point clickedPoint, Vector2 vec)
+        public override void FixRelation(Shapes.Point clickedPoint, Vector2 vec)
         {
             if (clickedPoint == Circle.Center && vec == Vector2.Zero)
                 MakeEdgeTangent();

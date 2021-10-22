@@ -53,6 +53,6 @@ namespace lab1.Relations
         /// </summary>
         /// <param name="clickedPoint"></param>
         /// <param name="vec"></param>
-        public abstract void MovePoint(Shapes.Point clickedPoint, Vector2 vec);
+        public abstract void FixRelation(Shapes.Point clickedPoint, Vector2 vec);
     }
 }

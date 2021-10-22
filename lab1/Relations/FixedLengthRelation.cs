@@ -36,7 +36,7 @@ namespace lab1.Relations
             else if (edge.p2.R2 == null) edge.p2.R2 = this;
         }
 
-        public override void MovePoint(Shapes.Point clickedPoint, Vector2 vec)
+        public override void FixRelation(Shapes.Point clickedPoint, Vector2 vec)
         {
             if(clickedPoint == first)
             {

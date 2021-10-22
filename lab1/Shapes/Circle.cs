@@ -35,7 +35,7 @@ namespace lab1.Shapes
                 Center.Move(v2);
             }
             if (R1 != null)
-                R1.MovePoint(Center, Vector2.Zero);
+                R1.FixRelation(Center, Vector2.Zero);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace lab1.Shapes
             {
                 Center.Move(destination);
                 if (R1 != null)
-                    R1.MovePoint(Center, Vector2.One);
+                    R1.FixRelation(Center, Vector2.One);
             }
         }
 
