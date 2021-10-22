@@ -308,6 +308,7 @@ namespace lab1
 
         private void resetCanvasButton_Click(object sender, EventArgs e)
         {
+            Mode = ApplicationMode.Default;
             canvas = new Canvas.Canvas(canvasPanel);
             canvasPanel.Invalidate();
         }
