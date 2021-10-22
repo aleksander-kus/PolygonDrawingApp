@@ -81,7 +81,7 @@
                 AddPointToPolygon(resources.AddingPolygonVertices[0]);
                 return true;
             }
-            if(resources.AddingCircle != null)
+            if (resources.AddingCircle != null)
             {
                 AddCircle(mousePosition);
                 return true;

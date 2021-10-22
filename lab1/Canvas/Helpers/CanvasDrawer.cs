@@ -10,7 +10,7 @@ namespace lab1.Canvas.Helpers
     {
         private readonly BufferedPanel panel;
 
-        public CanvasDrawer(BufferedPanel p, CanvasResources r): base(r)
+        public CanvasDrawer(BufferedPanel p, CanvasResources r) : base(r)
         {
             panel = p;
         }

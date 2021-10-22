@@ -12,7 +12,6 @@ namespace lab1.Relations
         public override char Symbol => 'P';
 
         public override Edge Edge1 { get; set; }
-
         public override Edge Edge2 { get; set; }
         public override Circle Circle { get; set; } = null;
 
